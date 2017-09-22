@@ -3,19 +3,35 @@ input {
   margin-bottom: 5px;
 }
 
-.body-profile{
+.ssn-profile{
   padding-top:60px;
 }
-
-.body-profile .navbar-default{
+.ssn-profile .navbar-default{
   background-color: #337ab7;
   border-color: #2e6da4;
 }
 
-.body-profile .navbar-default .navbar-brand{
+.ssn-profile .navbar-default .navbar-brand{
   color: white;
 }
 
 .navbar-default .navbar-nav li a {
   color:white;
+}
+
+.ssn-widget-toolbar{
+  position: absolute;
+  right:0px;
+  background-color: beige;
+  padding: 7px;
+  border-bottom-left-radius: 10px;
+  opacity: 0.5;
+}
+
+.ssn-hide-border{
+  border: none;
+  color: #337ab7
+}
+.ssn-navbar {
+  position: fixed;
 }

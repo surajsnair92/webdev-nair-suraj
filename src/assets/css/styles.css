@@ -6,6 +6,9 @@ input {
 .ssn-profile{
   padding-top:60px;
 }
+.ssn-widget{
+  padding-top:30px;
+}
 .ssn-profile .navbar-default{
   background-color: #337ab7;
   border-color: #2e6da4;
@@ -34,4 +37,46 @@ input {
 }
 .ssn-navbar {
   position: fixed;
+}
+.ssn-edit-website {
+  background-color: #337ab7;
+}
+.ssn-edit-website.navbar-header{
+  background-color: #337ab7;
+}
+.ssn-color-white{
+  color: white;
+}
+.ssn-color-white.navbar-brand.ssn-navbar{
+  color: white;
+}
+.ssn-border-none{
+  border:none;
+}
+.ssn-glyphicon-white{
+  color: white;
+}
+.ssn-glyphicon-white.navbar-link.active{
+  color: white;
+}
+.ssn-glyphicon-white.navbar-link{
+  color: white;
+}
+.ssn-page-navbar-color.navbar.navbar-default.navbar-fixed-top{
+  background-color: #e7e7e7;
+}
+.ssn-page-navbar-color.navbar.navbar-default.navbar-fixed-bottom{
+  background-color: #e7e7e7;
+}
+.ssn-glyphicon-black{
+  color: black;
+}
+.ssn-glyphicon-black.glyphicon.glyphicon-plus{
+  color:black;
+}
+.ssn-glyphicon-black.glyphicon.glyphicon-user{
+  color:black;
+}
+.ssn-glyphicon-black.navbar-brand.ssn-navbar{
+  color:black;
 }

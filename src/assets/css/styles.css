@@ -2,12 +2,15 @@
 input {
   margin-bottom: 5px;
 }
-
+.ssn-widget-body{
+  padding-bottom: 70px;
+}
 .ssn-profile{
   padding-top:60px;
 }
 .ssn-widget{
   padding-top:30px;
+  /*padding-bottom: 70px;*/
 }
 .ssn-profile .navbar-default{
   background-color: #337ab7;
@@ -25,7 +28,7 @@ input {
 .ssn-widget-toolbar{
   position: absolute;
   right:0px;
-  background-color: beige;
+  background-color: white;
   padding: 7px;
   border-bottom-left-radius: 10px;
   opacity: 0.5;
@@ -79,4 +82,19 @@ input {
 }
 .ssn-glyphicon-black.navbar-brand.ssn-navbar{
   color:black;
+}
+.video-container {
+  position:relative;
+  padding-bottom:56.25%;
+  padding-top:30px;
+  height:0;
+  overflow:hidden;
+}
+
+.video-container iframe, .video-container object, .video-container embed {
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
 }

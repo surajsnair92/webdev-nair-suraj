@@ -9,61 +9,63 @@
   <title> Widget List </title>
 </head>
 
-<body>
+<body class="ssn-widget-body">
 <div class = "ssn-widget">
   <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
 
-        <a class="navbar-brand ssn-navbar" href="#">
+        <a class="navbar-brand ssn-navbar" href="../page/page-list.html">
           <div class="glyphicon glyphicon-chevron-left"></div>
           Widgets
         </a>
       </div>
 
-
-      <!-- Collect the nav links, forms, and other content for toggling -->
-      <!--<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">-->
-
-      <!-- Edited navbar-right to pull-right to align the cog and user glyphicon -->
-      <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="navbar-collapse" id="bs-example-navbar-collapse-1">
-
-        <!-- Edited navbar-right to pull-right to align the cog and user glyphicon -->
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="#" class="ssn-glyphicon-black glyphicon glyphicon-plus pull-right"></a></li>
+          <li>
+            <a href="widget-chooser.html" class="ssn-glyphicon-black glyphicon glyphicon-plus pull-right"></a>
+          </li>
         </ul>
-      </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
+      </div>
+    </div>
   </nav>
 </div>
 
   <div class="container-fluid">
     <div class="ssn-widget">
       <div class="ssn-widget-toolbar">
-        <span class="glyphicon glyphicon-cog"></span>
+        <a href="widget-heading.html">
+          <span class="glyphicon glyphicon-cog"></span>
+        </a>
         <span class="glyphicon glyphicon-menu-hamburger"></span>
       </div>
       <h1>A Heading of size 1</h1>
     </div>
     <div class="ssn-widget">
       <div class="ssn-widget-toolbar">
-        <span class="glyphicon glyphicon-cog"></span>
+        <a href="widget-heading.html">
+          <span class="glyphicon glyphicon-cog"></span>
+        </a>
         <span class="glyphicon glyphicon-menu-hamburger"></span>
       </div>
     <h2>A Heading of size 1</h2>
     </div>
     <div class="ssn-widget">
       <div class="ssn-widget-toolbar">
-        <span class="glyphicon glyphicon-cog"></span>
+        <a href="widget-image.html">
+          <span class="glyphicon glyphicon-cog"></span>
+        </a>
         <span class="glyphicon glyphicon-menu-hamburger"></span>
       </div>
       <img width="100%" src="http://lorempixel.com/400/200" />
     </div>
     <div class="ssn-widget">
       <div class="ssn-widget-toolbar">
-        <span class="glyphicon glyphicon-cog"></span>
+        <a href="widget-heading.html">
+          <span class="glyphicon glyphicon-cog"></span>
+        </a>
         <span class="glyphicon glyphicon-menu-hamburger"></span>
       </div>
       <p id="speakable-summary">Shopping may be turning into an increasingly virtual experience,
@@ -80,13 +82,17 @@
 
     <div class="ssn-widget">
       <div class="ssn-widget-toolbar">
-        <span class="glyphicon glyphicon-cog"></span>
+        <a href="widget-youtube.html">
+          <span class="glyphicon glyphicon-cog"></span>
+        </a>
         <span class="glyphicon glyphicon-menu-hamburger"></span>
       </div>
+      <div class="video-container">
       <iframe width="560" height="315"
               src="https://www.youtube.com/embed/li41sHoxqZQ"
               frameborder="0" allowfullscreen>
       </iframe>
+      </div>
     </div>
 
   </div>
@@ -94,23 +100,20 @@
 <nav class="navbar navbar-default navbar-fixed-bottom">
   <div class="container-fluid">
     <div class="navbar-text pull-right">
-      <a href="#" class="navbar-link">
+      <a href="../user/profile.html" class="navbar-link">
           <span class="ssn-glyphicon-black glyphicon glyphicon-user">
                      </span>
       </a>
     </div>
 
       <div class="navbar-text pull-left">
-        <a href="website-edit-trial.html" class="navbar-link">
+        <a href="#" class="navbar-link">
           <span class="ssn-glyphicon-black glyphicon glyphicon-play"></span>
           <span class="ssn-glyphicon-black glyphicon glyphicon-eye-open"></span>
         </a>
       </div>
-
-
-
-
   </div>
 </nav>
+
 </body>
 </html>

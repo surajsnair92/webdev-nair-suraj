@@ -17,7 +17,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 
 // Point static path to dist -- For building -- REMOVE
-app.use(express.static(__dirname + '/assets'));
+app.use(express.static(path.join(__dirname, 'dist')));
+
 
 
 // CORS
@@ -44,8 +45,8 @@ serverSide(app);
 
 
 // For Build: Catch all other routes and return the index file -- BUILDING
-app.get('/', function (req, res) {
-  res.sendFile('index.html');
+app.get('*', function (req, res) {
+  res.sendFile(path.join(__dirname, 'dist/index.html'));
 });
 
 

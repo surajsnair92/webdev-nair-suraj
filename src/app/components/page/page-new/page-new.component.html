@@ -1,0 +1,113 @@
+
+<nav class="ssn-page-navbar-color navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xs-4 hidden-xs">
+        <div class="">
+          <div class="navbar-text pull-left">
+            <a href="page-list.html" class="ssn-glyphicon-white navbar-link">
+                     <span class="ssn-glyphicon-black glyphicon glyphicon-chevron-left">
+                     </span>
+            </a>
+          </div>
+
+          <div class="navbar-header">
+            <a class="ssn-glyphicon-black navbar-brand ssn-navbar" >
+              Websites
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class=" col-sm-12 col-sm-8 hidden-xs">
+        <div class="navbar-text pull-right">
+          <a class=" navbar-link"
+             routerLink="/profile/{{userId}}/website/{{webId}}/page" >
+            <span class="ssn-glyphicon-black glyphicon glyphicon glyphicon-ok"></span>
+          </a>
+        </div>
+
+        <div class="navbar-header">
+          <a class="ssn-glyphicon-black navbar-brand ssn-navbar" >
+            New Website
+          </a>
+        </div>
+      </div>
+      <div class=" col-xs-12 visible-xs">
+        <div class="navbar-text pull-right">
+          <a routerLink="/profile/{{userId}}/website/{{webId}}/page"
+             class="ssn-glyphicon-white navbar-link">
+            <span class="ssn-glyphicon-black glyphicon glyphicon glyphicon-ok"></span>
+          </a>
+        </div>
+        <div class="navbar-text pull-left">
+          <a class="ssn-glyphicon-white navbar-link active"
+             href="page-list.html">
+            <span class="ssn-glyphicon-black glyphicon glyphicon-chevron-left"></span>
+          </a>
+        </div>
+
+        <div class="navbar-header">
+          <a class="navbar-brand ssn-navbar" >
+            <div class="ssn-glyphicon-black"> New Website</div>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</nav>
+<br><br><br><br>
+<div class="container-fluid">
+  <div class="row">
+    <div class="ssn-profile col-xs-4 hidden-xs">
+      <div class="" >
+        <ul class="list-group">
+          <li *ngFor="let p of page" class="ssn-border-none list-group-item">
+            {{p.name}}
+            <a href="#" class="pull-right">
+              <span class="glyphicon-cog glyphicon"></span>
+            </a>
+          </li>
+          <!--<li class="ssn-border-none list-group-item">-->
+            <!--Address Book App-->
+            <!--<a href="#" class="pull-right">-->
+              <!--<span class="glyphicon-cog glyphicon"></span>-->
+            <!--</a>-->
+          <!--</li>-->
+          <!--<li class="ssn-border-none list-group-item">-->
+            <!--Script Testing App-->
+            <!--<a href="#" class="pull-right">-->
+              <!--<span class="glyphicon-cog glyphicon"></span>-->
+            <!--</a>-->
+          <!--</li>-->
+          <!--<li class="ssn-border-none list-group-item">-->
+            <!--Blogger-->
+            <!--<a href="website-edit-trial.html" class="pull-right">-->
+              <!--<span class="glyphicon-cog glyphicon"></span>-->
+            <!--</a>-->
+          <!--</li>-->
+        </ul>
+      </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-8">
+      <div class = "ssn-profile">
+        <label>Website Name</label>
+        <input class="form-control"/>
+        <label>Website Description</label>
+        <textarea class="form-control"></textarea>
+
+      </div>
+    </div>
+  </div>
+
+  <nav class="ssn-page-navbar-color navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+      <div class="navbar-text pull-right">
+        <a href="../user/profile.html" class="navbar-link">
+                     <span class="ssn-glyphicon-black glyphicon glyphicon-user">
+                     </span>
+        </a>
+      </div>
+    </div>
+  </nav>

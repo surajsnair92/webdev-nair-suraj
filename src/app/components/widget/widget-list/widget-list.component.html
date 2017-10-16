@@ -1,0 +1,129 @@
+<div class = "ssn-widget">
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+
+        <a class="navbar-brand ssn-navbar" href="../page/page-list.html">
+          <div class="glyphicon glyphicon-chevron-left"></div>
+          Widgets
+        </a>
+      </div>
+
+      <div class="navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <a routerLink='/profile/{{userId}}/website/{{webId}}/page/{{pageId}}/widget/new' class="ssn-glyphicon-black glyphicon glyphicon-plus pull-right"></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>
+<br><br><br>
+<div *ngFor="let w of widget " class="container-fluid">
+  <div [ngSwitch]="w.widgetType" class="ssn-widget">
+    <div  *ngSwitchCase="'Heading'" class="ssn-widget-toolbar">
+      <a href="widget-heading.html">
+        <span class="glyphicon glyphicon-cog pull-right"></span>
+      </a>
+      <span class="glyphicon glyphicon-menu-hamburger pull-right"></span>
+      <h1>{{w._text}}</h1>
+    </div>
+
+    <div  *ngSwitchCase="'Image'" class="ssn-widget-toolbar">
+        <a href="widget-image.html">
+         <span class="glyphicon glyphicon-cog pull-right"></span>
+        </a>
+        <span class="glyphicon glyphicon-menu-hamburger pull-right"></span>
+      <img width="100%" src="http://lorempixel.com/400/200" />
+    </div>
+<br>
+    <div *ngSwitchCase="'YouTube'" class="ssn-widget-toolbar">
+      <a href="widget-youtube.html">
+      <span class="glyphicon glyphicon-cog"></span>
+      </a>
+      <span class="glyphicon glyphicon-menu-hamburger"></span>
+
+      <div class="video-container">
+        <iframe width="560" height="315"
+                src="https://www.youtube.com/embed/li41sHoxqZQ"
+                frameborder="0" allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+
+
+
+      </div>
+      <!--<div class="ssn-widget">-->
+    <!--<div class="ssn-widget-toolbar">-->
+      <!--<a href="widget-heading.html">-->
+        <!--<span class="glyphicon glyphicon-cog"></span>-->
+      <!--</a>-->
+      <!--<span class="glyphicon glyphicon-menu-hamburger"></span>-->
+    <!--</div>-->
+    <!--<h2>A Heading of size 1</h2>-->
+  <!--</div>-->
+  <!--<div class="ssn-widget">-->
+    <!--<div class="ssn-widget-toolbar">-->
+      <!--<a href="widget-image.html">-->
+        <!--<span class="glyphicon glyphicon-cog"></span>-->
+      <!--</a>-->
+      <!--<span class="glyphicon glyphicon-menu-hamburger"></span>-->
+    <!--</div>-->
+    <!--<img width="100%" src="http://lorempixel.com/400/200" />-->
+  <!--</div>-->
+  <!--<div class="ssn-widget">-->
+    <!--<div class="ssn-widget-toolbar">-->
+      <!--<a href="widget-heading.html">-->
+        <!--<span class="glyphicon glyphicon-cog"></span>-->
+      <!--</a>-->
+      <!--<span class="glyphicon glyphicon-menu-hamburger"></span>-->
+    <!--</div>-->
+    <!--<p id="speakable-summary">Shopping may be turning into an increasingly virtual experience,-->
+      <!--with people buying goods online and through apps, but there is no denying the power of a physical-->
+      <!--in-store experience — a lesson that Microsoft is taking to heart. Today the company <a target="_blank"-->
+                                                                                             <!--href="https://blogs.microsoft.com/blog/2017/09/21/flagship-microsoft-store-planned-regent-street-london/"-->
+                                                                                             <!--rel="noopener">announced</a>&nbsp;it will be opening a new flagship store in London in Regent-->
+      <!--Street near Oxford Circus — just a stone’s (or an iPhone’s) throw from the-->
+      <!--Apple flagship store that saw a <a target="_blank"-->
+                                         <!--href="https://techcrunch.com/2016/10/13/come-take-a-peek-inside-apples-new-regent-street-flagship-store-in-london/"-->
+                                         <!--rel="noopener">huge revamp</a> a year ago.-->
+    <!--</p>-->
+  <!--</div>-->
+
+  <!--<div class="ssn-widget">-->
+    <!--<div class="ssn-widget-toolbar">-->
+      <!--<a href="widget-youtube.html">-->
+        <!--<span class="glyphicon glyphicon-cog"></span>-->
+      <!--</a>-->
+      <!--<span class="glyphicon glyphicon-menu-hamburger"></span>-->
+    <!--</div>-->
+    <!--<div class="video-container">-->
+      <!--<iframe width="560" height="315"-->
+              <!--src="https://www.youtube.com/embed/li41sHoxqZQ"-->
+              <!--frameborder="0" allowfullscreen>-->
+      <!--</iframe>-->
+    <!--</div>-->
+  <!--</div>-->
+
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+  <div class="container-fluid">
+    <div class="navbar-text pull-right">
+      <a href="../user/profile.html" class="navbar-link">
+          <span class="ssn-glyphicon-black glyphicon glyphicon-user">
+                     </span>
+      </a>
+    </div>
+
+    <div class="navbar-text pull-left">
+      <a href="#" class="navbar-link">
+        <span class="ssn-glyphicon-black glyphicon glyphicon-play"></span>
+        <span class="ssn-glyphicon-black glyphicon glyphicon-eye-open"></span>
+      </a>
+    </div>
+  </div>
+</nav>

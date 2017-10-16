@@ -1,0 +1,13 @@
+<div *ngFor="let w of widget" class="container-fluid">
+  <div [ngSwitch] = 'w.widgetType'>
+    <div *ngSwitchCase="'heading'">
+      <app-widget-header></app-widget-header>
+    </div>
+    <div *ngSwitchCase="'Image'">
+      <app-widget-image></app-widget-image>
+    </div>
+    <div *ngSwitchCase="'YouTube'">
+      <app-widget-youtube></app-widget-youtube>
+    </div>
+  </div>
+</div>

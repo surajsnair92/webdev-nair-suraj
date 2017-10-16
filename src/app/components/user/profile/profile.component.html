@@ -1,0 +1,38 @@
+<div class="container-fluid">
+
+  <label for="username"> Username </label>
+  <input id ="username" type="text"
+         value="{{user.username}}"
+         readonly
+         placeholder="username"
+         class="form-control"/>
+
+  <label for="email">Email</label>
+  <input id="email" type="email"
+         placeholder="abc@xyz.com"
+         class="form-control"/>
+
+  <label for="firstName"> First Name </label>
+  <input id ="firstName" type="text"
+         value="{{user.firstName}}"
+         placeholder="Alice"
+         class="form-control"/>
+
+  <label for="lastName"> Last Name </label>
+  <input id ="lastName" type="text"
+         value="{{user.lastName}}"
+         placeholder="Wonderland"
+         class="form-control"/>
+
+  <!--<a href="../website/website-list.html" class="btn btn-primary btn-block">-->
+    <!--Websites-->
+  <!--</a>-->
+  <a routerLink="/profile/{{user._id}}/website" class="btn btn-primary btn-block">
+    Websites
+  </a>
+
+  <a href="login.html" class="btn btn-danger btn-block">
+    Logout
+  </a>
+</div>
+

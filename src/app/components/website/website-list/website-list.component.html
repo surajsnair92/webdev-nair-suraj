@@ -1,0 +1,96 @@
+<div class = "ssn-profile">
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+
+        <a class="navbar-brand ssn-navbar" href="../user/profile.html">
+          <div class="glyphicon glyphicon-chevron-left"></div>
+          Websites
+        </a>
+      </div>
+
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <!--<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">-->
+
+      <!-- Edited navbar-right to pull-right to align the cog and user glyphicon -->
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="navbar-collapse" id="bs-example-navbar-collapse-1">
+
+        <!-- Edited navbar-right to pull-right to align the cog and user glyphicon -->
+        <ul class="nav navbar-nav navbar-right">
+          <li><a routerLink="/profile/{{user._id}}/website/new" class="glyphicon glyphicon-plus pull-right"></a></li>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+</div>
+
+
+
+<br><br><br><br>
+<ul class="list-group">
+  <!--<li class="active list-group-item">-->
+  <!--Name-->
+  <!--</li>-->
+  <!--<li class="ssn-hide-border list-group-item">-->
+    <!--&lt;!&ndash;<div class="row">&ndash;&gt;-->
+    <!--&lt;!&ndash;<div class="col-xs-9 col-sm-6 col-md-3">&ndash;&gt;-->
+    <!--<a href="../page/page-list.html"> Address Book App </a>-->
+    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+    <!--&lt;!&ndash;<div class="col-md-3 hidden-xs hidden-sm">&ndash;&gt;-->
+    <!--&lt;!&ndash;01/01/2017&ndash;&gt;-->
+    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+    <!--&lt;!&ndash;<div class="col-xs-3 col-sm-3 col-md-3 hidden-xs">&ndash;&gt;-->
+    <!--&lt;!&ndash;Suraj&ndash;&gt;-->
+    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+    <!--<a href="website-edit.html" class="pull-right">-->
+      <!--<span class="glyphicon glyphicon-cog"></span>-->
+    <!--</a>-->
+
+  <!--</li>-->
+  <li *ngFor="let website of web" class="ssn-hide-border list-group-item">
+    <a routerLink="/profile/{{user._id}}/website/{{website._id}}/page"> {{website.name}} </a>
+    <a routerLink="/profile/{{user._id}}/website/{{website._id}}" class="pull-right">
+      <span class="glyphicon glyphicon-cog"></span>
+    </a></li>
+  <!--</li>-->
+  <!--<li class="ssn-hide-border list-group-item">-->
+    <!--<a href="../page/page-list.html"> Blogging App </a>-->
+    <!--<a href="website-edit.html" class="pull-right">-->
+      <!--<span class="glyphicon glyphicon-cog"></span>-->
+    <!--</a>-->
+  <!--</li>-->
+  <!--<li class="ssn-hide-border list-group-item">-->
+    <!--<a href="../page/page-list.html"> Script Testing App </a>-->
+    <!--<a href="website-edit.html" class="pull-right">-->
+      <!--<span class="glyphicon glyphicon-cog"></span>-->
+    <!--</a>-->
+  <!--</li>-->
+</ul>
+
+
+
+
+<div class = "ssn-profile">
+  <nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <!--<div class="navbar-header">-->
+
+
+      <!--</div>-->
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="navbar-collapse" id="bs-example-navbar-collapse-1">
+
+        <!-- Edited navbar-right to pull-right to align the cog and user glyphicon -->
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="../user/profile.html" class="glyphicon glyphicon-user pull-right"></a></li>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+</div>

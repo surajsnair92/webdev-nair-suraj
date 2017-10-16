@@ -1,0 +1,83 @@
+<div class = "ssn-profile">
+  <nav class="ssn-page-navbar-color navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+
+        <a class="ssn-glyphicon-black navbar-brand ssn-navbar"
+           href="../website/website-list.html">
+          <div class="ssn-glyphicon-black glyphicon glyphicon-chevron-left"></div>
+          Pages
+        </a>
+      </div>
+
+      <div class="navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <a routerLink="/profile/{{userId}}/website/{{webId}}/page/new"
+               class="ssn-glyphicon-black glyphicon glyphicon-plus pull-right">
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>
+<br><br><br>
+<ul class="list-group">
+  <li *ngFor="let p of page" class="ssn-hide-border list-group-item">
+    <a routerLink="/profile/{{userId}}/website/{{webId}}/page/{{p._id}}/widget">
+     {{p.name}}
+    </a>
+    <a routerLink="/profile/{{userId}}/website/{{webId}}/page/{{p._id}}"
+       class="pull-right">
+      <span class="glyphicon glyphicon-cog"></span>
+    </a>
+  </li>
+  <!--<li class="ssn-hide-border list-group-item">-->
+    <!--<a href="../widget/widget-list.html">Blogs</a>-->
+    <!--<a href="page-edit.html"-->
+       <!--class="pull-right">-->
+      <!--<span class="glyphicon glyphicon-cog"></span>-->
+    <!--</a>-->
+  <!--</li>-->
+  <!--<li class="ssn-hide-border list-group-item">-->
+    <!--<a href="../widget/widget-list.html">Home</a>-->
+    <!--<a href="page-edit.html"-->
+       <!--class="pull-right">-->
+      <!--<span class="glyphicon glyphicon-cog"></span>-->
+    <!--</a>-->
+  <!--</li>-->
+  <!--<li class="ssn-hide-border list-group-item">-->
+    <!--<a href="../widget/widget-list.html">About</a>-->
+    <!--<a href="page-edit.html"-->
+       <!--class="pull-right">-->
+      <!--<span class="glyphicon glyphicon-cog"></span>-->
+    <!--</a>-->
+  <!--</li>-->
+  <!--<li class="ssn-hide-border list-group-item">-->
+    <!--<a href="../widget/widget-list.html">Contact us</a>-->
+    <!--<a href="page-edit.html"-->
+       <!--class="pull-right">-->
+      <!--<span class="glyphicon glyphicon-cog"></span>-->
+    <!--</a>-->
+  <!--</li>-->
+</ul>
+
+
+
+
+<div class = "ssn-profile">
+  <nav class="ssn-page-navbar-color navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+      <div class="navbar-collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <a href="../user/profile.html"
+               class="ssn-glyphicon-black glyphicon glyphicon-user pull-right">
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>

@@ -22,6 +22,7 @@ import { WidgetYoutubeComponent } from './components/widget-edit/widget-youtube/
 
 
 const APP_ROUTES: Routes = [
+  {path: '', component : HomeComponent},
   {path: 'login', component : LoginComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'profile/:userId', component: ProfileComponent},

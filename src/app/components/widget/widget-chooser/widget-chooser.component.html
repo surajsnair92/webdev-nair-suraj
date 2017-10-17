@@ -4,7 +4,7 @@
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
 
-        <a class="navbar-brand ssn-navbar" href="widget-list.html">
+        <a class="navbar-brand ssn-navbar" routerLink='/profile/{{userId}}/website/{{webId}}/page/{{pageId}}/widget/'>
           <div class="glyphicon glyphicon-chevron-left"></div>
           Choose Widget
         </a>
@@ -14,26 +14,59 @@
   </nav>
 </div>
 <br><br><br>
-<div class="ssn-widget">
-  <ul class="list-group">
-    <!--<li class="active list-group-item">-->
-    <!--Name-->
+<div *ngFor="let w of widget " class="container-fluid">
+  <div [ngSwitch]="w.widgetType" class="ssn-widget">
+    <div  *ngSwitchCase="'Heading'" class="ssn-widget-toolbar">
+      <a routerLink="/profile/{{userId}}/website/{{webId}}/page/{{pageId}}/widget/{{w._id}}">
+        <span class="glyphicon glyphicon-cog pull-right"></span>
+      </a>
+      <span class="glyphicon glyphicon-menu-hamburger pull-right"></span>
+      {{w.widgetType}}
+    </div>
+
+    <div  *ngSwitchCase="'Image'" class="ssn-widget-toolbar">
+      <a routerLink="/profile/{{userId}}/website/{{webId}}/page/{{pageId}}/widget/{{w._id}}">
+        <span class="glyphicon glyphicon-cog pull-right"></span>
+      </a>
+      <span class="glyphicon glyphicon-menu-hamburger pull-right"></span>
+      <img width="100%" src="http://lorempixel.com/400/200" />
+    </div>
+    <br>
+    <div *ngSwitchCase="'YouTube'" class="ssn-widget-toolbar">
+      <a routerLink="/profile/{{userId}}/website/{{webId}}/page/{{pageId}}/widget/{{w._id}}">
+        <span class="glyphicon glyphicon-cog"></span>
+      </a>
+      <span class="glyphicon glyphicon-menu-hamburger"></span>
+
+
+      <div class="video-container">
+        <iframe width="560" height="315"
+                src="https://www.youtube.com/embed/li41sHoxqZQ"
+                frameborder="0" allowfullscreen>
+        </iframe>
+      </div>
+
+    </div>
+<!--<div class="ssn-widget">-->
+  <!--<ul class="list-group">-->
+    <!--&lt;!&ndash;<li class="active list-group-item">&ndash;&gt;-->
+    <!--&lt;!&ndash;Name&ndash;&gt;-->
+    <!--&lt;!&ndash;</li>&ndash;&gt;-->
+    <!--<li *ngFor="let w of widget" class="ssn-hide-border list-group-item">-->
+      <!--&lt;!&ndash;<div class="row">&ndash;&gt;-->
+      <!--&lt;!&ndash;<div class="col-xs-9 col-sm-6 col-md-3">&ndash;&gt;-->
+       <!--{{w.widgetType}}-->
+      <!--&lt;!&ndash;</div>&ndash;&gt;-->
+      <!--&lt;!&ndash;<div class="col-md-3 hidden-xs hidden-sm">&ndash;&gt;-->
+      <!--&lt;!&ndash;01/01/2017&ndash;&gt;-->
+      <!--&lt;!&ndash;</div>&ndash;&gt;-->
+      <!--&lt;!&ndash;<div class="col-xs-3 col-sm-3 col-md-3 hidden-xs">&ndash;&gt;-->
+      <!--&lt;!&ndash;Suraj&ndash;&gt;-->
+      <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+
+
     <!--</li>-->
-    <li *ngFor="let w of widget" class="ssn-hide-border list-group-item">
-      <!--<div class="row">-->
-      <!--<div class="col-xs-9 col-sm-6 col-md-3">-->
-       {{w._text}}
-      <!--</div>-->
-      <!--<div class="col-md-3 hidden-xs hidden-sm">-->
-      <!--01/01/2017-->
-      <!--</div>-->
-      <!--<div class="col-xs-3 col-sm-3 col-md-3 hidden-xs">-->
-      <!--Suraj-->
-      <!--</div>-->
-
-
-
-    </li>
     <!--<li class="ssn-hide-border list-group-item">-->
       <!--<a href="widget-image.html"> Image </a>-->
 
@@ -50,7 +83,7 @@
     <!--<li class="ssn-hide-border list-group-item">-->
       <!--<a href="widget-heading.html"> Header </a>-->
     <!--</li>-->
-  </ul>
+
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">

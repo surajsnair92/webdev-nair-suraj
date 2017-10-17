@@ -52,7 +52,7 @@
 
   <!--</li>-->
   <li *ngFor="let website of web" class="ssn-hide-border list-group-item">
-    <a routerLink="/profile/{{user._id}}/website/{{website._id}}/page"> {{website.name}} </a>
+    <a routerLink="/profile/{{user._id}}/website/{{website._id}}/page"> {{this.website.name}} </a>
     <a routerLink="/profile/{{user._id}}/website/{{website._id}}" class="pull-right">
       <span class="glyphicon glyphicon-cog"></span>
     </a></li>

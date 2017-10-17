@@ -5,14 +5,14 @@
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
 
-        <a class="navbar-brand ssn-navbar" href="widget-list.html">
+        <a class="navbar-brand ssn-navbar" routerLink="/profile/{{userId}}/website/{{webId}}/page/{{pageId}}/widget/">
           <div class="glyphicon glyphicon-chevron-left"></div>
           Widget Edit
         </a>
       </div>
 
       <div class="navbar-text pull-right">
-        <a class="ssn-glyphicon-black navbar-link" href="widget-list.html">
+        <a class="ssn-glyphicon-black navbar-link" routerLink="/profile/{{userId}}/website/{{webId}}/page/{{pageId}}/widget/">
                              <span class="glyphicon glyphicon glyphicon-ok">
                              </span>
         </a>
@@ -21,7 +21,7 @@
     </div><!-- /.container-fluid -->
   </nav>
 </div>
-
+<br><br><br>
 <div class="ssn-widget">
   <div class="container-fluid">
 
@@ -65,3 +65,4 @@
     </div>
   </div>
 </nav>
+

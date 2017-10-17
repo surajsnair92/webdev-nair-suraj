@@ -62,6 +62,6 @@ import {WidgetService} from "./services/widget.service.client";
   ],
   // Client Side services here
   providers: [ UserService, WebsiteService, PageService, WidgetService],
-  bootstrap: [AppComponent, WidgetHeaderComponent]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

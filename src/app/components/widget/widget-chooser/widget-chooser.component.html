@@ -13,16 +13,16 @@
     </div><!-- /.container-fluid -->
   </nav>
 </div>
-
+<br><br><br>
 <div class="ssn-widget">
   <ul class="list-group">
     <!--<li class="active list-group-item">-->
     <!--Name-->
     <!--</li>-->
-    <li class="ssn-hide-border list-group-item">
+    <li *ngFor="let w of widget" class="ssn-hide-border list-group-item">
       <!--<div class="row">-->
       <!--<div class="col-xs-9 col-sm-6 col-md-3">-->
-      <a href="widget-youtube.html"> YouTube </a>
+       {{w._text}}
       <!--</div>-->
       <!--<div class="col-md-3 hidden-xs hidden-sm">-->
       <!--01/01/2017-->
@@ -34,22 +34,22 @@
 
 
     </li>
-    <li class="ssn-hide-border list-group-item">
-      <a href="widget-image.html"> Image </a>
+    <!--<li class="ssn-hide-border list-group-item">-->
+      <!--<a href="widget-image.html"> Image </a>-->
 
-    </li>
-    <li class="ssn-hide-border list-group-item">
-      <a href="widget-image.html"> HTML </a>
-    </li>
-    <li class="ssn-hide-border list-group-item">
-      <a href="widget-image.html"> Link </a>
-    </li>
-    <li class="ssn-hide-border list-group-item">
-      <a href="widget-image.html"> Button </a>
-    </li>
-    <li class="ssn-hide-border list-group-item">
-      <a href="widget-heading.html"> Header </a>
-    </li>
+    <!--</li>-->
+    <!--<li class="ssn-hide-border list-group-item">-->
+      <!--<a href="widget-image.html"> HTML </a>-->
+    <!--</li>-->
+    <!--<li class="ssn-hide-border list-group-item">-->
+      <!--<a href="widget-image.html"> Link </a>-->
+    <!--</li>-->
+    <!--<li class="ssn-hide-border list-group-item">-->
+      <!--<a href="widget-image.html"> Button </a>-->
+    <!--</li>-->
+    <!--<li class="ssn-hide-border list-group-item">-->
+      <!--<a href="widget-heading.html"> Header </a>-->
+    <!--</li>-->
   </ul>
 </div>
 

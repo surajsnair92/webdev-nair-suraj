@@ -18,7 +18,7 @@ export class WidgetService {
     new WidgetHeading('123', 'Heading', '567', '4', "<p>Lorem ipsum</p>")
 ];
   widgetMedia: WidgetImage[] =[
-    new WidgetImage('456', 'Image', '123', '100','http://lorempixel.com/400/200'),
+    new WidgetImage('456', 'Image', '098', '100','http://lorempixel.com/400/200'),
     new WidgetImage('123', 'YouTube', '567', '4', "https://youtu.be/AM2Ivdi9c4E"),
   ];
 

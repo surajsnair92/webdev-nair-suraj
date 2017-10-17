@@ -13,7 +13,8 @@
       <div class="navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
           <li>
-            <a routerLink='/profile/{{userId}}/website/{{webId}}/page/{{pageId}}/widget/new' class="ssn-glyphicon-black glyphicon glyphicon-plus pull-right"></a>
+            <a routerLink='/profile/{{userId}}/website/{{webId}}/page/{{pageId}}/widget/new'
+               class="ssn-glyphicon-black glyphicon glyphicon-plus pull-right"></a>
           </li>
         </ul>
       </div>
@@ -24,7 +25,7 @@
 <div *ngFor="let w of widget " class="container-fluid">
   <div [ngSwitch]="w.widgetType" class="ssn-widget">
     <div  *ngSwitchCase="'Heading'" class="ssn-widget-toolbar">
-      <a href="widget-heading.html">
+      <a routerLink="/profile/{{userId}}/website/{{webId}}/page/{{pageId}}/widget/{{w._id}}">
         <span class="glyphicon glyphicon-cog pull-right"></span>
       </a>
       <span class="glyphicon glyphicon-menu-hamburger pull-right"></span>
@@ -32,7 +33,7 @@
     </div>
 
     <div  *ngSwitchCase="'Image'" class="ssn-widget-toolbar">
-        <a href="widget-image.html">
+      <a routerLink="/profile/{{userId}}/website/{{webId}}/page/{{pageId}}/widget/{{w._id}}">
          <span class="glyphicon glyphicon-cog pull-right"></span>
         </a>
         <span class="glyphicon glyphicon-menu-hamburger pull-right"></span>
@@ -40,10 +41,11 @@
     </div>
 <br>
     <div *ngSwitchCase="'YouTube'" class="ssn-widget-toolbar">
-      <a href="widget-youtube.html">
+      <a routerLink="/profile/{{userId}}/website/{{webId}}/page/{{pageId}}/widget/{{w._id}}">
       <span class="glyphicon glyphicon-cog"></span>
       </a>
       <span class="glyphicon glyphicon-menu-hamburger"></span>
+
 
       <div class="video-container">
         <iframe width="560" height="315"
@@ -51,6 +53,7 @@
                 frameborder="0" allowfullscreen>
         </iframe>
       </div>
+
     </div>
 
 

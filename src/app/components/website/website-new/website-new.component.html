@@ -34,7 +34,7 @@
     <div class="ssn-edit-website col-sm-12 col-sm-8 hidden-xs">
 
       <div class="navbar-text pull-right">
-        <a class="ssn-glyphicon-white navbar-link" routerLink="/profile/{{userId}}/website">
+        <a (click)="createWebsite(this.web)" class="ssn-glyphicon-white navbar-link">
                              <span class="glyphicon glyphicon glyphicon-ok">
                              </span>
         </a>
@@ -50,7 +50,7 @@
     <div class="ssn-edit-website col-xs-12 visible-xs">
 
       <div class="navbar-text pull-right">
-        <a routerLink="/profile/{{userId}}/website" class="ssn-glyphicon-white navbar-link">
+        <a (click)="createWebsite(this.web)" class="ssn-glyphicon-white navbar-link">
                              <span class="glyphicon glyphicon glyphicon-ok">
                              </span>
         </a>
@@ -111,9 +111,9 @@
     <div class="col-xs-12 col-sm-8">
       <div class = "ssn-profile">
         <label>Website Name</label>
-        <input class="form-control"/>
+        <input [ngModel]="this.web?.name" (ngModelChange)="this.web.name = $event" class="form-control"/>
         <label>Website Description</label>
-        <textarea class="form-control"></textarea>
+        <textarea [ngModel]="this.web?.description" (ngModelChange)="this.web.description = $event" class="form-control"></textarea>
       </div>
 
 

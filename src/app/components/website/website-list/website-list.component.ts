@@ -4,7 +4,7 @@ import {User} from '../../../models/user.model.client'
 import { ActivatedRoute } from '@angular/router';
 import { WebsiteService } from '../../../services/website.service.client'
 import { UserService } from '../../../services/user.service.client'
-
+import {Router } from '@angular/router'
 @Component({
   selector: 'app-website-list',
   templateUrl: './website-list.component.html',
@@ -19,14 +19,21 @@ export class WebsiteListComponent implements OnInit {
 
   constructor(private websiteService: WebsiteService,
               private userService: UserService,
+              private router: Router,
               private route: ActivatedRoute) { }
 
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.userId = params['userId']
-      this.user = this.userService.findUserById(this.userId)
-      this.web = this.websiteService.getListOfWebsites(this.userId)
+      this.userId = params['userId'];
+      this.websiteService.findAllWebsitesForUser(this.userId)
+        .subscribe((web: Website[]) => {
+          if(web){
+            this.web = web;
+            console.log(web);
+            // this.router.navigate(['/user/',this.userId,'/webite']);
+          }
+        });
       // this.web = this.websiteService.findWebsiteById(this.websiteId);
 
     })

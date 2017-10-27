@@ -39,17 +39,23 @@ app.set('port', port);
 // Create HTTP server
 const server = http.createServer(app);
 
-var serverSide = require("./server/test-mongodb/app");
-serverSide(app);
+// var serverSide = require("./server/test-mongodb/app");
+// serverSide(app);
 
 
 
 // For Build: Catch all other routes and return the index file -- BUILDING
-app.get('*', function (req, res) {
-  res.sendFile(path.join(__dirname, 'dist/index.html'));
+// app.get('*', function (req, res) {
+//   res.sendFile(path.join(__dirname, 'dist/index.html'));
+// });
+
+app.get("/api/hello", function (req, res) {
+  // console.log("Inside server.js")
+  res.send("Hello Server!")
 });
 
+require('./asssignment/app')(app)
 
-server.listen( port , () => console.log('Running'));
+server.listen( port );
 
 

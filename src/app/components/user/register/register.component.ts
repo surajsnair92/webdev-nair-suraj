@@ -18,10 +18,13 @@ export class RegisterComponent implements OnInit {
               private router: Router) { }
 
   register(username: String, password: String, firstName: String, lastName: String){
-    this.user = this.userService.createUser(username, password, firstName, lastName);
-    if(this.user){
-      this.router.navigate(['/profile', this.user._id]);
-    }
+
+    this.userService.createUser(username, password, firstName, lastName)
+      .subscribe((user: User) => {
+        if(user){
+          this.router.navigate(['/profile', user._id]);
+        }
+      });
   }
 
   ngOnInit() {

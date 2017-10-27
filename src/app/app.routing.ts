@@ -22,20 +22,20 @@ import { WidgetYoutubeComponent } from './components/widget-edit/widget-youtube/
 
 
 const APP_ROUTES: Routes = [
-  {path: '', component : HomeComponent},
+  // {path: '', component : HomeComponent},
   {path: 'login', component : LoginComponent},
   {path: 'register', component: RegisterComponent},
-  {path: 'profile/:userId', component: ProfileComponent},
-  {path: 'profile/:userId/website', component: WebsiteListComponent},
-  {path: 'profile/:userId/website/new', component: WebsiteNewComponent},
-  {path: 'profile/:userId/website/:wid', component: WebsiteEditComponent},
-  {path: 'profile/:userId/website/:wid', component: WebsiteEditComponent},
-  {path: 'profile/:userId/website/:wid/page', component: PageListComponent},
-  {path: 'profile/:userId/website/:wid/page/new', component: PageNewComponent},
-  {path: 'profile/:userId/website/:wid/page/:pid', component: PageEditComponent},
-  {path: 'profile/:userId/website/:wid/page/:pid/widget', component: WidgetListComponent},
-  {path: 'profile/:userId/website/:wid/page/:pid/widget/new', component: WidgetChooserComponent},
-  {path: 'profile/:userId/website/:wid/page/:pid/widget/:wgid', component: WidgetEditComponent}
+  {path: 'user/:userId', component: ProfileComponent},
+  {path: 'user/:userId/website', component: WebsiteListComponent},
+  {path: 'user/:userId/website/new', component: WebsiteNewComponent},
+  {path: 'user/:userId/website/:wid', component: WebsiteEditComponent},
+  {path: 'user/:userId/website/:wid', component: WebsiteEditComponent},
+  {path: 'user/:userId/website/:wid/page', component: PageListComponent},
+  {path: 'user/:userId/website/:wid/page/new', component: PageNewComponent},
+  {path: 'user/:userId/website/:wid/page/:pid', component: PageEditComponent},
+  {path: 'user/:userId/website/:wid/page/:pid/widget', component: WidgetListComponent},
+  {path: 'user/:userId/website/:wid/page/:pid/widget/new', component: WidgetChooserComponent},
+  {path: 'user/:userId/website/:wid/page/:pid/widget/:wgid', component: WidgetEditComponent}
 
 
 ];

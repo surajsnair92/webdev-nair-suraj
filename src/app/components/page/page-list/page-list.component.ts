@@ -28,7 +28,7 @@ export class PageListComponent implements OnInit {
       this.userId = params['userId']
       this.webId = params['wid']
       console.log(this.webId)
-      this.web = this.websiteService.getListOfWebsites(this.webId)
+      // this.web = this.websiteService.getListOfWebsites(this.webId)
       this.page = this.pageService.findPageByWebsiteId(this.webId)
       console.log(this.page)
       // this.web = this.websiteService.findWebsiteById(this.websiteId);

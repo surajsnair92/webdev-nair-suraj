@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from '../../../services/user.service.client'
 import {User} from "../../../models/user.model.client";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -10,17 +11,44 @@ import {User} from "../../../models/user.model.client";
 })
 export class ProfileComponent implements OnInit {
   userId : String;
-  user : User
+  firstName: String;
+  user : User;
   constructor(private userService: UserService,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private router: Router) { }
 
   updateUser(user){
-    this.userService.updateUser(user);
+
+    this.userService.updateUser(user)
+      .subscribe((user: User) => {
+        if(user){
+          this.router.navigate(['/user', user._id]);
+        }
+      });
+  }
+  deleteUser(user){
+    this.userService.deleteUser(user._id)
+    // this.userService.findUserByUsername(username)
+      .subscribe((user: User) => {
+        if(user){
+          this.router.navigate(['/login']);
+        }
+      });
   }
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.userId = params['userId']
-      this.user = this.userService.findUserById(this.userId)
+      this.userId = params['userId'];
+
+      this.userService.findUserById(this.userId)
+        .subscribe((user: User) => {
+          if(user){
+            this.user = user;
+            this.firstName = user.firstName;
+              console.log(user);
+              this.router.navigate(['/user', user._id]);
+          }
+        });
+
       // alert(this.userId)
     })
   }

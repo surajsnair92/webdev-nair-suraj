@@ -49,7 +49,7 @@ const server = http.createServer(app);
 //   res.sendFile(path.join(__dirname, 'dist/index.html'));
 // });
 
-app.get('/', function (req, res) {
+app.get('*', function (req, res) {
   res.sendFile(path.join(__dirname, './dist/index.html'))
 });
 

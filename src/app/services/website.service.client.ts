@@ -39,7 +39,7 @@ export class WebsiteService {
     const url = this.baseUrl+'/api/user/' + userId + '/website';
     // console.log(website);
     return this.http.post(url,{
-      '_id': '296',
+      '_id': Math.random(),
       'name': website.name,
       'developerId': userId,
       'description': website.description
@@ -60,7 +60,7 @@ export class WebsiteService {
     const url = this.baseUrl+'/api/website/'+web._id;
     console.log('console',web);
     return this.http.put(url, {
-      '_id': web._id,
+      '_id': Math.random(),
       'name': web.name,
       'developerId': web.developerId,
       'description': web.description

@@ -1,90 +1,81 @@
-import { Website } from '../models/websites.model.client'
-import { Injectable } from '@angular/core';
-import {WidgetHTML} from "../models/widget.model.client";
-import {WidgetHeading} from "../models/widget-others.model.client";
-import {WidgetImage} from "../models/widget-image.model.client";
+import {Injectable} from '@angular/core';
+import 'rxjs/Rx';
+import {Http, Response} from '@angular/http';
+import {environment} from '../../environments/environment';
+
 
 @Injectable()
+
 export class WidgetService {
-  widgets: WidgetHTML [] = [
-    new WidgetHTML('456', 'HTML', '123', "<p>Lorem ipsum</p>"),
-    new WidgetHTML('789', 'HTML', '123', "<p>Lorem ipsum</p>"),
-    new WidgetHTML('123', 'HTML', '321', "<p>Lorem ipsum</p>"),
-    new WidgetHTML('234', 'HTML', '567', "<p>Lorem ipsum</p>")
+
+  constructor(private http: Http) {}
+  baseUrl = environment.baseUrl;
+
+
+  widgets = [
+    {'_id': '123', 'widgetType': 'HEADING', 'pageId': '321', 'size': 2, 'text': 'GIZMODO'},
+    {'_id': '234', 'widgetType': 'HEADING', 'pageId': '321', 'size': 4, 'text': 'Lorem ipsum'},
+    {
+      '_id': '345', 'widgetType': 'IMAGE', 'pageId': '321', 'width': '100%',
+      'url': 'https://i.pinimg.com/originals/a2/2a/0a/a22a0a7e624943303b23cc326598c167.jpg'
+    },
+    {'_id': '456', 'widgetType': 'HTML', 'pageId': '321', 'text': '<p>Lorem ipsum</p>'},
+    {'_id': '567', 'widgetType': 'HEADING', 'pageId': '321', 'size': 4, 'text': 'Lorem ipsum'},
+    {
+      '_id': '678', 'widgetType': 'YOUTUBE', 'pageId': '321', 'width': '100%',
+      'url': 'https://www.youtube.com/embed/vlDzYIIOYmM'
+    },
+    {'_id': '789', 'widgetType': 'HTML', 'pageId': '321', 'text': '<p>Lorem ipsum</p>'}
   ];
-
-  widgetHeader: WidgetHeading[] =[
-    new WidgetHeading('456', 'Heading', '123', '2', "Heading 1"),
-    new WidgetHeading('123', 'Heading', '567', '4', "<p>Lorem ipsum</p>")
-];
-  widgetMedia: WidgetImage[] =[
-    new WidgetImage('456', 'Image', '098', '100','http://lorempixel.com/400/200'),
-    new WidgetImage('123', 'YouTube', '567', '4', "https://youtu.be/AM2Ivdi9c4E"),
-  ];
-
-  // deleteWidget(widgetId) {
-  //   var widget = this.findWidgetById(widgetId);
-  //   var index = this.widgets.indexOf(widget);
-  //   this.widgets.splice(index, 1);
-  // }
-
-  findWidgetByPageId(pageId) {
-    var result = [];
-    for (var w in this.widgets) {
-      if (this.widgets[w].pageId === pageId) {
-        result.push(this.widgets[w]);
-      }
-    }
-    for (var w in this.widgetHeader) {
-      if (this.widgetHeader[w].pageId === pageId) {
-        result.push(this.widgetHeader[w]);
-      }
-    }
-    for (var w in this.widgetMedia) {
-      if (this.widgetMedia[w].pageId === pageId) {
-        result.push(this.widgetMedia[w]);
-      }
-    }
-    return result;
-
-  }
-
-  // findWidgetById(widgetId) {
-  //   this.widget = this.widgets.find(function (widget) {
-  //     return widget._id === widgetId;
-  //
-  //   })
-  // }
-
-  updateWidget(widgetId, widget) {
-    for (var w in this.widgets) {
-      if (this.widgets[w]._id === widgetId) {
-        switch (widget.widgetType) {
-          case "HEADER":
-            this.widgetHeader[w].size = widget.size;
-            this.widgetHeader[w]._text = widget.text;
-            return this.widgets[w];
-          case "IMAGE":
-            this.widgetMedia[w]._url = widget.url;
-            this.widgetMedia[w].width = widget.width;
-            return this.widgets[w];
-          case "YOUTUBE":
-            this.widgetMedia[w]._url = widget.url;
-            this.widgetMedia[w].width = widget.width;
-            return this.widgets[w];
-          default:
-            return null;
-        }
-      }
-    }
-    return null;
-
-  }
 
   createWidget(pageId, widget) {
-    widget.pageId = pageId;
-    this.widgets.push(widget);
-    return widget;
 
+    const url = this.baseUrl +  '/api/page/' + pageId + '/widget';
+    return this.http.post(url, widget)
+      .map(
+        (res: Response) => {
+          return res.json();
+        }
+      );
+  }
+
+  findWidgetsByPageId(pageId) {
+    const url = this.baseUrl + '/api/page/' + pageId + '/widget';
+    return this.http.get(url)
+      .map((res: Response) => {
+          return res.json();
+        }
+      );
+  }
+
+  findWidgetById(widgetId) {
+    const url = this.baseUrl + '/api/widget/' + widgetId;
+    return this.http.get(url)
+      .map(
+        (res: Response) => {
+          return res.json();
+        }
+      );
+  }
+
+  updateWidget(widgetId, widget) {
+
+    const url = this.baseUrl +  '/api/widget/' + widgetId;
+    return this.http.put(url, widget)
+      .map(
+        (res: Response) => {
+          return res.json();
+        }
+      );
+  }
+
+  deleteWidget(widgetId) {
+    const url = this.baseUrl +  '/api/widget/' + widgetId;
+    return this.http.delete(url)
+      .map(
+        (res: Response) => {
+          return res.status;
+        }
+      );
   }
 }

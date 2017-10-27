@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {Website} from '../../../models/websites.model.client';
-import {User} from '../../../models/user.model.client';
+import {PageService} from '../../../services/page.service.client';
+import {ActivatedRoute} from '@angular/router';
 import {Page} from '../../../models/page.model.client';
-import { ActivatedRoute } from '@angular/router';
-import { WebsiteService } from '../../../services/website.service.client';
-import { UserService } from '../../../services/user.service.client';
-import { PageService } from '../../../services/page.service.client';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-page-edit',
@@ -13,22 +10,51 @@ import { PageService } from '../../../services/page.service.client';
   styleUrls: ['./page-edit.component.css']
 })
 export class PageEditComponent implements OnInit {
+
   userId: String;
-  webId: String;
-  page: Page[];
+  websiteId: String;
+  page = {};
+  pageId: String;
+  pages :Page;
+  pageName: String;
+  pageDesc: String;
 
   constructor(private pageService: PageService,
-              private websiteService: WebsiteService,
-              private userService: UserService,
-              private route: ActivatedRoute) { }
+              private activatedRoute: ActivatedRoute,private router: Router) { }
 
   ngOnInit() {
-    this.route.params.subscribe(params => {
-      this.userId = params['userId']
-      this.webId = params['wid']
-      this.page = this.pageService.findPageByWebsiteId(this.webId)
-    })
+    this.activatedRoute.params.subscribe(params => {
+      this.userId = params['userId'];
+      this.websiteId = params['wid'];
+      this.pageId = params['pid'];
+      this.page = this.pageService.findPageById(this.pageId);
+      this.pageService.findPagesByWebsiteId(this.websiteId)
+        .subscribe((pages) => {
+          if (pages) {
+            this.pages = pages;
+          }
+        });
 
+    });
+  }
+
+  updatePage(page){
+    console.log('jhkjhk',page);
+    this.pageService.updatePage(this.pageId, page)
+      .subscribe((page: Page) => {
+        if(page){
+          this.pages = page;
+          this.router.navigate(['/user/'+this.userId+'/website/'+this.websiteId+'/page']);
+        }
+      });
+  }
+
+  deletePage() {
+    this.pageService.deletePage(this.pageId)
+      .subscribe((pages) => {
+        this.pages = pages;
+
+      });
   }
 
 }

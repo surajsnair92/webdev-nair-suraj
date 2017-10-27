@@ -30,7 +30,7 @@
       <div class=" col-sm-12 col-sm-8 hidden-xs">
         <div class="navbar-text pull-right">
           <a class="ssn-glyphicon-black navbar-link"
-             routerLink="/profile/{{userId}}/website/{{webId}}/page">
+             (click)="updatePage(pages)">
             <span class="ssn-glyphicon-black glyphicon glyphicon glyphicon-ok"></span>
           </a>
         </div>
@@ -44,7 +44,7 @@
       </div>
       <div class=" col-xs-12 visible-xs">
         <div class="navbar-text pull-right">
-          <a routerLink="/profile/{{userId}}/website/{{webId}}/page"
+          <a (click)="updatePage(pages)"
              class=" navbar-link">
             <span class="ssn-glyphicon-black glyphicon glyphicon glyphicon-ok"></span>
           </a>
@@ -73,46 +73,28 @@
     <div class="ssn-profile col-xs-4 hidden-xs">
       <div class="" >
         <ul class="list-group">
-          <li *ngFor="let p of page" class="ssn-border-none list-group-item">
+          <li *ngFor="let p of pages" class="ssn-border-none list-group-item">
             {{p.name}}
             <a href="website-edit-trial.html"
                class="pull-right">
               <span class="glyphicon-cog glyphicon"></span>
             </a>
           </li>
-          <!--<li class="ssn-border-none list-group-item">-->
-            <!--Address Book App-->
-            <!--<a href="website-edit-trial.html"-->
-               <!--class="pull-right">-->
-              <!--<span class="glyphicon-cog glyphicon"></span>-->
-            <!--</a>-->
-          <!--</li>-->
-          <!--<li class="ssn-border-none list-group-item">-->
-            <!--Script Testing App-->
-            <!--<a href="website-edit-trial.html"-->
-               <!--class="pull-right">-->
-              <!--<span class="glyphicon-cog glyphicon"></span>-->
-            <!--</a>-->
-          <!--</li>-->
-          <!--<li class="ssn-border-none list-group-item">-->
-            <!--Blogger-->
-            <!--<a href="website-edit-trial.html"-->
-               <!--class="pull-right">-->
-              <!--<span class="glyphicon-cog glyphicon"></span>-->
-            <!--</a>-->
-          <!--</li>-->
+
         </ul>
       </div>
     </div>
 
     <div class="col-xs-12 col-sm-8">
       <div class = "ssn-profile">
-        <label>Website Name</label>
-        <input class="form-control"/>
-        <label>Website Description</label>
-        <textarea class="form-control"></textarea>
+        <label>Page Name</label>
+        <input [ngModel]="pages?.name" (ngModelChange)="pages.name = $event"
+
+               class="form-control"/>
+        <label>Page Description</label>
+        <textarea [ngModel]="pages?.description" (ngModelChange)="pages.description = $event" class="form-control"></textarea>
         <br>
-        <a routerLink="/profile/{{userId}}/website/{{webId}}/page" class="btn btn-danger btn-block">
+        <a (click)="deletePage(pages)" class="btn btn-danger btn-block">
           Delete
         </a>
       </div>

@@ -7,7 +7,7 @@ import { UserService } from '../../../services/user.service.client'
 import { PageService } from '../../../services/page.service.client';
 import { WidgetService } from '../../../services/widget.service.client';
 import {Page} from '../../../models/page.model.client';
-import {WidgetHTML} from "../../../models/widget.model.client";
+import {Widget} from "../../../models/widget.model.client";
 import {WidgetHeading} from "../../../models/widget-others.model.client";
 
 @Component({
@@ -20,7 +20,7 @@ export class WidgetYoutubeComponent implements OnInit {
   webId: String;
   pageId: String;
   page: Page[];
-  widget: WidgetHTML[];
+  widget: Widget[];
   widgetHeader: WidgetHeading[];
 
   constructor(private pageService: PageService,
@@ -35,7 +35,7 @@ export class WidgetYoutubeComponent implements OnInit {
       this.webId = params['wid']
       this.pageId = params['pid']
       console.log(this.pageId)
-      this.widget = this.widgetService.findWidgetByPageId(this.pageId)
+      // this.widget = this.widgetService.findWidgetByPageId(this.pageId)
       // this.widgetHeader = this.widgetService.findWidgetByPageId(this.pageId)
       console.log((this.widget))
 

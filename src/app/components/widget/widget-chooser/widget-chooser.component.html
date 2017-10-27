@@ -16,7 +16,7 @@
 <br><br><br>
 <div *ngFor="let w of widget " class="container-fluid">
   <div [ngSwitch]="w.widgetType" class="ssn-widget">
-    <div  *ngSwitchCase="'Heading'" class="ssn-widget-toolbar">
+    <div  *ngSwitchCase="'HEADING'" class="ssn-widget-toolbar">
       <a routerLink="/profile/{{userId}}/website/{{webId}}/page/{{pageId}}/widget/{{w._id}}">
         <span class="glyphicon glyphicon-cog pull-right"></span>
       </a>
@@ -24,7 +24,7 @@
       {{w.widgetType}}
     </div>
 
-    <div  *ngSwitchCase="'Image'" class="ssn-widget-toolbar">
+    <div  *ngSwitchCase="'IMAGE'" class="ssn-widget-toolbar">
       <a routerLink="/profile/{{userId}}/website/{{webId}}/page/{{pageId}}/widget/{{w._id}}">
         <span class="glyphicon glyphicon-cog pull-right"></span>
       </a>
@@ -32,7 +32,7 @@
       <img width="100%" src="http://lorempixel.com/400/200" />
     </div>
     <br>
-    <div *ngSwitchCase="'YouTube'" class="ssn-widget-toolbar">
+    <div *ngSwitchCase="'YOUTUBE'" class="ssn-widget-toolbar">
       <a routerLink="/profile/{{userId}}/website/{{webId}}/page/{{pageId}}/widget/{{w._id}}">
         <span class="glyphicon glyphicon-cog"></span>
       </a>

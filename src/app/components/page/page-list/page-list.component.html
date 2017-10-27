@@ -13,7 +13,7 @@
       <div class="navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
           <li>
-            <a routerLink="/profile/{{userId}}/website/{{webId}}/page/new"
+            <a routerLink="/user/{{userId}}/website/{{websiteId}}/page/new"
                class="ssn-glyphicon-black glyphicon glyphicon-plus pull-right">
             </a>
           </li>
@@ -24,43 +24,17 @@
 </div>
 <br><br><br>
 <ul class="list-group">
-  <li *ngFor="let p of page" class="ssn-hide-border list-group-item">
-    <a routerLink="/profile/{{userId}}/website/{{webId}}/page/{{p._id}}/widget">
-     {{p.name}}
-    </a>
-    <a routerLink="/profile/{{userId}}/website/{{webId}}/page/{{p._id}}"
-       class="pull-right">
-      <span class="glyphicon glyphicon-cog"></span>
-    </a>
-  </li>
-  <!--<li class="ssn-hide-border list-group-item">-->
-    <!--<a href="../widget/widget-list.html">Blogs</a>-->
-    <!--<a href="page-edit.html"-->
-       <!--class="pull-right">-->
-      <!--<span class="glyphicon glyphicon-cog"></span>-->
-    <!--</a>-->
-  <!--</li>-->
-  <!--<li class="ssn-hide-border list-group-item">-->
-    <!--<a href="../widget/widget-list.html">Home</a>-->
-    <!--<a href="page-edit.html"-->
-       <!--class="pull-right">-->
-      <!--<span class="glyphicon glyphicon-cog"></span>-->
-    <!--</a>-->
-  <!--</li>-->
-  <!--<li class="ssn-hide-border list-group-item">-->
-    <!--<a href="../widget/widget-list.html">About</a>-->
-    <!--<a href="page-edit.html"-->
-       <!--class="pull-right">-->
-      <!--<span class="glyphicon glyphicon-cog"></span>-->
-    <!--</a>-->
-  <!--</li>-->
-  <!--<li class="ssn-hide-border list-group-item">-->
-    <!--<a href="../widget/widget-list.html">Contact us</a>-->
-    <!--<a href="page-edit.html"-->
-       <!--class="pull-right">-->
-      <!--<span class="glyphicon glyphicon-cog"></span>-->
-    <!--</a>-->
-  <!--</li>-->
+  <div *ngFor="let page of pages">
+    <li class="list-group-item">
+      <a [routerLink]="['/user', userId, 'website', websiteId,'page', page._id, 'widget']">
+        {{page.name}}
+      </a>
+      <a [routerLink]="['/user', userId, 'website', websiteId, 'page', page._id]"
+         class="pull-right">
+        <span class="glyphicon glyphicon-cog"></span>
+      </a>
+    </li>
+  </div>
 </ul>
 
 

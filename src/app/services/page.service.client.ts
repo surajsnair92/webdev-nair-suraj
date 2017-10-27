@@ -1,53 +1,109 @@
-/**
- * Created by surajsatheeshnair on 10/15/17.
- */
-import { Page } from '../models/page.model.client'
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
+import {Page} from '../models/page.model.client';
+import {Http, Response} from '@angular/http';
+import 'rxjs/Rx';
+import {environment} from '../../environments/environment';
+
 
 @Injectable()
 
 export class PageService {
-  pages: Page [] = [
-    new Page('321', 'Post 1', '456', 'Lorem'),
-    new Page('432', 'Post 2', '456', 'Lorem'),
-    new Page('543', 'post 2', '456', 'Lorem'),
-    new Page('123', 'post 5', '567', 'Lorem'),
-    new Page('456', 'post 6', '567', 'Lorem'),
-    new Page('789', 'post 7', '567', 'Lorem')
-  ];
 
-  deletePage(pageId) {
-    var pageToDelete = this.findPageById(pageId);
-    var index = this.pages.indexOf(pageToDelete);
-    this.pages.splice(index, 1);
+  constructor(private http: Http) {
 
   }
+  baseUrl = environment.baseUrl;
 
-  findPageByWebsiteId(websiteId) {
-    var result = [];
-    for (var page in this.pages) {
-      if (this.pages[page].websiteId === websiteId) {
-        result.push(this.pages[page]);
-      }
-    }
-    return result;
 
+  pages: Page[] = [
+    {'_id': '321', 'name': 'Post 1', 'websiteId': '456', 'description': 'Lorem'},
+    {'_id': '432', 'name': 'Post 2', 'websiteId': '456', 'description': 'Lorem'},
+    {'_id': '777', 'name': 'Post 22', 'websiteId': '567', 'description': 'Lorem'},
+    {'_id': '543', 'name': 'Post 3', 'websiteId': '456', 'description': 'Lorem'}
+  ];
+
+  createPage(websiteId, page) {
+    // page._id = Math.random()
+    // page.websiteId = webiteId;
+    // this.pages.push(page);
+    // return page;
+    const url = this.baseUrl + '/api/website/' + websiteId + '/page';
+    return this.http.post(url, {
+      '_id': Math.random(),
+      'name': page.name,
+      'websiteId': websiteId,
+      'description': page.description
+    })
+      .map((res: Response) => {
+          return res.json();
+        }
+      );
+  }
+
+  findPagesByWebsiteId(websiteId) {
+    // return this.pages.filter(function (page) {
+    //   return page.websiteId === websiteId;
+    // });
+    const url = this.baseUrl + '/api/website/' + websiteId + '/page';
+    return this.http.get(url)
+      .map(
+        (res: Response) => {
+          return res.json();
+        }
+      );
   }
 
   findPageById(pageId) {
-    return this.pages.find(function (page) {
-      return page._id === pageId;
-
-    })
+    // return this.pages.find(function (page) {
+    //   return page._id === pageId;
+    // });
+    console.log('pageId',pageId)
+    const url = this.baseUrl + '/api/page/' + pageId;
+    return this.http.get(url)
+      .map(
+        (res: Response) => {
+          return res.json();
+        }
+      );
   }
 
   updatePage(pageId, page) {
-    for (var p in this.pages) {
-      if (this.pages[p]._id === pageId) {
-        this.pages[p].name = page.name;
-        this.pages[p].description = page.description;
-        return this.pages[p];
-      }
-    }
+    // for (let x = 0; x < this.pages.length; x++) {
+    //   if (this.pages[x]._id === pageId) {
+    //     this.pages[x].name = page.name;
+    //     this.pages[x].description = page.description;
+    //     return this.pages[x];
+    //   }
+    // }
+    const url = this.baseUrl + '/api/page/'+pageId;
+    return this.http.put(url, {
+      '_id': Math.random(),
+      'name': page.name,
+      'websiteId': page.websiteId,
+      'description': page.description
+    })
+      .map(
+        (res: Response) => {
+          return res.json();
+        }
+      );
   }
+
+  deletePage(pageId) {
+    // for (let x = 0; x < this.pages.length; x++) {
+    //   if (this.pages[x]._id === pageId) {
+    //     delete this.pages[x];
+    //   }
+    // }
+    const url = this.baseUrl + '/api/page/' + pageId;
+    return this.http.delete(url)
+      .map(
+        (res: Response) => {
+          return res.json();
+        }
+      );
+
+  }
+
+
 }

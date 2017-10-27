@@ -1,9 +1,3 @@
-/**
- * Created by sesha on 6/2/17.
- */
-
-// Get the dependencies
-
 const express = require('express');
 const path = require('path');
 const http = require('http');
@@ -13,13 +7,8 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-
-
-
 // Point static path to dist -- For building -- REMOVE
 app.use(express.static(path.join(__dirname, 'dist')));
-
-
 
 // CORS
 app.use(function(req, res, next) {
@@ -28,9 +17,6 @@ app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
   next();
 });
-
-
-
 
 const port = process.env.PORT || '3100';
 app.set('port', port);
@@ -43,18 +29,11 @@ const server = http.createServer(app);
 // serverSide(app);
 
 
-
+require('./asssignment/app')(app);
 // For Build: Catch all other routes and return the index file -- BUILDING
-// app.get('*', function (req, res) {
-//   res.sendFile(path.join(__dirname, 'dist/index.html'));
-// });
-
 app.get('*', function (req, res) {
-  res.sendFile(path.join(__dirname, './dist/index.html'))
+  res.sendFile(path.join(__dirname, './dist/index.html'));
 });
 
-require('./asssignment/app')(app);
 
-server.listen( port );
-
-
+server.listen(port);

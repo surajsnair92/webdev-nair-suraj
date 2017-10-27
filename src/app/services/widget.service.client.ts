@@ -59,8 +59,7 @@ export class WidgetService {
   }
 
   updateWidget(widgetId, widget) {
-
-    const url = this.baseUrl +  '/api/widget/' + widgetId;
+   const url = this.baseUrl +  '/api/widget/' + widgetId;
     return this.http.put(url, widget)
       .map(
         (res: Response) => {

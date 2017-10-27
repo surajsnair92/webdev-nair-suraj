@@ -47,27 +47,27 @@ module.exports = function(app) {
   function updateWidget(req, res) {
     var widgetId = req.param('widgetId');
     var widget = req.body;
-    for (var x = 0; x < widgets.length; x++) {
-      if (widgets[x]['_id'] === widgetId) {
+    for (var i = 0; i < widgets.length; i++) {
+      if (widgets[i]['_id'] === widgetId) {
         switch (widget['type']) {
           case 'HEADING':
-            widgets[x]['size'] = widget['size'];
-            widgets[x]['text'] = widget['text'];
+            widgets[i]['size'] = widget['size'];
+            widgets[i]['text'] = widget['text'];
             break;
           case 'IMAGE':
-            widgets[x]['width'] = widget['width'];
-            widgets[x]['url'] = widget['url'];
+            widgets[i]['width'] = widget['width'];
+            widgets[i]['url'] = widget['url'];
             break;
           case 'YOUTUBE':
-            widgets[x]['width'] = widget['width'];
-            widgets[x]['url'] = widget['url'];
+            widgets[i]['width'] = widget['width'];
+            widgets[i]['url'] = widget['url'];
             break;
           case 'HTML':
-            widgets[x]['text'] = widget['text'];
+            widgets[i]['text'] = widget['text'];
             break;
         }
-        widgets[x]['_id'] = widgetId;
-        res.json(widgets[x]);
+        widgets[i]['_id'] = widgetId;
+        res.json(widgets[i]);
         return;
       }
     }
@@ -75,9 +75,9 @@ module.exports = function(app) {
 
   function deleteWidget(req, res) {
     var widgetId = req.param('widgetId');
-    for (var x = 0; x < widgets.length; x++) {
-      if (widgets[x]['_id'] === widgetId) {
-        delete widgets[x];
+    for (var i = 0; i < widgets.length; i++) {
+      if (widgets[i]['_id'] === widgetId) {
+        delete widgets[i];
         return;
       }
     }

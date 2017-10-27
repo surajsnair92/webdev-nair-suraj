@@ -4,7 +4,7 @@
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
 
-        <a class="navbar-brand ssn-navbar" routerLink='/profile/{{userId}}/website/{{websiteId}}/page/'>
+        <a class="navbar-brand ssn-navbar" routerLink='/user/{{userId}}/website/{{websiteId}}/page/'>
           <div class="glyphicon glyphicon-chevron-left"></div>
           Widgets
         </a>
@@ -13,7 +13,7 @@
       <div class="navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
           <li>
-            <a routerLink='/profile/{{userId}}/website/{{websiteId}}/page/{{pageId}}/widget/new'
+            <a routerLink='/user/{{userId}}/website/{{websiteId}}/page/{{pageId}}/widget/new'
                class="ssn-glyphicon-black glyphicon glyphicon-plus pull-right"></a>
           </li>
         </ul>
@@ -25,15 +25,15 @@
 <div *ngFor="let w of widgets " class="container-fluid">
   <div [ngSwitch]="w.widgetType" class="ssn-widget">
     <div  *ngSwitchCase="'HEADING'" class="ssn-widget-toolbar">
-      <a routerLink="/profile/{{userId}}/website/{{websiteId}}/page/{{pageId}}/widget/{{w._id}}">
+      <a routerLink="/user/{{userId}}/website/{{websiteId}}/page/{{pageId}}/widget/{{w._id}}">
         <span class="glyphicon glyphicon-cog pull-right"></span>
       </a>
-      <span class="glyphicon glyphicon-menu-hamburger pull-right"></span>
+      <span class="glyphicon glyphicon-meznu-hamburger pull-right"></span>
       <h1>{{w._text}}</h1>
     </div>
 
     <div  *ngSwitchCase="'IMAGE'" class="ssn-widget-toolbar">
-      <a routerLink="/profile/{{userId}}/website/{{websiteId}}/page/{{pageId}}/widget/{{w._id}}">
+      <a routerLink="/user/{{userId}}/website/{{websiteId}}/page/{{pageId}}/widget/{{w._id}}">
          <span class="glyphicon glyphicon-cog pull-right"></span>
         </a>
         <span class="glyphicon glyphicon-menu-hamburger pull-right"></span>
@@ -41,7 +41,7 @@
     </div>
 <br>
     <div *ngSwitchCase="'YOUTUBE'" class="ssn-widget-toolbar">
-      <a routerLink="/profile/{{userId}}/website/{{websiteId}}/page/{{pageId}}/widget/{{w._id}}">{{w.widgetType}}
+      <a routerLink="/user/{{userId}}/website/{{websiteId}}/page/{{pageId}}/widget/{{w._id}}">{{w.widgetType}}
       <span class="glyphicon glyphicon-cog pull-right"></span>
       </a>
       <span class="glyphicon glyphicon-menu-hamburger pull-right"></span>

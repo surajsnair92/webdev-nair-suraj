@@ -21,7 +21,7 @@ export class WidgetChooserComponent implements OnInit {
   pageId: String;
   page: Page[];
   widget: Widget[];
-  widgetHeader: WidgetHeading[];
+
 
   constructor(private pageService: PageService,
               private widgetService: WidgetService,
@@ -34,9 +34,13 @@ export class WidgetChooserComponent implements OnInit {
       this.userId = params['userId']
       this.webId = params['wid']
       this.pageId = params['pid']
-      console.log(this.pageId)
-      // this.widget = this.widgetService.findWidgetByPageId(this.pageId)
+      console.log(this.userId)
+      // this.widget = us.widgetService.findWidgetByPageId(this.pageId)
       // this.widgetHeader = this.widgetService.findWidgetByPageId(this.pageId)
+      this.widgetService.findWidgetsByPageId(this.pageId)
+        .subscribe((widgets) => {
+          this.widget = widgets;
+        });
       console.log((this.widget))
 
 

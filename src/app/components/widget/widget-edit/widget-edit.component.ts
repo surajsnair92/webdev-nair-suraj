@@ -31,17 +31,18 @@ export class WidgetEditComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.userId = params['userId']
-      this.webId = params['wid']
-      this.pageId = params['pid']
-      console.log(this.pageId)
+      this.userId = params['userId'];
+      this.webId = params['wid'];
+      this.pageId = params['pid'];
+      console.log(this.pageId);
       // this.widget = this.widgetService.findWidgetByPageId(this.pageId);
       // this.widgetHeader = this.widgetService.findWidgetByPageId(this.pageId)
       this.widgetService.findWidgetsByPageId(this.pageId)
         .subscribe((widgets) => {
           this.widget = widgets;
+          console.log(this.widget)
         });
-      console.log((this.widget))
+
 
 
     })

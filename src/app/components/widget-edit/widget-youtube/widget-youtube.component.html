@@ -1,4 +1,4 @@
-x
+
 <div class = "ssn-widget">
   <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
@@ -11,7 +11,7 @@ x
         </a>
       </div>
       <div class="navbar-text pull-right">
-        <a class="ssn-glyphicon-black navbar-link" href="widget-list.html">
+        <a class="ssn-glyphicon-black navbar-link" (click)="updateWidget(widget)">
                              <span class="glyphicon glyphicon glyphicon-ok">
                              </span>
         </a>
@@ -20,7 +20,7 @@ x
     </div><!-- /.container-fluid -->
   </nav>
 </div>
-
+<br><br><br>
 <div class="ssn-widget">
   <div class="container-fluid">
 
@@ -33,7 +33,7 @@ x
            class="form-control"/>
 
     <label for="url"> URL </label>
-    <input id ="url" type="text"
+    <input [[ngModel]] = 'widget._text' id ="url" type="text"
            class="form-control"/>
 
 

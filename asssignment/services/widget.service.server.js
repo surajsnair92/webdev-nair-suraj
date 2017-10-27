@@ -28,10 +28,11 @@ module.exports = function(app) {
   function findWidgetsInPage(req, res) {
     console.log('jhkjhl');
     var pageId = req.params['pageId'];
-    console.log('paaage:',pageId)
+    console.log('paaage:',pageId);
     var result = widgets.filter(function (page) {
       return page['pageId'] === pageId;
     });
+    console.log(result);
     res.json(result);
   }
 

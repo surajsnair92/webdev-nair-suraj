@@ -1406,7 +1406,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/widget-edit/widget-youtube/widget-youtube.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "x\n<div class = \"ssn-widget\">\n  <nav class=\"navbar navbar-default navbar-fixed-top\">\n    <div class=\"container-fluid\">\n      <!-- Brand and toggle get grouped for better mobile display -->\n      <div class=\"navbar-header\">\n\n        <a class=\"navbar-brand ssn-navbar\" routerLink=\"/user/{{userId}}/website/{{webId}}/page/{{pageId}}/widget/\">\n          <div class=\"glyphicon glyphicon-chevron-left\"></div>\n          Widget Edit\n        </a>\n      </div>\n      <div class=\"navbar-text pull-right\">\n        <a class=\"ssn-glyphicon-black navbar-link\" href=\"widget-list.html\">\n                             <span class=\"glyphicon glyphicon glyphicon-ok\">\n                             </span>\n        </a>\n      </div>\n\n    </div><!-- /.container-fluid -->\n  </nav>\n</div>\n\n<div class=\"ssn-widget\">\n  <div class=\"container-fluid\">\n\n    <label for=\"name\">Name</label>\n    <input id=\"name\" type=\"email\"\n           class=\"form-control\"/>\n\n    <label for=\"text\"> Text </label>\n    <input id =\"text\" type=\"text\"\n           class=\"form-control\"/>\n\n    <label for=\"url\"> URL </label>\n    <input id =\"url\" type=\"text\"\n           class=\"form-control\"/>\n\n\n    <label for=\"width\"> Width </label>\n    <input id =\"width\" type=\"text\"\n           class=\"form-control\"/>\n\n    <a href=\"#\" class=\"btn btn-danger btn-block\">\n      Delete\n    </a>\n  </div>\n</div>\n<nav class=\"navbar navbar-default navbar-fixed-bottom\">\n  <div class=\"container-fluid\">\n    <div class=\"navbar-text pull-right\">\n      <a href=\"../user/profile.html\" class=\"navbar-link\">\n          <span class=\"ssn-glyphicon-black glyphicon glyphicon-user\">\n                     </span>\n      </a>\n    </div>\n  </div>\n</nav>\n"
+module.exports = "\n<div class = \"ssn-widget\">\n  <nav class=\"navbar navbar-default navbar-fixed-top\">\n    <div class=\"container-fluid\">\n      <!-- Brand and toggle get grouped for better mobile display -->\n      <div class=\"navbar-header\">\n\n        <a class=\"navbar-brand ssn-navbar\" routerLink=\"/user/{{userId}}/website/{{webId}}/page/{{pageId}}/widget/\">\n          <div class=\"glyphicon glyphicon-chevron-left\"></div>\n          Widget Edit\n        </a>\n      </div>\n      <div class=\"navbar-text pull-right\">\n        <a class=\"ssn-glyphicon-black navbar-link\" (click)=\"updateWidget(widget)\">\n                             <span class=\"glyphicon glyphicon glyphicon-ok\">\n                             </span>\n        </a>\n      </div>\n\n    </div><!-- /.container-fluid -->\n  </nav>\n</div>\n<br><br><br>\n<div class=\"ssn-widget\">\n  <div class=\"container-fluid\">\n\n    <label for=\"name\">Name</label>\n    <input id=\"name\" type=\"email\"\n           class=\"form-control\"/>\n\n    <label for=\"text\"> Text </label>\n    <input id =\"text\" type=\"text\"\n           class=\"form-control\"/>\n\n    <label for=\"url\"> URL </label>\n    <input [[ngModel]] = 'widget._text' id =\"url\" type=\"text\"\n           class=\"form-control\"/>\n\n\n    <label for=\"width\"> Width </label>\n    <input id =\"width\" type=\"text\"\n           class=\"form-control\"/>\n\n    <a href=\"#\" class=\"btn btn-danger btn-block\">\n      Delete\n    </a>\n  </div>\n</div>\n<nav class=\"navbar navbar-default navbar-fixed-bottom\">\n  <div class=\"container-fluid\">\n    <div class=\"navbar-text pull-right\">\n      <a href=\"../user/profile.html\" class=\"navbar-link\">\n          <span class=\"ssn-glyphicon-black glyphicon glyphicon-user\">\n                     </span>\n      </a>\n    </div>\n  </div>\n</nav>\n"
 
 /***/ }),
 
@@ -1436,14 +1436,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var WidgetYoutubeComponent = (function () {
-    function WidgetYoutubeComponent(pageService, widgetService, websiteService, userService, route) {
+    function WidgetYoutubeComponent(pageService, widgetService, websiteService, userService, route, router) {
         this.pageService = pageService;
         this.widgetService = widgetService;
         this.websiteService = websiteService;
         this.userService = userService;
         this.route = route;
+        this.router = router;
     }
+    WidgetYoutubeComponent.prototype.updateWidget = function (widget) {
+        var _this = this;
+        console.log(widget);
+        this.widgetService.updateWidget(widget._id, widget)
+            .subscribe(function (widget) {
+            if (widget) {
+                _this.widget = widget;
+                _this.router.navigate(['/user/' + _this.userId + '/website/' + _this.webId + '/page/' + _this.pageId + '/widget']);
+            }
+        });
+    };
     WidgetYoutubeComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.route.params.subscribe(function (params) {
@@ -1453,7 +1466,11 @@ var WidgetYoutubeComponent = (function () {
             console.log(_this.pageId);
             // this.widget = this.widgetService.findWidgetByPageId(this.pageId)
             // this.widgetHeader = this.widgetService.findWidgetByPageId(this.pageId)
-            console.log((_this.widget));
+            _this.widgetService.findWidgetsByPageId(_this.pageId)
+                .subscribe(function (widgets) {
+                _this.widget = widgets;
+                console.log(_this.widget);
+            });
         });
     };
     return WidgetYoutubeComponent;
@@ -1464,10 +1481,10 @@ WidgetYoutubeComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/components/widget-edit/widget-youtube/widget-youtube.component.html"),
         styles: [__webpack_require__("../../../../../src/app/components/widget-edit/widget-youtube/widget-youtube.component.css")]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_4__services_page_service_client__["a" /* PageService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__services_page_service_client__["a" /* PageService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_5__services_widget_service_client__["a" /* WidgetService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__services_widget_service_client__["a" /* WidgetService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__services_website_service_client__["a" /* WebsiteService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_website_service_client__["a" /* WebsiteService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__services_user_service_client__["a" /* UserService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_user_service_client__["a" /* UserService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */]) === "function" && _e || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_4__services_page_service_client__["a" /* PageService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__services_page_service_client__["a" /* PageService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_5__services_widget_service_client__["a" /* WidgetService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__services_widget_service_client__["a" /* WidgetService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__services_website_service_client__["a" /* WebsiteService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_website_service_client__["a" /* WebsiteService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__services_user_service_client__["a" /* UserService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_user_service_client__["a" /* UserService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _f || Object])
 ], WidgetYoutubeComponent);
 
-var _a, _b, _c, _d, _e;
+var _a, _b, _c, _d, _e, _f;
 //# sourceMappingURL=widget-youtube.component.js.map
 
 /***/ }),
@@ -1584,7 +1601,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/widget/widget-edit/widget-edit.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngFor=\"let w of widget\" class=\"container-fluid\">\n  <div [ngSwitch] = 'w.widgetType'>\n    <div *ngSwitchCase=\"'HEADING'\">\n      <app-widget-header></app-widget-header>\n    </div>\n    <div *ngSwitchCase=\"'IMAGE'\">\n      <app-widget-image></app-widget-image>\n    </div>\n    <div *ngSwitchCase=\"'YOTUBE'\">\n      <app-widget-youtube></app-widget-youtube>\n    </div>\n  </div>\n</div>\n"
+module.exports = "<div *ngFor=\"let w of widget\" class=\"container-fluid\">\n  <div [ngSwitch] = 'w.widgetType'>\n    <div *ngSwitchCase=\"'Heading'\">\n      <app-widget-header></app-widget-header>\n    </div>\n    <div *ngSwitchCase=\"'IMAGE'\">\n      <app-widget-image></app-widget-image>\n    </div>\n    <div *ngSwitchCase=\"'YOUTUBE'\">\n      <app-widget-youtube></app-widget-youtube>\n    </div>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -1634,8 +1651,8 @@ var WidgetEditComponent = (function () {
             _this.widgetService.findWidgetsByPageId(_this.pageId)
                 .subscribe(function (widgets) {
                 _this.widget = widgets;
+                console.log(_this.widget);
             });
-            console.log((_this.widget));
         });
     };
     return WidgetEditComponent;

@@ -1,6 +1,7 @@
 import { Website } from '../models/websites.model.client'
 import { Injectable } from '@angular/core';
 import {Http, Response} from '@angular/http';
+import {environment} from '../../environments/environment';
 import 'rxjs/Rx';
 
 @Injectable()
@@ -16,6 +17,7 @@ export class WebsiteService {
   ];
 
   constructor(private http:Http){}
+  baseUrl = environment.baseUrl;
 
   findWebsiteById(websiteId){
     return this.websites.find(function (web) {
@@ -24,7 +26,7 @@ export class WebsiteService {
   }
 
   findAllWebsitesForUser(userId){
-    const url = 'http://localhost:3100/api/user/' + userId + '/website';
+    const url = this.baseUrl +'/api/user/'+ userId + '/website';
     return this.http.get(url)
       .map((response: Response) => {
         return response.json()
@@ -34,7 +36,7 @@ export class WebsiteService {
 
   createWebsite(userId, website: Website){
     // console.log(this.users.push(new User('001',username, password, firstName, lastName)))
-    const url = 'http://localhost:3100/api/user/' + userId + '/website';
+    const url = this.baseUrl+'/api/user/' + userId + '/website';
     // console.log(website);
     return this.http.post(url,{
       '_id': '296',
@@ -55,7 +57,7 @@ export class WebsiteService {
     //     this.websites[i].description = web.description
     //   }
     // }
-    const url = 'http://localhost:3100/api/website/'+web._id;
+    const url = this.baseUrl+'/api/website/'+web._id;
     console.log('console',web);
     return this.http.put(url, {
       '_id': web._id,
@@ -68,16 +70,10 @@ export class WebsiteService {
       })
   }
 
-  findWebsitesByUser(userId){
-    return this.websites.find(function (web) {
-      return web.developerId === userId;
-    })
-  }
-
   deleteWebsite(websiteId){
     // this.websites.splice(websiteId,1)
     // return this.websites
-    const url = 'http://localhost:3100/api/website/'+websiteId;
+    const url = this.baseUrl+'/api/website/'+websiteId;
     return this.http.delete(url)
       .map((response: Response) => {
         return response.json()

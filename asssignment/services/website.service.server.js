@@ -63,6 +63,7 @@ module.exports = function (app) {
         websites[i].description = website.description;
       }
     }
+    return res.send(websites)
   }
 
 

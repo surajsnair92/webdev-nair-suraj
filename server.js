@@ -49,12 +49,11 @@ const server = http.createServer(app);
 //   res.sendFile(path.join(__dirname, 'dist/index.html'));
 // });
 
-app.get("/api/hello", function (req, res) {
-  // console.log("Inside server.js")
-  res.send("Hello Server!")
+app.get('*', function (req, res) {
+  res.sendFile(path.join(__dirname, './dist/index.html'))
 });
 
-require('./asssignment/app')(app)
+require('./asssignment/app')(app);
 
 server.listen( port );
 

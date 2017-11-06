@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import {WidgetService} from '../../../../services/widget.service.client';
 import {ActivatedRoute} from '@angular/router';
-
+import {environment} from '../../../../../environments/environment';
 @Component({
   selector: 'app-widget-image',
   templateUrl: './widget-image.component.html',
   styleUrls: ['./widget-image.component.css']
 })
 export class WidgetImageComponent implements OnInit {
-
+  baseUrl = environment.baseUrl;
   imageName: String;
   imageText: String;
   imageWidth: String;

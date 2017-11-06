@@ -1,0 +1,55 @@
+<div class = "ssn-widget">
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+
+        <a class="navbar-brand ssn-navbar" [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget']">
+          <div class="glyphicon glyphicon-chevron-left"></div>
+          Widget Edit
+        </a>
+      </div>
+      <div class="navbar-text pull-right">
+        <a (click)="createWidget()"
+           [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget']">
+                             <span class="glyphicon glyphicon glyphicon-ok">
+                             </span>
+        </a>
+      </div>
+    </div><!-- /.container-fluid -->
+  </nav>
+</div>
+<br><br><br>
+<div class="ssn-widget">
+  <div class="container-fluid">
+    <form>
+      <div class="form-group">
+        <label>Name</label>
+        <input type="text" class="form-control" placeholder="Name">
+      </div>
+      <div class="form-group">
+        <label>Text</label>
+        <input type="text" class="form-control" placeholder="abcd">
+      </div>
+      <div class="form-group">
+        <label>URL</label>
+        <input type="url" class="form-control" placeholder="xyz.com">
+      </div>
+      <a href = "#" class="btn btn-primary btn-block">Upload YouTube Video</a>
+      <a (click)="deleteWidget()"
+         class="btn btn-danger btn-block "
+         [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget']">Delete</a>
+    </form>
+  </div>
+</div>
+<nav class="navbar navbar-default navbar-fixed-bottom">
+  <div class="container-fluid">
+    <div class="navbar-text pull-right">
+      <a [routerLink]="['/user', userId]"
+         class="navbar-link">
+          <span class="ssn-glyphicon-black glyphicon glyphicon-user">
+                     </span>
+      </a>
+    </div>
+  </div>
+</nav>

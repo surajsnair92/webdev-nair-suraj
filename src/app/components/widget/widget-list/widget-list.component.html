@@ -3,8 +3,8 @@
     <div class="container-fluid">
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
-
-        <a class="navbar-brand ssn-navbar" routerLink='/user/{{userId}}/website/{{websiteId}}/page/'>
+         <a class="navbar-brand ssn-navbar"
+           [routerLink]="['/user', userId, 'website', websiteId, 'page']">
           <div class="glyphicon glyphicon-chevron-left"></div>
           Widgets
         </a>
@@ -13,7 +13,7 @@
       <div class="navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
           <li>
-            <a routerLink='/user/{{userId}}/website/{{websiteId}}/page/{{pageId}}/widget/new'
+            <a [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget', 'new']"
                class="ssn-glyphicon-black glyphicon glyphicon-plus pull-right"></a>
           </li>
         </ul>
@@ -22,95 +22,86 @@
   </nav>
 </div>
 <br><br><br>
-<div *ngFor="let w of widgets " class="container-fluid">
-  <div [ngSwitch]="w.widgetType" class="ssn-widget">
-    <div  *ngSwitchCase="'HEADING'" class="ssn-widget-toolbar">
-      <a routerLink="/user/{{userId}}/website/{{websiteId}}/page/{{pageId}}/widget/{{w._id}}">
-        <span class="glyphicon glyphicon-cog pull-right"></span>
-      </a>
-      <span class="glyphicon glyphicon-meznu-hamburger pull-right"></span>
-      <h1>{{w._text}}</h1>
-    </div>
 
-    <div  *ngSwitchCase="'IMAGE'" class="ssn-widget-toolbar">
-      <a routerLink="/user/{{userId}}/website/{{websiteId}}/page/{{pageId}}/widget/{{w._id}}">
-         <span class="glyphicon glyphicon-cog pull-right"></span>
-        </a>
-        <span class="glyphicon glyphicon-menu-hamburger pull-right"></span>
-      <img width="100%" src="http://lorempixel.com/400/200" />
-    </div>
-<br>
-    <div *ngSwitchCase="'YOUTUBE'" class="ssn-widget-toolbar">
-      <a routerLink="/user/{{userId}}/website/{{websiteId}}/page/{{pageId}}/widget/{{w._id}}">{{w.widgetType}}
-      <span class="glyphicon glyphicon-cog pull-right"></span>
-      </a>
-      <span class="glyphicon glyphicon-menu-hamburger pull-right"></span>
-
-
-      <div class="video-container">
-        <iframe width="560" height="315"
-                src="https://www.youtube.com/embed/li41sHoxqZQ"
-                frameborder="0" allowfullscreen>
-        </iframe>
+<div *ngFor="let widget of widgets">
+  <div [ngSwitch]="widget['widgetType']">
+    <div *ngSwitchCase="'HEADING'">
+      <div class="row">
+        <div class="col-xs-12">
+          <div [ngSwitch]="widget['size']">
+            <div *ngSwitchCase="1">
+              <h1>{{widget['text']}}</h1>
+            </div>
+            <div *ngSwitchCase="2">
+              <h2>{{widget['text']}}</h2>
+            </div>
+            <div *ngSwitchCase="3">
+              <h3>{{widget['text']}}</h3>
+            </div>
+            <div *ngSwitchCase="4">
+              <h4>{{widget['text']}}</h4>
+            </div>
+          </div>
+          <div class="dg-widget-toolbar">
+            <a [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget', widget['_id']]">
+              <span class="glyphicon glyphicon-cog"></span>
+            </a>
+            <span class="glyphicon glyphicon-menu-hamburger"></span>
+          </div>
+        </div>
       </div>
-
     </div>
 
-
-
+    <div *ngSwitchCase="'YOUTUBE'">
+      <div class="row">
+        <div class="col-xs-12">
+          <iframe [width]="widget['width']"
+                  height="300"
+                  [src]="safeUrl(widget['url'])">
+          </iframe>
+          <div class="dg-widget-toolbar">
+            <a [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget', widget['_id']]">
+              <span class="glyphicon glyphicon-cog"></span>
+            </a>
+            <span class="glyphicon glyphicon-menu-hamburger"></span>
+          </div>
+        </div>
       </div>
-      <!--<div class="ssn-widget">-->
-    <!--<div class="ssn-widget-toolbar">-->
-      <!--<a href="widget-heading.html">-->
-        <!--<span class="glyphicon glyphicon-cog"></span>-->
-      <!--</a>-->
-      <!--<span class="glyphicon glyphicon-menu-hamburger"></span>-->
-    <!--</div>-->
-    <!--<h2>A Heading of size 1</h2>-->
-  <!--</div>-->
-  <!--<div class="ssn-widget">-->
-    <!--<div class="ssn-widget-toolbar">-->
-      <!--<a href="widget-image.html">-->
-        <!--<span class="glyphicon glyphicon-cog"></span>-->
-      <!--</a>-->
-      <!--<span class="glyphicon glyphicon-menu-hamburger"></span>-->
-    <!--</div>-->
-    <!--<img width="100%" src="http://lorempixel.com/400/200" />-->
-  <!--</div>-->
-  <!--<div class="ssn-widget">-->
-    <!--<div class="ssn-widget-toolbar">-->
-      <!--<a href="widget-heading.html">-->
-        <!--<span class="glyphicon glyphicon-cog"></span>-->
-      <!--</a>-->
-      <!--<span class="glyphicon glyphicon-menu-hamburger"></span>-->
-    <!--</div>-->
-    <!--<p id="speakable-summary">Shopping may be turning into an increasingly virtual experience,-->
-      <!--with people buying goods online and through apps, but there is no denying the power of a physical-->
-      <!--in-store experience — a lesson that Microsoft is taking to heart. Today the company <a target="_blank"-->
-                                                                                             <!--href="https://blogs.microsoft.com/blog/2017/09/21/flagship-microsoft-store-planned-regent-street-london/"-->
-                                                                                             <!--rel="noopener">announced</a>&nbsp;it will be opening a new flagship store in London in Regent-->
-      <!--Street near Oxford Circus — just a stone’s (or an iPhone’s) throw from the-->
-      <!--Apple flagship store that saw a <a target="_blank"-->
-                                         <!--href="https://techcrunch.com/2016/10/13/come-take-a-peek-inside-apples-new-regent-street-flagship-store-in-london/"-->
-                                         <!--rel="noopener">huge revamp</a> a year ago.-->
-    <!--</p>-->
-  <!--</div>-->
+    </div>
 
-  <!--<div class="ssn-widget">-->
-    <!--<div class="ssn-widget-toolbar">-->
-      <!--<a href="widget-youtube.html">-->
-        <!--<span class="glyphicon glyphicon-cog"></span>-->
-      <!--</a>-->
-      <!--<span class="glyphicon glyphicon-menu-hamburger"></span>-->
-    <!--</div>-->
-    <!--<div class="video-container">-->
-      <!--<iframe width="560" height="315"-->
-              <!--src="https://www.youtube.com/embed/li41sHoxqZQ"-->
-              <!--frameborder="0" allowfullscreen>-->
-      <!--</iframe>-->
-    <!--</div>-->
-  <!--</div>-->
+    <div *ngSwitchCase="'IMAGE'">
+      <div class="row">
+        <div class="col-xs-12">
+          <a [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget']">
+            <img [style.width]="widget['width']"
+                 [src]="safeUrl(widget['url'])">
+          </a>
+          <div class="dg-widget-toolbar">
+            <a [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget', widget['_id']]">
+              <span class="glyphicon glyphicon-cog"></span>
+            </a>
+            <span class="glyphicon glyphicon-menu-hamburger"></span>
+          </div>
+        </div>
+      </div>
+    </div>
 
+    <div *ngSwitchCase="'HTML'">
+      <div class="row">
+        <div class="col-xs-12">
+          <div [innerHTML]="widget['text']">
+          </div>
+          <div class="dg-widget-toolbar">
+            <a [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget', widget['_id']]">
+              <span class="glyphicon glyphicon-cog"></span>
+            </a>
+            <span class="glyphicon glyphicon-menu-hamburger"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">

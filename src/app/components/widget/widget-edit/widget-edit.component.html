@@ -1,13 +1,51 @@
-<div *ngFor="let w of widget" class="container-fluid">
-  <div [ngSwitch] = 'w.widgetType'>
-    <div *ngSwitchCase="'Heading'">
-      <app-widget-header></app-widget-header>
-    </div>
-    <div *ngSwitchCase="'IMAGE'">
-      <app-widget-image></app-widget-image>
-    </div>
-    <div *ngSwitchCase="'YOUTUBE'">
-      <app-widget-youtube></app-widget-youtube>
-    </div>
-  </div>
+<!--<div *ngFor="let w of widget" class="container-fluid">-->
+  <!--<div [ngSwitch] = 'w.widgetType'>-->
+    <!--<div *ngSwitchCase="'Heading'">-->
+      <!--<app-widget-header></app-widget-header>-->
+    <!--</div>-->
+    <!--<div *ngSwitchCase="'IMAGE'">-->
+      <!--<app-widget-image></app-widget-image>-->
+    <!--</div>-->
+    <!--<div *ngSwitchCase="'YOUTUBE'">-->
+      <!--<app-widget-youtube></app-widget-youtube>-->
+    <!--</div>-->
+  <!--</div>-->
+<!--</div>-->
+
+<div class = "ssn-widget">
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+
+        <a class="navbar-brand ssn-navbar" [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget']">
+          <div class="glyphicon glyphicon-chevron-left"></div>
+          Widget Edit
+        </a>
+      </div>
+      <div class="navbar-text pull-right">
+        <a [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget']">
+                             <span class="glyphicon glyphicon glyphicon-ok">
+                             </span>
+        </a>
+      </div>
+
+    </div><!-- /.container-fluid -->
+  </nav>
 </div>
+<br><br><br>
+<div class="container-fluid">
+  <div [ngSwitch] = 'widgetType'>
+  <div *ngSwitchCase="'HEADING'">
+    <app-widget-header></app-widget-header>
+  </div>
+  <div *ngSwitchCase="'IMAGE'">
+    <app-widget-image></app-widget-image>
+  </div>
+  <div *ngSwitchCase="'YOUTUBE'">
+    <app-widget-youtube></app-widget-youtube>
+  </div>
+  </div>
+  </div>
+
+

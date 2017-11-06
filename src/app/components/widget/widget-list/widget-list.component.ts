@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {WidgetService} from '../../../services/widget.service.client';
 import {ActivatedRoute} from '@angular/router';
-import {Widget} from '../../../models/widget.model.client';
-// import {WidgetImage} from '../../../models/widget-image.model.client';
-// import {WidgetHeading} from '../../../models/widget-others.model.client';
+import {DomSanitizer} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-widget-list',
@@ -12,27 +10,29 @@ import {Widget} from '../../../models/widget.model.client';
 })
 
 export class WidgetListComponent implements OnInit {
-
   userId: String;
   websiteId: String;
   pageId: String;
-  widgets :Widget[];
-
+  widgets = [{}];
 
   constructor(private widgetService: WidgetService,
-              private activatedRoute: ActivatedRoute) {
-  }
+              private activatedRoute: ActivatedRoute,
+              private domSanitizer: DomSanitizer) { }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
-      this.userId = params['userId'];
+      this.userId = params['uid'];
       this.websiteId = params['wid'];
       this.pageId = params['pid'];
-      console.log('pageiid',this.pageId);
       this.widgetService.findWidgetsByPageId(this.pageId)
         .subscribe((widgets) => {
           this.widgets = widgets;
         });
     });
   }
+  // https://angular.io/api/platform-browser/DomSanitizer
+  safeUrl(url: string) {
+    return this.domSanitizer.bypassSecurityTrustResourceUrl(url);
+  }
+
 }

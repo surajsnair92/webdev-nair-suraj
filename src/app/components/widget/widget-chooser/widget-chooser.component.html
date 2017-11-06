@@ -4,7 +4,7 @@
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
 
-        <a class="navbar-brand ssn-navbar" routerLink='/user/{{userId}}/website/{{webId}}/page/{{pageId}}/widget/'>
+        <a class="navbar-brand ssn-navbar" [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget']">
           <div class="glyphicon glyphicon-chevron-left"></div>
           Choose Widget
         </a>
@@ -14,39 +14,69 @@
   </nav>
 </div>
 <br><br><br>
-<div *ngFor="let w of widget " class="container-fluid">
-  <div [ngSwitch]="w.widgetType" class="ssn-widget">
-    <div  *ngSwitchCase="'HEADING'" class="ssn-widget-toolbar">
-      <a routerLink="/user/{{userId}}/website/{{webId}}/page/{{pageId}}/widget/{{w._id}}">
-        <span class="glyphicon glyphicon-cog pull-right"></span>
-      </a>
-      <span class="glyphicon glyphicon-menu-hamburger pull-right"></span>
-      {{w.widgetType}}
-    </div>
 
-    <div  *ngSwitchCase="'IMAGE'" class="ssn-widget-toolbar">
-      <a routerLink="/user/{{userId}}/website/{{webId}}/page/{{pageId}}/widget/{{w._id}}">
-        <span class="glyphicon glyphicon-cog pull-right"></span>
-      </a>
-      <span class="glyphicon glyphicon-menu-hamburger pull-right"></span>
-      <img width="100%" src="http://lorempixel.com/400/200" />
-    </div>
-    <br>
-    <div *ngSwitchCase="'YOUTUBE'" class="ssn-widget-toolbar">
-      <a routerLink="/user/{{userId}}/website/{{webId}}/page/{{pageId}}/widget/{{w._id}}">
-        <span class="glyphicon glyphicon-cog"></span>
-      </a>
-      <span class="glyphicon glyphicon-menu-hamburger"></span>
+<div class="container-fluid" style="margin-top: 70px">
+  <ul class="list-group">
+    <a [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget', 'new', 'heading']">
+      <li class="list-group-item">
+        Header
+      </li>
+    </a>
+
+    <a [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget', 'new', 'image']">
+      <li class="list-group-item">
+        Image
+      </li>
+    </a>
+
+    <a [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget', 'new', 'youtube']">
+      <li class="list-group-item">
+        YouTube
+      </li>
+    </a>
+
+    <a [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget', 'new', 'html']">
+      <li class="list-group-item">
+        HTML
+      </li>
+    </a>
+
+  </ul>
+</div>
+<!--<div *ngFor="let w of widget " class="container-fluid">-->
+  <!--<div [ngSwitch]="w.widgetType" class="ssn-widget">-->
+    <!--<div  *ngSwitchCase="'HEADING'" class="ssn-widget-toolbar">-->
+      <!--<a routerLink="/user/{{userId}}/website/{{webId}}/page/{{pageId}}/widget/{{w._id}}">-->
+        <!--<span class="glyphicon glyphicon-cog pull-right"></span>-->
+      <!--</a>-->
+      <!--<span class="glyphicon glyphicon-menu-hamburger pull-right"></span>-->
+      <!--{{w.widgetType}}-->
+    <!--</div>-->
+
+    <!--<div  *ngSwitchCase="'IMAGE'" class="ssn-widget-toolbar">-->
+      <!--<a routerLink="/user/{{userId}}/website/{{webId}}/page/{{pageId}}/widget/{{w._id}}">-->
+        <!--<span class="glyphicon glyphicon-cog pull-right"></span>-->
+      <!--</a>-->
+      <!--<span class="glyphicon glyphicon-menu-hamburger pull-right"></span>-->
+      <!--<img width="100%" src="http://lorempixel.com/400/200" />-->
+    <!--</div>-->
+    <!--<br>-->
+    <!--<div *ngSwitchCase="'YOUTUBE'" class="ssn-widget-toolbar">-->
+      <!--<a routerLink="/user/{{userId}}/website/{{webId}}/page/{{pageId}}/widget/{{w._id}}">-->
+        <!--<span class="glyphicon glyphicon-cog"></span>-->
+      <!--</a>-->
+      <!--<span class="glyphicon glyphicon-menu-hamburger"></span>-->
 
 
-      <div class="video-container">
-        <iframe width="560" height="315"
-                src="https://www.youtube.com/embed/li41sHoxqZQ"
-                frameborder="0" allowfullscreen>
-        </iframe>
-      </div>
+      <!--<div class="video-container">-->
+        <!--<iframe width="560" height="315"-->
+                <!--src="https://www.youtube.com/embed/li41sHoxqZQ"-->
+                <!--frameborder="0" allowfullscreen>-->
+        <!--</iframe>-->
+      <!--</div>-->
 
-    </div>
+    <!--</div>-->
+  <!--</div>-->
 <!--<div class="ssn-widget">-->
   <!--<ul class="list-group">-->
     <!--&lt;!&ndash;<li class="active list-group-item">&ndash;&gt;-->
@@ -83,8 +113,6 @@
     <!--<li class="ssn-hide-border list-group-item">-->
       <!--<a href="widget-heading.html"> Header </a>-->
     <!--</li>-->
-
-</div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
   <div class="container-fluid">

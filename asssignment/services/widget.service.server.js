@@ -6,13 +6,15 @@ module.exports = function(app) {
   app.delete('/api/widget/:widgetId', deleteWidget);
 
   widgets = [
-    { "_id": "123", "widgetType": "HEADING", "pageId": "321", "text": "GIZMODO"},
-    { "_id": "234", "widgetType": "HEADING", "pageId": "321", "text": "Lorem ipsum"},
-    { "_id": "345", "widgetType": "IMAGE", "pageId": "333 ",  "text": "http://lorempixel.com/400/200/"},
+    { "_id": "123", "widgetType": "HEADING", "pageId": "321", "size": 2, "text": "GIZMODO"},
+    { "_id": "234", "widgetType": "HEADING", "pageId": "543", "size": 4, "text": "Hello World! Welcome to Widgets! "},
+    { "_id": "345", "widgetType": "IMAGE", "pageId": "543", "width": "50%",
+      "url": "http://smallbusinessbc.ca/wp-content/themes/sbbcmain/images/circle-icons/icon-education.svg"},
     { "_id": "456", "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>"},
-    { "_id": "567", "widgetType": "HEADING", "pageId": "321", "text": "Lorem ipsum"},
-    { "_id": "678", "widgetType": "YOUTUBE", "pageId": "333", "text": "https://youtu.be/AM2Ivdi9c4E" },
-    { "_id": "789", "widgetType": "HTML", "pageId": "333", "text": "<p>Lorem ipsum</p>"}
+    { "_id": "567", "widgetType": "HEADING", "pageId": "321", "size": 4, "text": "Lorem ipsum"},
+    { "_id": "678", "widgetType": "YOUTUBE", "pageId": "333", "width": "100%",
+      "url": "https://youtu.be/AM2Ivdi9c4E" },
+    { "_id": "789", "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>"}
   ];
 
   function createWidget(req, res) {
@@ -20,7 +22,6 @@ module.exports = function(app) {
     var widget = req.body;
     widget['_id'] = Math.floor(Math.random() * 1000) + '';
     widget['pageId'] = pageId;
-    widget['index'] = getHighestIndex(pageId) + 1;
     widgets.push(widget);
     res.json(widget);
   }
@@ -42,7 +43,6 @@ module.exports = function(app) {
       return widget['_id'] === widgetId;
     });
     res.json(widget);
-    return;
   }
 
   function updateWidget(req, res) {
@@ -76,13 +76,13 @@ module.exports = function(app) {
 
   function deleteWidget(req, res) {
     var widgetId = req.param('widgetId');
+
     for (var i = 0; i < widgets.length; i++) {
-      if (widgets[i]['_id'] === widgetId) {
-        delete widgets[i];
-        return;
+      if (widgets[i]._id === widgetId) {
+        widgets.splice(i, 1);
       }
     }
-    return;
+    return res.send(widgets)
   }
 
   function uploadImage(req, res) {
@@ -105,16 +105,12 @@ module.exports = function(app) {
       '_id': widgetId,
       'widgetType': 'IMAGE',
       'pageId': pageId,
-      'width': width
+      'text': width
     };
-
     widget.url = '/assets/uploads/' + filename;
     this.widgets.push(widget);
-
     var widgetUrl = "/user/" + userId + "/website/" + websiteId + '/page/' + pageId + '/widget';
-
     res.redirect(widgetUrl);
   }
-
 
 }

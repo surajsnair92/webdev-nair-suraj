@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="initial-scale=1, user-scalable=no">
+  <meta charset = "UTF-8">
+  <link rel = "stylesheet" href = "../../vendors/bootstrap/dist/css/bootstrap.min.css"/>
+  <link rel= "stylesheet" href="../../css/styles.css"/>
+  <script src ="../../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+  <title> Widget List </title>
+</head>
+
+<body>
+
+<div class = "ssn-widget">
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+
+        <a class="navbar-brand ssn-navbar" href="widget-list.html">
+          <div class="glyphicon glyphicon-chevron-left"></div>
+          Widget Edit
+        </a>
+      </div>
+
+      <div class="navbar-text pull-right">
+        <a class="ssn-glyphicon-black navbar-link" href="widget-list.html">
+                             <span class="glyphicon glyphicon glyphicon-ok">
+                             </span>
+        </a>
+      </div>
+
+    </div><!-- /.container-fluid -->
+  </nav>
+</div>
+
+<div class="ssn-widget">
+  <div class="container-fluid">
+
+    <label for="name">Name</label>
+    <input id="name" type="email"
+           class="form-control"/>
+
+    <label for="text"> Text </label>
+    <input id ="text" type="text"
+           class="form-control"/>
+
+    <label for="url"> URL </label>
+    <input id ="url" type="text"
+           class="form-control"/>
+
+
+    <label for="width"> Width </label>
+    <input id ="width" type="text"
+           class="form-control"/>
+
+    <label for="uploadImage"> Upload </label>
+    <input id="uploadImage"
+             type="file"
+             class="form-control" readonly/>
+
+    <a href="#" class="btn btn-primary btn-block">
+      Upload Image
+    </a>
+    <a href="widget-list.html" class="btn btn-danger btn-block">
+      Delete
+    </a>
+  </div>
+</div>
+<nav class="navbar navbar-default navbar-fixed-bottom">
+  <div class="container-fluid">
+    <div class="navbar-text pull-right">
+      <a href="../user/profile.html"
+         class="navbar-link">
+        <span class="ssn-glyphicon-black glyphicon glyphicon-user"></span>
+      </a>
+    </div>
+  </div>
+</nav>

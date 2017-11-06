@@ -17,7 +17,7 @@ export class WidgetService {
     {'_id': '234', 'widgetType': 'HEADING', 'pageId': '321', 'size': 4, 'text': 'Lorem ipsum'},
     {
       '_id': '345', 'widgetType': 'IMAGE', 'pageId': '321', 'width': '100%',
-      'url': 'https://i.pinimg.com/originals/a2/2a/0a/a22a0a7e624943303b23cc326598c167.jpg'
+      'url': 'http://cdn.ndtv.com/tech/images/google_logo_redesign_2015_small.png'
     },
     {'_id': '456', 'widgetType': 'HTML', 'pageId': '321', 'text': '<p>Lorem ipsum</p>'},
     {'_id': '567', 'widgetType': 'HEADING', 'pageId': '321', 'size': 4, 'text': 'Lorem ipsum'},
@@ -59,7 +59,7 @@ export class WidgetService {
   }
 
   updateWidget(widgetId, widget) {
-   const url = this.baseUrl +  '/api/widget/' + widgetId;
+     const url = this.baseUrl +  '/api/widget/' + widgetId;
     return this.http.put(url, widget)
       .map(
         (res: Response) => {

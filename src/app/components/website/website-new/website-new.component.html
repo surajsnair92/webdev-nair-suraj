@@ -13,7 +13,7 @@
 
 
         <div class="navbar-text pull-left">
-          <a href="website-list.html" class="ssn-glyphicon-white navbar-link active">
+          <a [routerLink]="['/user', userId, 'website']" class="ssn-glyphicon-white navbar-link active">
                      <span class="glyphicon glyphicon-chevron-left">
                      </span>
           </a>
@@ -56,7 +56,7 @@
         </a>
       </div>
       <div class="navbar-text pull-left">
-        <a class="ssn-glyphicon-white navbar-link active" href="website-list.html">
+        <a class="ssn-glyphicon-white navbar-link active" [routerLink]="['/user', userId, 'website']">
                      <span class="glyphicon glyphicon-chevron-left">
                      </span>
         </a>

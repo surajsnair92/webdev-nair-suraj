@@ -11,7 +11,7 @@
           </div>
 
           <div class="navbar-text pull-left">
-            <a href="website-list.html" class="ssn-glyphicon-white navbar-link active">
+            <a [routerLink]="['/user', userId, 'website']" class="ssn-glyphicon-white navbar-link active">
                      <span class="glyphicon glyphicon-chevron-left">
                      </span>
             </a>
@@ -49,7 +49,7 @@
         </div>
 
         <div class="navbar-text pull-left">
-          <a class="ssn-glyphicon-white navbar-link active" href="website-list.html">
+          <a class="ssn-glyphicon-white navbar-link active" [routerLink]="['/user', userId, 'website']">
                      <span class="glyphicon glyphicon-chevron-left">
                      </span>
           </a>
@@ -125,7 +125,7 @@
   <nav class="navbar navbar-default ssn-edit-website navbar-fixed-bottom">
     <div class="container-fluid">
       <div class="navbar-text pull-right">
-        <a href="../user/profile.html"
+        <a [routerLink]="['/user', userId]"
            class="navbar-link">
           <span class="ssn-glyphicon-white glyphicon glyphicon-user"></span>
         </a>

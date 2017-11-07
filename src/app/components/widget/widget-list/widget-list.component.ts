@@ -21,7 +21,7 @@ export class WidgetListComponent implements OnInit {
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
-      this.userId = params['uid'];
+      this.userId = params['userId'];
       this.websiteId = params['wid'];
       this.pageId = params['pid'];
       this.widgetService.findWidgetsByPageId(this.pageId)
@@ -29,6 +29,7 @@ export class WidgetListComponent implements OnInit {
           this.widgets = widgets;
         });
     });
+    console.log(this.widgets)
   }
   // https://angular.io/api/platform-browser/DomSanitizer
   safeUrl(url: string) {

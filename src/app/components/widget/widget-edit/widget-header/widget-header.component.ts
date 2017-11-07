@@ -22,7 +22,7 @@ export class WidgetHeaderComponent implements OnInit {
 
   ngOnInit() {
     this.activatedRoutes.params.subscribe(params => {
-      this.userId = params['uid'];
+      this.userId = params['userId'];
       this.websiteId = params['wid'];
       this.pageId = params['pid'];
       this.headerText = 'Page';
@@ -40,6 +40,7 @@ export class WidgetHeaderComponent implements OnInit {
   createWidget() {
     this.widget['widgetType'] = 'HEADER';
     this.widget['text'] = this.headerText;
+    console.log(this.widget['text']);
     this.widget['size'] = this.headerSize;
     this.widgetService.createWidget(this.pageId, this.widget)
       .subscribe((widget) => {

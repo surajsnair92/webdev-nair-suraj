@@ -24,35 +24,6 @@
 <br><br><br>
 <div class="ssn-widget">
   <div class="container-fluid">
-
-    <!--<form>-->
-      <!--<div class="form-group">-->
-        <!--<label>Name</label>-->
-        <!--<input type="text" class="form-control" placeholder="Alice">-->
-      <!--</div>-->
-      <!--<div class="form-group">-->
-        <!--<label>Text</label>-->
-        <!--<input type="text" class="form-control" placeholder="Enter Image Desciption">-->
-      <!--</div>-->
-      <!--<div class="form-group">-->
-        <!--<label>URL</label>-->
-        <!--<input type="url" class="form-control" placeholder="https://medium.com">-->
-      <!--</div>-->
-      <!--<div class="form-group">-->
-        <!--<label>Width</label>-->
-        <!--<input type="range" class="form-control" placeholder="100%">-->
-      <!--</div>-->
-      <!--<div class="form-group">-->
-        <!--<label>Upload</label>-->
-        <!--<input type="file" class="form-control">-->
-      <!--</div>-->
-      <!--<a (click)="" class="btn btn-primary btn-block">Upload Image</a>-->
-      <!--<a (click)="deleteWidget()"-->
-         <!--class="btn btn-danger btn-block "-->
-         <!--[routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget']">Delete</a>-->
-    <!--</form>-->
-
-
     <form ngNoForm action="{{baseUrl}}/api/upload" method="post" enctype="multipart/form-data">
       <input  name="myFile"   type="file" class="form-control"/>
       <input  name="widgetId" value="{{widgetId}}"   style="display: none"/>

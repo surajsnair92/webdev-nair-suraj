@@ -1511,7 +1511,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/widget/widget-edit/widget-image/flickr-image-search/flickr-image-search.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class = \"ssn-widget\">\n  <nav class=\"navbar navbar-default navbar-fixed-top\">\n    <div class=\"container-fluid\">\n      <!-- Brand and toggle get grouped for better mobile display -->\n      <div class=\"navbar-header\">\n\n        <a class=\"navbar-brand ssn-navbar\" [routerLink]=\"['/user', userId, 'website', websiteId, 'page', pageId, 'widget']\">\n          <div class=\"glyphicon glyphicon-chevron-left\"></div>\n          Search Flickr\n        </a>\n      </div>\n\n\n    </div><!-- /.container-fluid -->\n  </nav>\n</div>\n<br><br><br>\n<div class=\"ssn-widget\">\n  <div class=\"container-fluid\">\n    <div class=\"row\">\n      <div class=\"input-group\">\n        <input [(ngModel)]=\"searchText\" type=\"text\" class=\"form-control\">\n        <span class=\"input-group-btn\">\n         <a (click)=\"searchPhotos()\" class=\"btn btn-default\" type=\"button\">\n                     <span class=\"glyphicon glyphicon-search\"></span>\n         </a>\n </span>\n      </div>\n\n      <div class=\"row\">\n        <div *ngFor = \"let pic of photos['photo']\"\n             class=\"col-xs-4\">\n          <img    (click)=\"selectPhoto(pic)\"\n                  width=\"100%\"\n                  [src] = \"['https://farm' + pic.farm + '.staticflickr.com/' + pic.server + '/' +   pic.id + '_' + pic.secret + '_s.jpg']\"/>\n\n          <p></p>\n        </div>\n      </div>\n\n    </div>\n  </div>\n"
+module.exports = "<div class = \"ssn-widget\">\n  <nav class=\"navbar navbar-default navbar-fixed-top\">\n    <div class=\"container-fluid\">\n      <!-- Brand and toggle get grouped for better mobile display -->\n      <div class=\"navbar-header\">\n\n        <a class=\"navbar-brand ssn-navbar\" [routerLink]=\"['/user', userId, 'website', websiteId, 'page', pageId, 'widget']\">\n          <div class=\"glyphicon glyphicon-chevron-left\"></div>\n          Search Flickr\n        </a>\n      </div>\n\n\n    </div><!-- /.container-fluid -->\n  </nav>\n</div>\n<br><br><br>\n<div class=\"ssn-widget\">\n  <div class=\"container-fluid\">\n    <div class=\"row\">\n      <div class=\"input-group\">\n        <input [(ngModel)]=\"searchText\" type=\"text\" class=\"form-control\">\n        <span class=\"input-group-btn\">\n         <a (click)=\"searchPhotos()\" class=\"btn btn-default\" type=\"button\">\n                     <span class=\"glyphicon glyphicon-search\"></span>\n         </a>\n </span>\n      </div>\n    </div>\n\n      <div class=\"row\">\n        <div *ngFor = \"let pic of photos['photo']\"\n             class=\"col-xs-4\">\n          <img (click)=\"selectPhoto(pic)\"\n                  width=\"100%\"\n                  [src] = \"['https://farm' + pic.farm + '.staticflickr.com/' + pic.server + '/' +   pic.id + '_' + pic.secret + '_s.jpg']\"/>\n\n          <p></p>\n        </div>\n      </div>\n\n    </div>\n  </div>\n"
 
 /***/ }),
 
@@ -1523,6 +1523,7 @@ module.exports = "<div class = \"ssn-widget\">\n  <nav class=\"navbar navbar-def
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_flickr_service_client__ = __webpack_require__("../../../../../src/app/services/flickr.service.client.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_widget_service_client__ = __webpack_require__("../../../../../src/app/services/widget.service.client.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1535,11 +1536,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
 var FlickrImageSearchComponent = (function () {
-    function FlickrImageSearchComponent(flickrService, activatedRoute) {
+    function FlickrImageSearchComponent(flickrService, widgetService, activatedRoute, router) {
         this.flickrService = flickrService;
+        this.widgetService = widgetService;
         this.activatedRoute = activatedRoute;
+        this.router = router;
         this.photos = {};
+        this.widget = {};
     }
     FlickrImageSearchComponent.prototype.searchPhotos = function () {
         var _this = this;
@@ -1556,13 +1562,23 @@ var FlickrImageSearchComponent = (function () {
         });
     };
     FlickrImageSearchComponent.prototype.selectPhoto = function (photo) {
+        var _this = this;
         var url = 'https://farm' + photo.farm + '.staticflickr.com/' + photo.server;
         url += '/' + photo.id + '_' + photo.secret + '_b.jpg';
         var widget = {
             websiteId: this.websiteId,
             pageId: this.pageId,
-            url: url
+            url: url,
+            widgetType: 'IMAGE'
         };
+        this.widgetService.createWidget(this.pageId, widget)
+            .subscribe(function (widget) {
+            if (widget) {
+                _this.widget = widget;
+                // console.log(this.widget)
+                _this.router.navigate(['/user/' + _this.userId + '/website/' + _this.websiteId + '/page/' + _this.pageId + '/widget']);
+            }
+        });
     };
     FlickrImageSearchComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -1570,7 +1586,8 @@ var FlickrImageSearchComponent = (function () {
             _this.userId = params['userId'];
             _this.websiteId = params['wid'];
             _this.pageId = params['pid'];
-            _this.widgetId = params['wgid'];
+            _this.widgetId = Math.random().toString();
+            console.log(_this.widgetId);
             _this.flickrService.searchPhotos('searchme')
                 .subscribe(function (photos) {
                 _this.photos = photos;
@@ -1585,10 +1602,10 @@ FlickrImageSearchComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/components/widget/widget-edit/widget-image/flickr-image-search/flickr-image-search.component.html"),
         styles: [__webpack_require__("../../../../../src/app/components/widget/widget-edit/widget-image/flickr-image-search/flickr-image-search.component.css")]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_flickr_service_client__["a" /* FlickerService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_flickr_service_client__["a" /* FlickerService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* ActivatedRoute */]) === "function" && _b || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_flickr_service_client__["a" /* FlickerService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_flickr_service_client__["a" /* FlickerService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__services_widget_service_client__["a" /* WidgetService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_widget_service_client__["a" /* WidgetService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* ActivatedRoute */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */]) === "function" && _d || Object])
 ], FlickrImageSearchComponent);
 
-var _a, _b;
+var _a, _b, _c, _d;
 //# sourceMappingURL=flickr-image-search.component.js.map
 
 /***/ }),
@@ -1679,6 +1696,7 @@ var WidgetImageComponent = (function () {
                 _this.widget = widget;
             }
         });
+        console.log(this.widget);
     };
     WidgetImageComponent.prototype.updateWidget = function () {
         var _this = this;
@@ -1896,9 +1914,9 @@ var WidgetListComponent = (function () {
             _this.widgetService.findWidgetsByPageId(_this.pageId)
                 .subscribe(function (widgets) {
                 _this.widgets = widgets;
+                console.log(_this.widgets);
             });
         });
-        console.log(this.widgets);
     };
     // https://angular.io/api/platform-browser/DomSanitizer
     WidgetListComponent.prototype.safeUrl = function (url) {

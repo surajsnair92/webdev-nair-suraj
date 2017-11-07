@@ -54,6 +54,7 @@ export class WidgetImageComponent implements OnInit {
           this.widget = widget;
         }
       });
+    console.log(this.widget)
   }
   updateWidget() {
     this.widget['widgetType'] = 'IMAGE';

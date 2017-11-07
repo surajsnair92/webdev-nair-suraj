@@ -27,6 +27,7 @@ module.exports = function(app) {
     widget['pageId'] = pageId;
     widgets.push(widget);
     res.json(widget);
+
   }
 
   function findWidgetsInPage(req, res) {

@@ -29,7 +29,6 @@ export class WidgetService {
   ];
 
   createWidget(pageId, widget) {
-
     const url = this.baseUrl +  '/api/page/' + pageId + '/widget';
     return this.http.post(url, widget)
       .map(

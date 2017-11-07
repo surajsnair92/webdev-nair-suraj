@@ -27,9 +27,10 @@ export class WidgetListComponent implements OnInit {
       this.widgetService.findWidgetsByPageId(this.pageId)
         .subscribe((widgets) => {
           this.widgets = widgets;
+          console.log(this.widgets)
         });
     });
-    console.log(this.widgets)
+
   }
   // https://angular.io/api/platform-browser/DomSanitizer
   safeUrl(url: string) {

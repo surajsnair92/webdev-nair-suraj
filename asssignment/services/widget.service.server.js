@@ -15,8 +15,8 @@ module.exports = function(app) {
       "url": "http://smallbusinessbc.ca/wp-content/themes/sbbcmain/images/circle-icons/icon-education.svg"},
     { "_id": "456", "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>"},
     { "_id": "567", "widgetType": "HEADING", "pageId": "321", "size": 4, "text": "Lorem ipsum"},
-    { "_id": "678", "widgetType": "YOUTUBE", "pageId": "333", "width": "100%",
-      "url": "https://youtu.be/AM2Ivdi9c4E" },
+    { "_id": "678", "widgetType": "YOUTUBE", "pageId": "333", "width": "50%",
+      "url": "https://www.youtube.com/embed/cqPtUuPsOzw" },
     { "_id": "789", "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>"}
   ];
 
@@ -105,8 +105,16 @@ module.exports = function(app) {
     var size          = myFile.size;
     var mimetype      = myFile.mimetype;
 
-    widget = getWidgetById(widgetId);
-    widget.url = '/uploads/'+filename;
+    // widget = findWidgetById(widgetId);
+    // widget.url = '/uploads/'+filename;
+    widget = {
+      '_id': widgetId,
+      'widgetType': 'IMAGE',
+      'pageId': pageId,
+      'width': width
+    };
+    widget.url = '/assets/uploads/' + filename;
+    this.widgets.push(widget);
 
     var callbackUrl   = "/user/" + userId + "/website/" + websiteId + '/page/' + pageId + '/widget';
 

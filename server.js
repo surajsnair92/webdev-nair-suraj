@@ -29,11 +29,11 @@ const server = http.createServer(app);
 // serverSide(app);
 
 
-require('./asssignment/app')(app);
+require('./asssignment/app.js')(app);
 // For Build: Catch all other routes and return the index file -- BUILDING
 app.get('*', function (req, res) {
   res.sendFile(path.join(__dirname, './dist/index.html'));
 });
 
 
-server.listen(port);
+server.listen( port , () => console.log('Running'));

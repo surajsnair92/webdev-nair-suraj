@@ -21,13 +21,10 @@ export class WebsiteEditComponent implements OnInit {
 
   updateWebsite(website){
     console.log(website);
-    this.websiteService.updateWebsite(website)
-      .subscribe((website: Website) => {
-        if(website){
-          this.web = website;
-          this.router.navigate(['/user/'+this.userId+'/website']);
-        }
-      });
+    this.websiteService.updateWebsite(this.userId, website)
+      .subscribe((website) => {
+        this.router.navigate(['/user/'+this.userId+'/website']);
+      })
   }
 
   deleteWebsite(website){

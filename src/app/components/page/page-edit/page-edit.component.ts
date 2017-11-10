@@ -16,8 +16,8 @@ export class PageEditComponent implements OnInit {
   page = {};
   pageId: String;
   pages :Page;
-  pageName: String;
-  pageDesc: String;
+  name: String;
+  description: String;
 
   constructor(private pageService: PageService,
               private activatedRoute: ActivatedRoute,private router: Router) { }
@@ -41,19 +41,20 @@ export class PageEditComponent implements OnInit {
   updatePage(page){
     console.log('jhkjhk',page);
     this.pageService.updatePage(this.pageId, page)
-      .subscribe((page: Page) => {
-        if(page){
-          this.pages = page;
-          this.router.navigate(['/user/'+this.userId+'/website/'+this.websiteId+'/page']);
-        }
-      });
+      .subscribe((page) => {
+      this.router.navigate(['user', this.userId, 'website', this.websiteId, 'page'])
+      })
   }
+
 
   deletePage() {
     this.pageService.deletePage(this.pageId)
-      .subscribe((pages) => {
-        this.pages = pages;
-
+    // this.userService.findUserByUsername(username)
+      .subscribe((page: Page) => {
+        if(page){
+          this.page = page;
+          this.router.navigate(['user', this.userId, 'website', this.websiteId, 'page'])
+        }
       });
   }
 

@@ -14,6 +14,7 @@ export class FlickerService {
 
   key = "b27927bb63a72f32d7be94ccca1e811c";
   secret = "41c78a13775d47a4";
+
   urlBase = "https://api.flickr.com/services/rest/?method=flickr.photos.search&format=json&api_key=API_KEY&text=TEXT";
 
 

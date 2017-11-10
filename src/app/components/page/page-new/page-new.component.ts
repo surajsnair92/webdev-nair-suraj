@@ -15,18 +15,26 @@ export class PageNewComponent implements OnInit {
   websiteId: String;
   pageId: String;
   pages :Page;
-  pageName: String;
-  pageDesc: String;
+  name: String;
+  description: String;
 
   constructor(private pageService: PageService,
-              private activatedRoute: ActivatedRoute,
+              private route: ActivatedRoute,
               private router: Router) { }
 
+  createPage(page) {
+    this.pageService.createPage(this.websiteId, page)
+      .subscribe((page: Page) => {
+        this.pages = page;
+        console.log('page',this.pages);
+        this.router.navigate(['user', this.userId, 'website', this.websiteId, 'page'])
+      });
+  }
+
   ngOnInit() {
-    this.activatedRoute.params.subscribe(params => {
+    this.route.params.subscribe(params => {
       this.userId = params['userId'];
       this.websiteId = params['wid'];
-
       this.pageService.findPagesByWebsiteId(this.websiteId)
         .subscribe((page) => {
           if(page){
@@ -37,14 +45,8 @@ export class PageNewComponent implements OnInit {
     });
   }
 
-  createPage(page) {
-    console.log('page',page);
-    this.pageService.createPage(this.websiteId, page)
-      .subscribe((page: Page) => {
-        if(page){
-          this.router.navigate(['/user/'+this.userId+'/website/'+this.websiteId+'/page']);
-        }
-      });
-  }
+
+
+
 
 }

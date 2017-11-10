@@ -32,44 +32,12 @@
 
 <br><br><br><br>
 <ul class="list-group">
-  <!--<li class="active list-group-item">-->
-  <!--Name-->
-  <!--</li>-->
-  <!--<li class="ssn-hide-border list-group-item">-->
-    <!--&lt;!&ndash;<div class="row">&ndash;&gt;-->
-    <!--&lt;!&ndash;<div class="col-xs-9 col-sm-6 col-md-3">&ndash;&gt;-->
-    <!--<a href="../page/page-list.html"> Address Book App </a>-->
-    <!--&lt;!&ndash;</div>&ndash;&gt;-->
-    <!--&lt;!&ndash;<div class="col-md-3 hidden-xs hidden-sm">&ndash;&gt;-->
-    <!--&lt;!&ndash;01/01/2017&ndash;&gt;-->
-    <!--&lt;!&ndash;</div>&ndash;&gt;-->
-    <!--&lt;!&ndash;<div class="col-xs-3 col-sm-3 col-md-3 hidden-xs">&ndash;&gt;-->
-    <!--&lt;!&ndash;Suraj&ndash;&gt;-->
-    <!--&lt;!&ndash;</div>&ndash;&gt;-->
-
-    <!--<a href="website-edit.html" class="pull-right">-->
-      <!--<span class="glyphicon glyphicon-cog"></span>-->
-    <!--</a>-->
-
-  <!--</li>-->
   <li *ngFor="let website of web" class="ssn-hide-border list-group-item">
     <a routerLink="/user/{{userId}}/website/{{website._id}}/page"> {{website.name}} </a>
     <a routerLink="/user/{{userId}}/website/{{website._id}}" class="pull-right">
       <span class="glyphicon glyphicon-cog"></span>
-    </a></li>
-  <!--</li>-->
-  <!--<li class="ssn-hide-border list-group-item">-->
-    <!--<a href="../page/page-list.html"> Blogging App </a>-->
-    <!--<a href="website-edit.html" class="pull-right">-->
-      <!--<span class="glyphicon glyphicon-cog"></span>-->
-    <!--</a>-->
-  <!--</li>-->
-  <!--<li class="ssn-hide-border list-group-item">-->
-    <!--<a href="../page/page-list.html"> Script Testing App </a>-->
-    <!--<a href="website-edit.html" class="pull-right">-->
-      <!--<span class="glyphicon glyphicon-cog"></span>-->
-    <!--</a>-->
-  <!--</li>-->
+    </a>
+  </li>
 </ul>
 
 

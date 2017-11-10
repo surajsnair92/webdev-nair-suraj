@@ -18,13 +18,15 @@ module.exports = function (app) {
     { "_id": "789", "name": "Chess",       "developerId": "234", "description": "Lorem" }
   ];
 
+  var websiteModel = require('../models/website/website.model.server');
+
 
   function findWebsiteById(req, res) {
     var websiteId = req.params["websiteId"];
-    var website  = websites.find(function (website) {
-      return website._id == websiteId;
-    });
-    res.json(website)
+    websiteModel.findWebsiteById(websiteId)
+      .then(function (website) {
+        res.json(website);
+      })
   }
 
   function helloUser(req, res) {
@@ -32,38 +34,35 @@ module.exports = function (app) {
   }
 
   function createWebsite(req, res) {
-    var data = req.body;
-    var websiteId = data._id;
-    websites.push(data);
-    var website  = websites.find(function (website) {
-      return website._id == websiteId;
-    });
-    res.json(websites)
+    var userId = req.params.userId;
+    var website = req.body;
+    website.developerId = userId;
+    websiteModel.createWebsite(website)
+      .then(function (website) {
+        websiteModel.findAllWebsitesForUser(userId)
+          .then(function (websites) {
+            res.json(websites);
+          });
+        res.json(website);
+      });
   }
 
   function deleteWebsite(req, res) {
     var websiteId = req.params["websiteId"];
-    var body = req.body;
-    for (i =0 ; i < websites.length; i++) {
-      if (websites[i]._id == websiteId) {
-        websites.splice(i,1)
-      }
-    }
-    return res.send(websites)
+    var website = req.body;
+    websiteModel.deleteWebsite(websiteId)
+      .then(function (website) {
+        res.json(website);
+      })
   }
 
   function updateWebsite(req, res) {
     var websiteId = req.params['websiteId'];
     var website = req.body;
-    var data = null;
-
-    for (i =0 ; i < websites.length; i++){
-      if(websites[i]._id == websiteId){
-        websites[i].name = website.name
-        websites[i].description = website.description;
-      }
-    }
-    return res.send(websites)
+    websiteModel.updateWebsite(websiteId, website)
+      .then(function(website){
+        res.json(website);
+      })
   }
 
 
@@ -72,21 +71,10 @@ module.exports = function (app) {
     // var username = req.query["username"];
     // var password = req.query["password"];
     var userId = req.params["userId"];
-    var result = [];
-    for(var i=0;i<websites.length;i++){
-      if(websites[i].developerId == userId){
-        result.push(websites[i]);
-      }
-    }
-   if(result){
-      // console.log(result)
-      res.send(result);
-   }
-   else{
-     res.send({});
-   }
-      return;
-   res.json(websites);
+    websiteModel.findAllWebsitesForUser(userId)
+      .then(function (websites) {
+        res.json(websites);
+      })
   }
 
 }

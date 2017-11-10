@@ -376,17 +376,17 @@ var PageEditComponent = (function () {
         console.log('jhkjhk', page);
         this.pageService.updatePage(this.pageId, page)
             .subscribe(function (page) {
-            if (page) {
-                _this.pages = page;
-                _this.router.navigate(['/user/' + _this.userId + '/website/' + _this.websiteId + '/page']);
-            }
+            _this.router.navigate(['user', _this.userId, 'website', _this.websiteId, 'page']);
         });
     };
     PageEditComponent.prototype.deletePage = function () {
         var _this = this;
         this.pageService.deletePage(this.pageId)
-            .subscribe(function (pages) {
-            _this.pages = pages;
+            .subscribe(function (page) {
+            if (page) {
+                _this.page = page;
+                _this.router.navigate(['user', _this.userId, 'website', _this.websiteId, 'page']);
+            }
         });
     };
     return PageEditComponent;
@@ -506,7 +506,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/page/page-new/page-new.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\n<nav class=\"ssn-page-navbar-color navbar navbar-default navbar-fixed-top\">\n  <div class=\"container-fluid\">\n    <div class=\"row\">\n      <div class=\"col-xs-4 hidden-xs\">\n        <div class=\"\">\n          <div class=\"navbar-text pull-left\">\n            <a href=\"page-list.html\" class=\"ssn-glyphicon-white navbar-link\">\n                     <span class=\"ssn-glyphicon-black glyphicon glyphicon-chevron-left\">\n                     </span>\n            </a>\n          </div>\n\n          <div class=\"navbar-header\">\n            <a class=\"ssn-glyphicon-black navbar-brand ssn-navbar\" >\n              Websites\n            </a>\n          </div>\n        </div>\n      </div>\n      <div class=\" col-sm-12 col-sm-8 hidden-xs\">\n        <div class=\"navbar-text pull-right\">\n          <a class=\" navbar-link\"\n             (click)=\"createPage(this.pages)\">\n            <span class=\"ssn-glyphicon-black glyphicon glyphicon glyphicon-ok\"></span>\n          </a>\n        </div>\n\n        <div class=\"navbar-header\">\n          <a class=\"ssn-glyphicon-black navbar-brand ssn-navbar\" >\n            New Website\n          </a>\n        </div>\n      </div>\n      <div class=\" col-xs-12 visible-xs\">\n        <div class=\"navbar-text pull-right\">\n          <a (click)=\"createPage(this.pages)\"\n             class=\"ssn-glyphicon-white navbar-link\">\n            <span class=\"ssn-glyphicon-black glyphicon glyphicon glyphicon-ok\"></span>\n          </a>\n        </div>\n        <div class=\"navbar-text pull-left\">\n          <a class=\"ssn-glyphicon-white navbar-link active\"\n             href=\"page-list.html\">\n            <span class=\"ssn-glyphicon-black glyphicon glyphicon-chevron-left\"></span>\n          </a>\n        </div>\n\n        <div class=\"navbar-header\">\n          <a class=\"navbar-brand ssn-navbar\" >\n            <div class=\"ssn-glyphicon-black\"> New Website</div>\n          </a>\n        </div>\n\n      </div>\n    </div>\n  </div>\n</nav>\n<br><br><br><br>\n<div class=\"container-fluid\">\n  <div class=\"row\">\n    <div class=\"ssn-profile col-xs-4 hidden-xs\">\n      <div class=\"\" >\n        <ul class=\"list-group\">\n          <li *ngFor=\"let p of pages\" class=\"ssn-border-none list-group-item\">\n            {{p.name}}\n            <a href=\"#\" class=\"pull-right\">\n              <span class=\"glyphicon-cog glyphicon\"></span>\n            </a>\n          </li>\n          <!--<li class=\"ssn-border-none list-group-item\">-->\n            <!--Address Book App-->\n            <!--<a href=\"#\" class=\"pull-right\">-->\n              <!--<span class=\"glyphicon-cog glyphicon\"></span>-->\n            <!--</a>-->\n          <!--</li>-->\n          <!--<li class=\"ssn-border-none list-group-item\">-->\n            <!--Script Testing App-->\n            <!--<a href=\"#\" class=\"pull-right\">-->\n              <!--<span class=\"glyphicon-cog glyphicon\"></span>-->\n            <!--</a>-->\n          <!--</li>-->\n          <!--<li class=\"ssn-border-none list-group-item\">-->\n            <!--Blogger-->\n            <!--<a href=\"website-edit-trial.html\" class=\"pull-right\">-->\n              <!--<span class=\"glyphicon-cog glyphicon\"></span>-->\n            <!--</a>-->\n          <!--</li>-->\n        </ul>\n      </div>\n    </div>\n    <div class=\"col-xs-12 col-sm-8\">\n      <div class = \"ssn-profile\">\n        <label>Page Name</label>\n        <input [ngModel]=\"pages?.name\" (ngModelChange)=\"this.pages.name = $event\" class=\"form-control\"/>\n        <label>Page Description</label>\n        <textarea [ngModel]=\"pages?.description\" (ngModelChange)=\"this.pages.description = $event\" class=\"form-control\"></textarea>\n      </div>\n    </div>\n  </div>\n\n  <nav class=\"ssn-page-navbar-color navbar navbar-default navbar-fixed-bottom\">\n    <div class=\"container-fluid\">\n      <div class=\"navbar-text pull-right\">\n        <a href=\"../user/profile.html\" class=\"navbar-link\">\n                     <span class=\"ssn-glyphicon-black glyphicon glyphicon-user\">\n                     </span>\n        </a>\n      </div>\n    </div>\n  </nav>\n"
+module.exports = "\n<nav class=\"ssn-page-navbar-color navbar navbar-default navbar-fixed-top\">\n  <div class=\"container-fluid\">\n    <div class=\"row\">\n      <div class=\"col-xs-4 hidden-xs\">\n        <div class=\"\">\n          <div class=\"navbar-text pull-left\">\n            <a href=\"page-list.html\" class=\"ssn-glyphicon-white navbar-link\">\n                     <span class=\"ssn-glyphicon-black glyphicon glyphicon-chevron-left\">\n                     </span>\n            </a>\n          </div>\n\n          <div class=\"navbar-header\">\n            <a class=\"ssn-glyphicon-black navbar-brand ssn-navbar\" >\n              Pages\n            </a>\n          </div>\n        </div>\n      </div>\n      <div class=\" col-sm-12 col-sm-8 hidden-xs\">\n        <div class=\"navbar-text pull-right\">\n          <a class=\" navbar-link\"\n             (click)=\"createPage(pages)\">\n            <span class=\"ssn-glyphicon-black glyphicon glyphicon glyphicon-ok\"></span>\n          </a>\n        </div>\n\n        <div class=\"navbar-header\">\n          <a class=\"ssn-glyphicon-black navbar-brand ssn-navbar\" >\n            New Page\n          </a>\n        </div>\n      </div>\n      <div class=\" col-xs-12 visible-xs\">\n        <div class=\"navbar-text pull-right\">\n          <a (click)=\"createPage(pages)\"\n             class=\"ssn-glyphicon-white navbar-link\">\n            <span class=\"ssn-glyphicon-black glyphicon glyphicon glyphicon-ok\"></span>\n          </a>\n        </div>\n        <div class=\"navbar-text pull-left\">\n          <a class=\"ssn-glyphicon-white navbar-link active\"\n             href=\"page-list.html\">\n            <span class=\"ssn-glyphicon-black glyphicon glyphicon-chevron-left\"></span>\n          </a>\n        </div>\n\n        <div class=\"navbar-header\">\n          <a class=\"navbar-brand ssn-navbar\" >\n            <div class=\"ssn-glyphicon-black\"> New Website</div>\n          </a>\n        </div>\n\n      </div>\n    </div>\n  </div>\n</nav>\n<br><br><br><br>\n<div class=\"container-fluid\">\n  <div class=\"row\">\n    <div class=\"ssn-profile col-xs-4 hidden-xs\">\n      <div class=\"\" >\n        <ul class=\"list-group\">\n          <li *ngFor=\"let p of pages\" class=\"ssn-border-none list-group-item\">\n            {{p.name}}\n            <a href=\"#\" class=\"pull-right\">\n              <span class=\"glyphicon-cog glyphicon\"></span>\n            </a>\n          </li>\n          <!--<li class=\"ssn-border-none list-group-item\">-->\n            <!--Address Book App-->\n            <!--<a href=\"#\" class=\"pull-right\">-->\n              <!--<span class=\"glyphicon-cog glyphicon\"></span>-->\n            <!--</a>-->\n          <!--</li>-->\n          <!--<li class=\"ssn-border-none list-group-item\">-->\n            <!--Script Testing App-->\n            <!--<a href=\"#\" class=\"pull-right\">-->\n              <!--<span class=\"glyphicon-cog glyphicon\"></span>-->\n            <!--</a>-->\n          <!--</li>-->\n          <!--<li class=\"ssn-border-none list-group-item\">-->\n            <!--Blogger-->\n            <!--<a href=\"website-edit-trial.html\" class=\"pull-right\">-->\n              <!--<span class=\"glyphicon-cog glyphicon\"></span>-->\n            <!--</a>-->\n          <!--</li>-->\n        </ul>\n      </div>\n    </div>\n    <div class=\"col-xs-12 col-sm-8\">\n      <div class = \"ssn-profile\">\n        <label>Page Name</label>\n        <input id =\"name\" type=\"text\"\n               [ngModel]=\"pages?.name\" (ngModelChange)=\"pages.name = $event\"\n               placeholder=\"Enter the name of website\"\n               class=\"form-control\"/>\n        <label>Page Description</label>\n        <textarea id =\"description\" type=\"text\"\n               [ngModel]=\"pages?.description\" (ngModelChange)=\"pages.description = $event\"\n               placeholder=\"Description\"\n                  class=\"form-control\"></textarea>\n      </div>\n    </div>\n  </div>\n\n  <nav class=\"ssn-page-navbar-color navbar navbar-default navbar-fixed-bottom\">\n    <div class=\"container-fluid\">\n      <div class=\"navbar-text pull-right\">\n        <a href=\"../user/profile.html\" class=\"navbar-link\">\n                     <span class=\"ssn-glyphicon-black glyphicon glyphicon-user\">\n                     </span>\n        </a>\n      </div>\n    </div>\n  </nav>\n"
 
 /***/ }),
 
@@ -532,14 +532,23 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var PageNewComponent = (function () {
-    function PageNewComponent(pageService, activatedRoute, router) {
+    function PageNewComponent(pageService, route, router) {
         this.pageService = pageService;
-        this.activatedRoute = activatedRoute;
+        this.route = route;
         this.router = router;
     }
+    PageNewComponent.prototype.createPage = function (page) {
+        var _this = this;
+        this.pageService.createPage(this.websiteId, page)
+            .subscribe(function (page) {
+            _this.pages = page;
+            console.log('page', _this.pages);
+            _this.router.navigate(['user', _this.userId, 'website', _this.websiteId, 'page']);
+        });
+    };
     PageNewComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.activatedRoute.params.subscribe(function (params) {
+        this.route.params.subscribe(function (params) {
             _this.userId = params['userId'];
             _this.websiteId = params['wid'];
             _this.pageService.findPagesByWebsiteId(_this.websiteId)
@@ -549,16 +558,6 @@ var PageNewComponent = (function () {
                     console.log(_this.pages);
                 }
             });
-        });
-    };
-    PageNewComponent.prototype.createPage = function (page) {
-        var _this = this;
-        console.log('page', page);
-        this.pageService.createPage(this.websiteId, page)
-            .subscribe(function (page) {
-            if (page) {
-                _this.router.navigate(['/user/' + _this.userId + '/website/' + _this.websiteId + '/page']);
-            }
         });
     };
     return PageNewComponent;
@@ -800,21 +799,18 @@ var ProfileComponent = (function () {
         this.router = router;
     }
     ProfileComponent.prototype.updateUser = function (user) {
-        var _this = this;
-        this.userService.updateUser(user)
+        this.userService
+            .updateUser(user)
             .subscribe(function (user) {
-            if (user) {
-                _this.router.navigate(['/user', user._id]);
-            }
+            console.log(user);
         });
     };
     ProfileComponent.prototype.deleteUser = function (user) {
         var _this = this;
-        this.userService.deleteUser(user._id)
+        this.userService
+            .deleteUser(user._id)
             .subscribe(function (user) {
-            if (user) {
-                _this.router.navigate(['/login']);
-            }
+            _this.router.navigate(['/login']);
         });
     };
     ProfileComponent.prototype.ngOnInit = function () {
@@ -901,12 +897,33 @@ var RegisterComponent = (function () {
     }
     RegisterComponent.prototype.register = function (username, password, firstName, lastName) {
         var _this = this;
-        this.userService.createUser(username, password, firstName, lastName)
+        this.username = username;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.userService.findUserByUsername(username)
             .subscribe(function (user) {
-            if (user) {
-                _this.router.navigate(['/profile', user._id]);
+            console.log(user);
+            if (user === null) {
+                // this.router.navigate(['/profile', user._id])
+                var newUser = {
+                    username: _this.username,
+                    password: _this.password,
+                    firstName: _this.firstName,
+                    lastName: _this.lastName
+                };
+                _this.userService.createUser(newUser)
+                    .subscribe(function (userFromServer) {
+                    _this.router.navigate(['/user', userFromServer._id]);
+                });
             }
         });
+        // this.userService.createUser(username, password, firstName, lastName)
+        //   .subscribe((user: User) => {
+        //     if(user){
+        //       this.router.navigate(['/profile', user._id]);
+        //     }
+        //   });
     };
     RegisterComponent.prototype.ngOnInit = function () {
     };
@@ -947,7 +964,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/website/website-edit/website-edit.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-default navbar-fixed-top active\">\n  <div class=\"container-fluid\">\n    <div class=\"row\">\n      <div class=\"ssn-edit-website col-xs-4 hidden-xs\">\n        <div class=\"\">\n          <div class=\"navbar-text pull-right\">\n            <a href=\"#\" class=\"ssn-glyphicon-white navbar-link active\">\n                     <span class=\"glyphicon glyphicon-plus\">\n                     </span>\n            </a>\n          </div>\n\n          <div class=\"navbar-text pull-left\">\n            <a [routerLink]=\"['/user', userId, 'website']\" class=\"ssn-glyphicon-white navbar-link active\">\n                     <span class=\"glyphicon glyphicon-chevron-left\">\n                     </span>\n            </a>\n          </div>\n\n          <div class=\"navbar-header\">\n            <a class=\"ssn-color-white navbar-brand ssn-navbar\" >\n              Websites\n            </a>\n          </div>\n        </div>\n      </div>\n\n\n      <div class=\"ssn-edit-website col-sm-12 col-sm-8 hidden-xs\">\n        <div class=\"navbar-text pull-right\">\n          <a class=\"ssn-glyphicon-white navbar-link\"\n             (click)=\"updateWebsite(web)\">\n            <span class=\"glyphicon glyphicon glyphicon-ok\"></span>\n          </a>\n        </div>\n\n        <div class=\"ssn-edit-website navbar-header\">\n          <a class=\"ssn-color-white navbar-brand ssn-navbar\" >\n            Edit Website\n          </a>\n        </div>\n      </div>\n      <div class=\"ssn-edit-website col-xs-12 visible-xs\">\n        <div class=\"navbar-text pull-right\">\n          <a routerLink=\"/user/{{userId}}/website\"\n             class=\"ssn-glyphicon-white navbar-link\">\n            <span class=\"glyphicon glyphicon glyphicon-ok\"></span>\n          </a>\n        </div>\n\n        <div class=\"navbar-text pull-left\">\n          <a class=\"ssn-glyphicon-white navbar-link active\" [routerLink]=\"['/user', userId, 'website']\">\n                     <span class=\"glyphicon glyphicon-chevron-left\">\n                     </span>\n          </a>\n        </div>\n\n        <div class=\"navbar-header\">\n          <a class=\"ssn-color-white navbar-brand ssn-navbar\" >\n            Edit Website\n          </a>\n        </div>\n      </div>\n    </div>\n  </div>\n</nav>\n<br><br><br><br>\n<div class=\"container-fluid\">\n  <div class=\"row\">\n    <div class=\"ssn-profile col-xs-4 hidden-xs\">\n      <div class=\"\" >\n\n        <ul class=\"list-group\">\n\n          <li *ngFor=\"let website of web\" class=\"ssn-border-none list-group-item\">\n            {{website.name}}\n            <a href=\"#\" class=\"pull-right\">\n              <span class=\"glyphicon-cog glyphicon\"></span>\n            </a>\n          </li>\n\n          <!--<li *ngFor=\"let website of web\" class=\"ssn-hide-border list-group-item\">-->\n            <!--<a href=\"../page/page-list.html\"> {{website.name}} </a>-->\n            <!--<a routerLink=\"/profile/{{user._id}}/website/{{website._id}}\" class=\"pull-right\">-->\n              <!--<span class=\"glyphicon glyphicon-cog\"></span>-->\n            <!--</a></li>-->\n          <!--<li class=\"ssn-border-none list-group-item\">-->\n            <!--Address Book App-->\n            <!--<a href=\"#\" class=\"pull-right\">-->\n              <!--<span class=\"glyphicon-cog glyphicon\"></span>-->\n            <!--</a>-->\n          <!--</li>-->\n          <!--<li class=\"ssn-border-none list-group-item\">-->\n            <!--Script Testing App-->\n            <!--<a href=\"#\" class=\"pull-right\">-->\n              <!--<span class=\"glyphicon-cog glyphicon\"></span>-->\n            <!--</a>-->\n          <!--</li>-->\n          <!--<li class=\"ssn-border-none list-group-item\">-->\n            <!--Blogger-->\n            <!--<a href=\"#\" class=\"pull-right\">-->\n              <!--<span class=\"glyphicon-cog glyphicon\"></span>-->\n            <!--</a>-->\n          <!--</li>-->\n        </ul>\n      </div>\n    </div>\n\n    <div class=\"col-xs-12 col-sm-8\">\n      <div class = \"ssn-profile\">\n        <label>Website Name</label>\n        <input [ngModel]=\"web?.name\" (ngModelChange)=\"web.name = $event\"\n\n               class=\"form-control\"/>\n        <label>Website Description</label>\n        <textarea [ngModel]=\"web?.description\" (ngModelChange)=\"web.description = $event\" class=\"form-control\"></textarea>\n        <br>\n        <a (click)=\"deleteWebsite(web)\" class=\"btn btn-danger btn-block\">\n          Delete\n        </a>\n      </div>\n    </div>\n  </div>\n\n  <nav class=\"navbar navbar-default ssn-edit-website navbar-fixed-bottom\">\n    <div class=\"container-fluid\">\n      <div class=\"navbar-text pull-right\">\n        <a [routerLink]=\"['/user', userId]\"\n           class=\"navbar-link\">\n          <span class=\"ssn-glyphicon-white glyphicon glyphicon-user\"></span>\n        </a>\n      </div>\n    </div>\n  </nav>\n</div>\n"
+module.exports = "<nav class=\"navbar navbar-default navbar-fixed-top active\">\n  <div class=\"container-fluid\">\n    <div class=\"row\">\n      <div class=\"ssn-edit-website col-xs-4 hidden-xs\">\n        <div class=\"\">\n          <div class=\"navbar-text pull-right\">\n            <a href=\"#\" class=\"ssn-glyphicon-white navbar-link active\">\n                     <span class=\"glyphicon glyphicon-plus\">\n                     </span>\n            </a>\n          </div>\n\n          <div class=\"navbar-text pull-left\">\n            <a [routerLink]=\"['/user', userId, 'website']\" class=\"ssn-glyphicon-white navbar-link active\">\n                     <span class=\"glyphicon glyphicon-chevron-left\">\n                     </span>\n            </a>\n          </div>\n\n          <div class=\"navbar-header\">\n            <a class=\"ssn-color-white navbar-brand ssn-navbar\" >\n              Websites\n            </a>\n          </div>\n        </div>\n      </div>\n\n\n      <div class=\"ssn-edit-website col-sm-12 col-sm-8 hidden-xs\">\n        <div class=\"navbar-text pull-right\">\n          <a class=\"ssn-glyphicon-white navbar-link\"\n             (click)=\"updateWebsite(web)\">\n            <span class=\"glyphicon glyphicon glyphicon-ok\"></span>\n          </a>\n        </div>\n\n        <div class=\"ssn-edit-website navbar-header\">\n          <a class=\"ssn-color-white navbar-brand ssn-navbar\" >\n            Edit Website\n          </a>\n        </div>\n      </div>\n      <div class=\"ssn-edit-website col-xs-12 visible-xs\">\n        <div class=\"navbar-text pull-right\">\n          <a routerLink=\"/user/{{userId}}/website\"\n             class=\"ssn-glyphicon-white navbar-link\">\n            <span class=\"glyphicon glyphicon glyphicon-ok\"></span>\n          </a>\n        </div>\n\n        <div class=\"navbar-text pull-left\">\n          <a class=\"ssn-glyphicon-white navbar-link active\" [routerLink]=\"['/user', userId, 'website']\">\n                     <span class=\"glyphicon glyphicon-chevron-left\">\n                     </span>\n          </a>\n        </div>\n\n        <div class=\"navbar-header\">\n          <a class=\"ssn-color-white navbar-brand ssn-navbar\" >\n            Edit Website\n          </a>\n        </div>\n      </div>\n    </div>\n  </div>\n</nav>\n<br><br><br><br>\n<div class=\"container-fluid\">\n  <div class=\"row\">\n    <div class=\"ssn-profile col-xs-4 hidden-xs\">\n      <div class=\"\" >\n\n        <ul class=\"list-group\">\n\n          <li *ngFor=\"let website of web\" class=\"ssn-border-none list-group-item\">\n            {{website.name}}\n            <a href=\"#\" class=\"pull-right\">\n              <span class=\"glyphicon-cog glyphicon\"></span>\n            </a>\n          </li>\n\n        </ul>\n      </div>\n    </div>\n\n    <div class=\"col-xs-12 col-sm-8\">\n      <div class = \"ssn-profile\">\n        <label>Website Name</label>\n        <input [ngModel]=\"web?.name\" (ngModelChange)=\"web.name = $event\"\n\n               class=\"form-control\"/>\n        <label>Website Description</label>\n        <textarea [ngModel]=\"web?.description\" (ngModelChange)=\"web.description = $event\" class=\"form-control\"></textarea>\n        <br>\n        <a (click)=\"deleteWebsite(web)\" class=\"btn btn-danger btn-block\">\n          Delete\n        </a>\n      </div>\n    </div>\n  </div>\n\n  <nav class=\"navbar navbar-default ssn-edit-website navbar-fixed-bottom\">\n    <div class=\"container-fluid\">\n      <div class=\"navbar-text pull-right\">\n        <a [routerLink]=\"['/user', userId]\"\n           class=\"navbar-link\">\n          <span class=\"ssn-glyphicon-white glyphicon glyphicon-user\"></span>\n        </a>\n      </div>\n    </div>\n  </nav>\n</div>\n"
 
 /***/ }),
 
@@ -984,12 +1001,9 @@ var WebsiteEditComponent = (function () {
     WebsiteEditComponent.prototype.updateWebsite = function (website) {
         var _this = this;
         console.log(website);
-        this.websiteService.updateWebsite(website)
+        this.websiteService.updateWebsite(this.userId, website)
             .subscribe(function (website) {
-            if (website) {
-                _this.web = website;
-                _this.router.navigate(['/user/' + _this.userId + '/website']);
-            }
+            _this.router.navigate(['/user/' + _this.userId + '/website']);
         });
     };
     WebsiteEditComponent.prototype.deleteWebsite = function (website) {
@@ -1056,7 +1070,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/website/website-list/website-list.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class = \"ssn-profile\">\n  <nav class=\"navbar navbar-default navbar-fixed-top\">\n    <div class=\"container-fluid\">\n      <!-- Brand and toggle get grouped for better mobile display -->\n      <div class=\"navbar-header\">\n\n        <a class=\"navbar-brand ssn-navbar\"\n           [routerLink]=\"['/user', userId]\">\n          <div class=\"glyphicon glyphicon-chevron-left\"></div>\n          Websites\n        </a>\n      </div>\n\n\n      <!-- Collect the nav links, forms, and other content for toggling -->\n      <!--<div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-1\">-->\n\n      <!-- Edited navbar-right to pull-right to align the cog and user glyphicon -->\n      <!-- Collect the nav links, forms, and other content for toggling -->\n      <div class=\"navbar-collapse\" id=\"bs-example-navbar-collapse-1\">\n\n        <!-- Edited navbar-right to pull-right to align the cog and user glyphicon -->\n        <ul class=\"nav navbar-nav navbar-right\">\n          <li><a routerLink=\"/user/{{userId}}/website/new\" class=\"glyphicon glyphicon-plus pull-right\"></a></li>\n        </ul>\n      </div><!-- /.navbar-collapse -->\n    </div><!-- /.container-fluid -->\n  </nav>\n</div>\n\n\n\n<br><br><br><br>\n<ul class=\"list-group\">\n  <!--<li class=\"active list-group-item\">-->\n  <!--Name-->\n  <!--</li>-->\n  <!--<li class=\"ssn-hide-border list-group-item\">-->\n    <!--&lt;!&ndash;<div class=\"row\">&ndash;&gt;-->\n    <!--&lt;!&ndash;<div class=\"col-xs-9 col-sm-6 col-md-3\">&ndash;&gt;-->\n    <!--<a href=\"../page/page-list.html\"> Address Book App </a>-->\n    <!--&lt;!&ndash;</div>&ndash;&gt;-->\n    <!--&lt;!&ndash;<div class=\"col-md-3 hidden-xs hidden-sm\">&ndash;&gt;-->\n    <!--&lt;!&ndash;01/01/2017&ndash;&gt;-->\n    <!--&lt;!&ndash;</div>&ndash;&gt;-->\n    <!--&lt;!&ndash;<div class=\"col-xs-3 col-sm-3 col-md-3 hidden-xs\">&ndash;&gt;-->\n    <!--&lt;!&ndash;Suraj&ndash;&gt;-->\n    <!--&lt;!&ndash;</div>&ndash;&gt;-->\n\n    <!--<a href=\"website-edit.html\" class=\"pull-right\">-->\n      <!--<span class=\"glyphicon glyphicon-cog\"></span>-->\n    <!--</a>-->\n\n  <!--</li>-->\n  <li *ngFor=\"let website of web\" class=\"ssn-hide-border list-group-item\">\n    <a routerLink=\"/user/{{userId}}/website/{{website._id}}/page\"> {{website.name}} </a>\n    <a routerLink=\"/user/{{userId}}/website/{{website._id}}\" class=\"pull-right\">\n      <span class=\"glyphicon glyphicon-cog\"></span>\n    </a></li>\n  <!--</li>-->\n  <!--<li class=\"ssn-hide-border list-group-item\">-->\n    <!--<a href=\"../page/page-list.html\"> Blogging App </a>-->\n    <!--<a href=\"website-edit.html\" class=\"pull-right\">-->\n      <!--<span class=\"glyphicon glyphicon-cog\"></span>-->\n    <!--</a>-->\n  <!--</li>-->\n  <!--<li class=\"ssn-hide-border list-group-item\">-->\n    <!--<a href=\"../page/page-list.html\"> Script Testing App </a>-->\n    <!--<a href=\"website-edit.html\" class=\"pull-right\">-->\n      <!--<span class=\"glyphicon glyphicon-cog\"></span>-->\n    <!--</a>-->\n  <!--</li>-->\n</ul>\n\n\n\n\n<div class = \"ssn-profile\">\n  <nav class=\"navbar navbar-default navbar-fixed-bottom\">\n    <div class=\"container-fluid\">\n      <!-- Brand and toggle get grouped for better mobile display -->\n      <!--<div class=\"navbar-header\">-->\n\n\n      <!--</div>-->\n\n      <!-- Collect the nav links, forms, and other content for toggling -->\n      <div class=\"navbar-collapse\" id=\"bs-example-navbar-collapse-1\">\n\n        <!-- Edited navbar-right to pull-right to align the cog and user glyphicon -->\n        <ul class=\"nav navbar-nav navbar-right\">\n          <li><a href=\"../user/profile.html\" class=\"glyphicon glyphicon-user pull-right\"></a></li>\n        </ul>\n      </div><!-- /.navbar-collapse -->\n    </div><!-- /.container-fluid -->\n  </nav>\n</div>\n"
+module.exports = "<div class = \"ssn-profile\">\n  <nav class=\"navbar navbar-default navbar-fixed-top\">\n    <div class=\"container-fluid\">\n      <!-- Brand and toggle get grouped for better mobile display -->\n      <div class=\"navbar-header\">\n\n        <a class=\"navbar-brand ssn-navbar\"\n           [routerLink]=\"['/user', userId]\">\n          <div class=\"glyphicon glyphicon-chevron-left\"></div>\n          Websites\n        </a>\n      </div>\n\n\n      <!-- Collect the nav links, forms, and other content for toggling -->\n      <!--<div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-1\">-->\n\n      <!-- Edited navbar-right to pull-right to align the cog and user glyphicon -->\n      <!-- Collect the nav links, forms, and other content for toggling -->\n      <div class=\"navbar-collapse\" id=\"bs-example-navbar-collapse-1\">\n\n        <!-- Edited navbar-right to pull-right to align the cog and user glyphicon -->\n        <ul class=\"nav navbar-nav navbar-right\">\n          <li><a routerLink=\"/user/{{userId}}/website/new\" class=\"glyphicon glyphicon-plus pull-right\"></a></li>\n        </ul>\n      </div><!-- /.navbar-collapse -->\n    </div><!-- /.container-fluid -->\n  </nav>\n</div>\n\n\n\n<br><br><br><br>\n<ul class=\"list-group\">\n  <li *ngFor=\"let website of web\" class=\"ssn-hide-border list-group-item\">\n    <a routerLink=\"/user/{{userId}}/website/{{website._id}}/page\"> {{website.name}} </a>\n    <a routerLink=\"/user/{{userId}}/website/{{website._id}}\" class=\"pull-right\">\n      <span class=\"glyphicon glyphicon-cog\"></span>\n    </a>\n  </li>\n</ul>\n\n\n\n\n<div class = \"ssn-profile\">\n  <nav class=\"navbar navbar-default navbar-fixed-bottom\">\n    <div class=\"container-fluid\">\n      <!-- Brand and toggle get grouped for better mobile display -->\n      <!--<div class=\"navbar-header\">-->\n\n\n      <!--</div>-->\n\n      <!-- Collect the nav links, forms, and other content for toggling -->\n      <div class=\"navbar-collapse\" id=\"bs-example-navbar-collapse-1\">\n\n        <!-- Edited navbar-right to pull-right to align the cog and user glyphicon -->\n        <ul class=\"nav navbar-nav navbar-right\">\n          <li><a href=\"../user/profile.html\" class=\"glyphicon glyphicon-user pull-right\"></a></li>\n        </ul>\n      </div><!-- /.navbar-collapse -->\n    </div><!-- /.container-fluid -->\n  </nav>\n</div>\n"
 
 /***/ }),
 
@@ -1142,7 +1156,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/website/website-new/website-new.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\n<nav class=\"navbar navbar-default navbar-fixed-top active\">\n<div class=\"container-fluid\">\n  <div class=\"row\">\n    <div class=\"ssn-edit-website col-xs-4 hidden-xs\">\n      <div class=\"\">\n        <div class=\"navbar-text pull-right\">\n          <a href=\"website-new.html\" class=\"ssn-glyphicon-white navbar-link active\">\n                     <span class=\"glyphicon glyphicon-plus\">\n                     </span>\n          </a>\n        </div>\n\n\n        <div class=\"navbar-text pull-left\">\n          <a [routerLink]=\"['/user', userId, 'website']\" class=\"ssn-glyphicon-white navbar-link active\">\n                     <span class=\"glyphicon glyphicon-chevron-left\">\n                     </span>\n          </a>\n        </div>\n\n        <div class=\"navbar-header\">\n          <a class=\"ssn-color-white navbar-brand ssn-navbar\" >\n            Websites\n          </a>\n        </div>\n\n\n      </div>\n\n    </div>\n\n\n    <div class=\"ssn-edit-website col-sm-12 col-sm-8 hidden-xs\">\n\n      <div class=\"navbar-text pull-right\">\n        <a (click)=\"createWebsite(this.web)\" class=\"ssn-glyphicon-white navbar-link\">\n                             <span class=\"glyphicon glyphicon glyphicon-ok\">\n                             </span>\n        </a>\n      </div>\n\n      <div class=\"ssn-edit-website navbar-header\">\n        <a class=\"ssn-color-white navbar-brand ssn-navbar\" >\n          New Website\n        </a>\n      </div>\n\n    </div>\n    <div class=\"ssn-edit-website col-xs-12 visible-xs\">\n\n      <div class=\"navbar-text pull-right\">\n        <a (click)=\"createWebsite(this.web)\" class=\"ssn-glyphicon-white navbar-link\">\n                             <span class=\"glyphicon glyphicon glyphicon-ok\">\n                             </span>\n        </a>\n      </div>\n      <div class=\"navbar-text pull-left\">\n        <a class=\"ssn-glyphicon-white navbar-link active\" [routerLink]=\"['/user', userId, 'website']\">\n                     <span class=\"glyphicon glyphicon-chevron-left\">\n                     </span>\n        </a>\n      </div>\n\n      <div class=\"navbar-header\">\n        <a class=\"ssn-color-white navbar-brand ssn-navbar\" >\n          New Website\n        </a>\n      </div>\n\n    </div>\n  </div>\n</div>\n\n</nav>\n<br><br><br>\n<div class=\"container-fluid\">\n  <div class=\"row\">\n    <div class=\"ssn-profile col-xs-4 hidden-xs\">\n      <div class=\"\" >\n        <ul class=\"list-group\">\n          <li *ngFor=\"let w of web\" class=\"ssn-border-none list-group-item\">\n            {{w.name}}\n            <a href=\"#\" class=\"pull-right\">\n              <span class=\"glyphicon-cog glyphicon\"></span>\n            </a>\n          </li>\n          <!--<li class=\"ssn-border-none list-group-item\">-->\n            <!--Address Book App-->\n            <!--<a href=\"#\" class=\"pull-right\">-->\n              <!--<span class=\"glyphicon-cog glyphicon\"></span>-->\n            <!--</a>-->\n          <!--</li>-->\n          <!--<li class=\"ssn-border-none list-group-item\">-->\n            <!--Script Testing App-->\n            <!--<a href=\"#\" class=\"pull-right\">-->\n              <!--<span class=\"glyphicon-cog glyphicon\"></span>-->\n            <!--</a>-->\n          <!--</li>-->\n          <!--<li class=\"ssn-border-none list-group-item\">-->\n            <!--Blogger-->\n            <!--<a href=\"#\" class=\"pull-right\">-->\n              <!--<span class=\"glyphicon-cog glyphicon\"></span>-->\n            <!--</a>-->\n          <!--</li>-->\n        </ul>\n      </div>\n    </div>\n\n\n    <div class=\"col-xs-12 col-sm-8\">\n      <div class = \"ssn-profile\">\n        <label>Website Name</label>\n        <input [ngModel]=\"this.web?.name\" (ngModelChange)=\"this.web.name = $event\" class=\"form-control\"/>\n        <label>Website Description</label>\n        <textarea [ngModel]=\"this.web?.description\" (ngModelChange)=\"this.web.description = $event\" class=\"form-control\"></textarea>\n      </div>\n\n\n\n    </div>\n  </div>\n\n  <nav class=\"navbar navbar-default ssn-edit-website navbar-fixed-bottom\">\n    <div class=\"container-fluid\">\n      <div class=\"navbar-text pull-right\">\n        <a href=\"../user/profile.html\" class=\"navbar-link\">\n                     <span class=\"ssn-glyphicon-white glyphicon glyphicon-user\">\n                     </span>\n        </a>\n      </div>\n\n\n\n    </div>\n  </nav>\n"
+module.exports = "\n<nav class=\"navbar navbar-default navbar-fixed-top active\">\n<div class=\"container-fluid\">\n  <div class=\"row\">\n    <div class=\"ssn-edit-website col-xs-4 hidden-xs\">\n      <div class=\"\">\n        <div class=\"navbar-text pull-right\">\n          <a href=\"website-new.html\" class=\"ssn-glyphicon-white navbar-link active\">\n                     <span class=\"glyphicon glyphicon-plus\">\n                     </span>\n          </a>\n        </div>\n\n\n        <div class=\"navbar-text pull-left\">\n          <a [routerLink]=\"['/user', userId, 'website']\" class=\"ssn-glyphicon-white navbar-link active\">\n                     <span class=\"glyphicon glyphicon-chevron-left\">\n                     </span>\n          </a>\n        </div>\n\n        <div class=\"navbar-header\">\n          <a class=\"ssn-color-white navbar-brand ssn-navbar\" >\n            Websites\n          </a>\n        </div>\n\n\n      </div>\n\n    </div>\n\n\n    <div class=\"ssn-edit-website col-sm-12 col-sm-8 hidden-xs\">\n\n      <div class=\"navbar-text pull-right\">\n        <a (click)=\"createWebsite(web)\" class=\"ssn-glyphicon-white navbar-link\">\n                             <span class=\"glyphicon glyphicon glyphicon-ok\">\n                             </span>\n        </a>\n      </div>\n\n      <div class=\"ssn-edit-website navbar-header\">\n        <a class=\"ssn-color-white navbar-brand ssn-navbar\" >\n          New Website\n        </a>\n      </div>\n\n    </div>\n    <div class=\"ssn-edit-website col-xs-12 visible-xs\">\n\n      <div class=\"navbar-text pull-right\">\n        <a (click)=\"createWebsite(web)\" class=\"ssn-glyphicon-white navbar-link\">\n                             <span class=\"glyphicon glyphicon glyphicon-ok\">\n                             </span>\n        </a>\n      </div>\n      <div class=\"navbar-text pull-left\">\n        <a class=\"ssn-glyphicon-white navbar-link active\" [routerLink]=\"['/user', userId, 'website']\">\n                     <span class=\"glyphicon glyphicon-chevron-left\">\n                     </span>\n        </a>\n      </div>\n\n      <div class=\"navbar-header\">\n        <a class=\"ssn-color-white navbar-brand ssn-navbar\" >\n          New Website\n        </a>\n      </div>\n\n    </div>\n  </div>\n</div>\n\n</nav>\n<br><br><br><\n<div class=\"container-fluid\">\n  <div class=\"row\">\n    <div class=\"ssn-profile col-xs-4 hidden-xs\">\n      <div class=\"\" >\n        <ul class=\"list-group\">\n          <li *ngFor=\"let w of web\" class=\"ssn-border-none list-group-item\">\n            {{w.name}}\n            <a href=\"#\" class=\"pull-right\">\n              <span class=\"glyphicon-cog glyphicon\"></span>\n            </a>\n          </li>\n        </ul>\n      </div>\n    </div>\n\n\n    <div class=\"col-xs-12 col-sm-8\">\n      <div class = \"ssn-profile\">\n        <label>Website Name</label>\n        <input id =\"name\" type=\"text\"\n               [ngModel]=\"web?.name\" (ngModelChange)=\"web.name = $event\"\n               placeholder=\"Enter the name of website\"\n               class=\"form-control\"/>\n        <label>Website Description</label>\n        <input id =\"description\" type=\"text\"\n               [ngModel]=\"web?.description\" (ngModelChange)=\"web.description = $event\"\n               placeholder=\"Description\"\n               class=\"form-control\"/>\n      </div>\n\n\n\n    </div>\n  </div>\n\n  <nav class=\"navbar navbar-default ssn-edit-website navbar-fixed-bottom\">\n    <div class=\"container-fluid\">\n      <div class=\"navbar-text pull-right\">\n        <a href=\"../user/profile.html\" class=\"navbar-link\">\n                     <span class=\"ssn-glyphicon-white glyphicon glyphicon-user\">\n                     </span>\n        </a>\n      </div>\n\n\n\n    </div>\n  </nav>\n"
 
 /***/ }),
 
@@ -1182,14 +1196,12 @@ var WebsiteNewComponent = (function () {
         this.router = router;
         this.http = http;
     }
-    WebsiteNewComponent.prototype.createWebsite = function (web) {
+    WebsiteNewComponent.prototype.createWebsite = function (website) {
         var _this = this;
-        console.log(web);
-        this.websiteService.createWebsite(this.userId, web)
-            .subscribe(function (web) {
-            if (web) {
-                _this.router.navigate(['/user/' + _this.userId + '/website']);
-            }
+        this.websiteService.createWebsite(this.userId, website)
+            .subscribe(function (websites) {
+            _this.web = websites;
+            _this.router.navigate(['/user', _this.userId, 'website']);
         });
     };
     WebsiteNewComponent.prototype.ngOnInit = function () {
@@ -1200,8 +1212,6 @@ var WebsiteNewComponent = (function () {
                 .subscribe(function (web) {
                 if (web) {
                     _this.web = web;
-                    console.log(web);
-                    // this.router.navigate(['/user/',this.userId,'/webite']);
                 }
             });
             // this.user = this.userService.findUserById(this.userId)
@@ -2053,43 +2063,27 @@ var PageService = (function () {
     function PageService(http) {
         this.http = http;
         this.baseUrl = __WEBPACK_IMPORTED_MODULE_3__environments_environment__["a" /* environment */].baseUrl;
-        this.pages = [
-            { '_id': '321', 'name': 'Post 1', 'websiteId': '456', 'description': 'Lorem' },
-            { '_id': '432', 'name': 'Post 2', 'websiteId': '456', 'description': 'Lorem' },
-            { '_id': '777', 'name': 'Post 22', 'websiteId': '567', 'description': 'Lorem' },
-            { '_id': '543', 'name': 'Post 3', 'websiteId': '456', 'description': 'Lorem' }
-        ];
     }
     PageService.prototype.createPage = function (websiteId, page) {
-        // page._id = Math.random()
-        // page.websiteId = webiteId;
-        // this.pages.push(page);
-        // return page;
         var url = this.baseUrl + '/api/website/' + websiteId + '/page';
-        return this.http.post(url, {
-            '_id': Math.random(),
+        var test = {
             'name': page.name,
             'websiteId': websiteId,
             'description': page.description
-        })
-            .map(function (res) {
-            return res.json();
+        };
+        return this.http.post(url, test)
+            .map(function (response) {
+            return response.json();
         });
     };
     PageService.prototype.findPagesByWebsiteId = function (websiteId) {
-        // return this.pages.filter(function (page) {
-        //   return page.websiteId === websiteId;
-        // });
         var url = this.baseUrl + '/api/website/' + websiteId + '/page';
         return this.http.get(url)
-            .map(function (res) {
-            return res.json();
+            .map(function (response) {
+            return response.json();
         });
     };
     PageService.prototype.findPageById = function (pageId) {
-        // return this.pages.find(function (page) {
-        //   return page._id === pageId;
-        // });
         console.log('pageId', pageId);
         var url = this.baseUrl + '/api/page/' + pageId;
         return this.http.get(url)
@@ -2098,30 +2092,19 @@ var PageService = (function () {
         });
     };
     PageService.prototype.updatePage = function (pageId, page) {
-        // for (let x = 0; x < this.pages.length; x++) {
-        //   if (this.pages[x]._id === pageId) {
-        //     this.pages[x].name = page.name;
-        //     this.pages[x].description = page.description;
-        //     return this.pages[x];
-        //   }
-        // }
         var url = this.baseUrl + '/api/page/' + pageId;
-        return this.http.put(url, {
-            '_id': Math.random(),
-            'name': page.name,
-            'websiteId': page.websiteId,
-            'description': page.description
-        })
-            .map(function (res) {
-            return res.json();
+        var test = {
+            _id: pageId,
+            name: page.name,
+            description: page.description,
+            websiteId: page.websiteId
+        };
+        return this.http.put(url, test)
+            .map(function (response) {
+            return response.json();
         });
     };
     PageService.prototype.deletePage = function (pageId) {
-        // for (let x = 0; x < this.pages.length; x++) {
-        //   if (this.pages[x]._id === pageId) {
-        //     delete this.pages[x];
-        //   }
-        // }
         var url = this.baseUrl + '/api/page/' + pageId;
         return this.http.delete(url)
             .map(function (res) {
@@ -2258,20 +2241,24 @@ var UserService = (function () {
             return response.json();
         });
     };
-    UserService.prototype.createUser = function (username, password, firstName, lastName) {
+    UserService.prototype.createUser = function (user) {
         // console.log(this.users.push(new User('001',username, password, firstName, lastName)))
         // this.users.push(new User('001', username, password, firstName, lastName));
         // return this.users.find(function (user) {
         //   return user.username === username
         // })
         var url = this.baseUrl + '/api/user';
-        return this.http.post(url, {
-            '_id': '997',
-            'username': username,
-            'password': password,
-            'firstName': firstName,
-            'lastName': lastName
-        })
+        // return this.http.post(url,{
+        //   '_id': '997',
+        //   'username': username,
+        //   'password': password,
+        //   'firstName': firstName,
+        //   'lastName': lastName
+        // })
+        //   .map((response: Response) => {
+        //     return response.json()
+        //   });
+        return this.http.post(url, user)
             .map(function (response) {
             return response.json();
         });
@@ -2292,6 +2279,7 @@ var UserService = (function () {
             .map(function (response) {
             return response.json();
         });
+        //
     };
     UserService.prototype.deleteUser = function (userId) {
         var url = this.baseUrl + '/api/user/' + userId;
@@ -2366,33 +2354,26 @@ var WebsiteService = (function () {
     WebsiteService.prototype.createWebsite = function (userId, website) {
         // console.log(this.users.push(new User('001',username, password, firstName, lastName)))
         var url = this.baseUrl + '/api/user/' + userId + '/website';
-        // console.log(website);
-        return this.http.post(url, {
-            '_id': Math.random(),
-            'name': website.name,
-            'developerId': userId,
-            'description': website.description
-        })
+        var test = {
+            name: website.name,
+            description: website.description
+        };
+        console.log(website);
+        return this.http.post(url, test)
             .map(function (response) {
             return response.json();
         });
     };
-    WebsiteService.prototype.updateWebsite = function (web) {
-        // for (let i =0 ; i < this.websites.length; i++){
-        //   const _website = this.websites[i];
-        //   if(_website._id === web._id){
-        //     this.websites[i].name = web.name
-        //     this.websites[i].description = web.description
-        //   }
-        // }
+    WebsiteService.prototype.updateWebsite = function (userId, web) {
         var url = this.baseUrl + '/api/website/' + web._id;
         console.log('console', web);
-        return this.http.put(url, {
-            '_id': Math.random(),
-            'name': web.name,
-            'developerId': web.developerId,
-            'description': web.description
-        })
+        var test = {
+            _id: web._id,
+            name: web.name,
+            description: web.description,
+            developerId: userId
+        };
+        return this.http.put(url, test)
             .map(function (response) {
             return response.json();
         });

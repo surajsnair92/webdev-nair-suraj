@@ -34,39 +34,32 @@ export class WebsiteService {
   }
 
 
-  createWebsite(userId, website: Website){
+  createWebsite(userId, website){
     // console.log(this.users.push(new User('001',username, password, firstName, lastName)))
     const url = this.baseUrl+'/api/user/' + userId + '/website';
-    // console.log(website);
-    return this.http.post(url,{
-      '_id': Math.random(),
-      'name': website.name,
-      'developerId': userId,
-      'description': website.description
-    })
+    const test = {
+      name: website.name,
+      description: website.description
+    };
+    console.log(website);
+    return this.http.post(url, test)
       .map((response: Response) => {
-        return response.json()
+        return response.json();
       });
   }
 
-  updateWebsite(web){
-    // for (let i =0 ; i < this.websites.length; i++){
-    //   const _website = this.websites[i];
-    //   if(_website._id === web._id){
-    //     this.websites[i].name = web.name
-    //     this.websites[i].description = web.description
-    //   }
-    // }
+  updateWebsite(userId, web){
     const url = this.baseUrl+'/api/website/'+web._id;
     console.log('console',web);
-    return this.http.put(url, {
-      '_id': Math.random(),
-      'name': web.name,
-      'developerId': web.developerId,
-      'description': web.description
-    })
+    const test = {
+      _id: web._id,
+      name: web.name,
+      description: web.description,
+      developerId: userId
+    };
+    return this.http.put(url, test)
       .map((response: Response) => {
-        return response.json()
+        return response.json();
       })
   }
 

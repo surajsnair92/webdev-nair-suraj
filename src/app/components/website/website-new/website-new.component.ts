@@ -14,6 +14,8 @@ import {Router } from '@angular/router'
 })
 export class WebsiteNewComponent implements OnInit {
   web: Website;
+  name: String;
+  description: String;
   userId:String;
   user: User;
   constructor(private websiteService: WebsiteService,
@@ -22,25 +24,22 @@ export class WebsiteNewComponent implements OnInit {
               private router: Router,
               private http: Http) { }
 
-  createWebsite(web:Website){
-    console.log(web);
-    this.websiteService.createWebsite(this.userId, web)
-      .subscribe((web: Website) => {
-        if(web){
-          this.router.navigate(['/user/'+this.userId+'/website']);
-        }
+  createWebsite(website){
+
+    this.websiteService.createWebsite(this.userId, website)
+      .subscribe((websites) => {
+        this.web = websites;
+        this.router.navigate(['/user', this.userId, 'website']);
       });
   }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.userId = params['userId']
+      this.userId = params['userId'];
       this.websiteService.findAllWebsitesForUser(this.userId)
         .subscribe((web: Website) => {
           if(web){
             this.web = web;
-            console.log(web);
-            // this.router.navigate(['/user/',this.userId,'/webite']);
           }
         });
       // this.user = this.userService.findUserById(this.userId)

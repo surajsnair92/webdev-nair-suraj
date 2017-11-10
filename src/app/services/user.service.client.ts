@@ -35,7 +35,7 @@ export class UserService {
       });
   }
 
-  createUser(username, password, firstName, lastName){
+  createUser(user){
     // console.log(this.users.push(new User('001',username, password, firstName, lastName)))
     // this.users.push(new User('001', username, password, firstName, lastName));
     // return this.users.find(function (user) {
@@ -43,23 +43,27 @@ export class UserService {
     // })
     const url = this.baseUrl+'/api/user';
 
-    return this.http.post(url,{
-      '_id': '997',
-      'username': username,
-      'password': password,
-      'firstName': firstName,
-      'lastName': lastName
-    })
+    // return this.http.post(url,{
+    //   '_id': '997',
+    //   'username': username,
+    //   'password': password,
+    //   'firstName': firstName,
+    //   'lastName': lastName
+    // })
+    //   .map((response: Response) => {
+    //     return response.json()
+    //   });
+    return this.http.post(url, user)
       .map((response: Response) => {
-        return response.json()
-      });
+      return response.json();
+      })
   }
 
   updateUser(user: User){
     const url = this.baseUrl+'/api/user/'+user._id;
     return this.http.put(url, user)
       .map((response: Response) => {
-        return response.json()
+        return response.json();
       })
   }
 
@@ -72,6 +76,8 @@ export class UserService {
       .map((response: Response) => {
         return response.json()
       });
+    //
+
 
   }
 

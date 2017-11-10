@@ -18,21 +18,17 @@ export class ProfileComponent implements OnInit {
               private router: Router) { }
 
   updateUser(user){
-
-    this.userService.updateUser(user)
+    this.userService
+      .updateUser(user)
       .subscribe((user: User) => {
-        if(user){
-          this.router.navigate(['/user', user._id]);
-        }
+      console.log(user);
       });
   }
   deleteUser(user){
-    this.userService.deleteUser(user._id)
-    // this.userService.findUserByUsername(username)
+    this.userService
+      .deleteUser(user._id)
       .subscribe((user: User) => {
-        if(user){
-          this.router.navigate(['/login']);
-        }
+        this.router.navigate(['/login']);
       });
   }
   ngOnInit() {

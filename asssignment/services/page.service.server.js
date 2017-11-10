@@ -13,24 +13,30 @@ module.exports = function(app) {
     {'_id': '543', 'name': 'Post 5', 'websiteId': '567', 'description': 'Lorem'},
     {'_id': '333', 'name': 'Post 22', 'websiteId': '567', 'description': 'Lorem'}
   ];
+  var pageModel = require('../models/page/page.model.server');
 
   function createPage(req, res) {
     var websiteId = req.params['websiteId'];
     var page = req.body;
-    page['_id'] = Math.random();
-    page['websiteId'] = websiteId;
-    pages_list.push(page);
-    res.json(page);
+    page.websiteId = websiteId;
+    pageModel.createPage(page)
+      .then(function (page) {
+        page.findAllPagesForWebsite(websiteId)
+          .then(function (pages) {
+            res.json(pages)
+          });
+        res.json(page);
+      });
   }
 
+
+
   function findPagesInWebsite(req, res) {
-    console.log('jhkjhl');
-    var websiteId = req.params['websiteId'];
-    console.log('web:',websiteId)
-    var result = pages_list.filter(function (page) {
-      return page['websiteId'] === websiteId;
-    });
-    res.json(result);
+    var websiteId = req.params["websiteId"];
+    pageModel.findAllPagesForWebsite(websiteId)
+      .then(function (websites) {
+        res.json(websites);
+      })
   }
 
   function findPagesByWebsiteId(websiteId) {
@@ -54,25 +60,18 @@ module.exports = function(app) {
   function updatePage(req, res) {
     var pageId = req.params['pageId'];
     var page = req.body;
-    var data = null;
-
-    for (i =0 ; i < pages_list.length; i++){
-      if(pages_list[i]._id == pageId){
-        pages_list[i].name = page.name;
-        pages_list[i].description = page.description;
-      }
-    }
-    return res.send(pages_list)
+    pageModel.updatePage(pageId, page)
+      .then(function (page) {
+        res.json(page);
+      })
   }
 
   function deletePage(req, res) {
     var pageId = req.param('pageId');
-    for (var x = 0; x < pages_list.length; x++) {
-      if (pages_list[x]['_id'] === pageId) {
-        delete pages_list[x];
-        return;
-      }
-    }
+    var page = req.body;
+    pageModel.deletePage(pageId)
+      .then(function (page) {
+        res.json(page)
+      })
   }
-
 }

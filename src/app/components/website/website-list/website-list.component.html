@@ -57,7 +57,7 @@
 
         <!-- Edited navbar-right to pull-right to align the cog and user glyphicon -->
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="../user/profile.html" class="glyphicon glyphicon-user pull-right"></a></li>
+          <li><a [routerLink]="['/user', userId]" class="glyphicon glyphicon-user pull-right"></a></li>
         </ul>
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->

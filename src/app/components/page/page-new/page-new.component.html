@@ -5,7 +5,7 @@
       <div class="col-xs-4 hidden-xs">
         <div class="">
           <div class="navbar-text pull-left">
-            <a href="page-list.html" class="ssn-glyphicon-white navbar-link">
+            <a [routerLink]="['/user', userId, 'website', pageId, 'page']" class="ssn-glyphicon-white navbar-link">
                      <span class="ssn-glyphicon-black glyphicon glyphicon-chevron-left">
                      </span>
             </a>
@@ -41,7 +41,7 @@
         </div>
         <div class="navbar-text pull-left">
           <a class="ssn-glyphicon-white navbar-link active"
-             href="page-list.html">
+             [routerLink]="['/user', userId, 'website', pageId, 'page']">
             <span class="ssn-glyphicon-black glyphicon glyphicon-chevron-left"></span>
           </a>
         </div>

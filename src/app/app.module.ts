@@ -31,7 +31,9 @@ import {PageService} from "./services/page.service.client";
 import {WidgetService} from "./services/widget.service.client";
 import { FlickrImageSearchComponent } from './components/widget/widget-edit/widget-image/flickr-image-search/flickr-image-search.component';
 import {FlickerService} from "./services/flickr.service.client";
-
+import { WidgetHtmlComponent } from './components/widget/widget-edit/widget-html/widget-html.component';
+import { QuillEditorModule } from 'ngx-quill-editor';
+import { WidgetTextComponent } from './components/widget/widget-edit/widget-text/widget-text.component';
 
 
 @NgModule({
@@ -55,16 +57,21 @@ import {FlickerService} from "./services/flickr.service.client";
     WidgetHeaderComponent,
     WidgetImageComponent,
     WidgetYoutubeComponent,
-    FlickrImageSearchComponent
+    FlickrImageSearchComponent,
+    WidgetHtmlComponent,
+    WidgetTextComponent
+
   ],
   imports: [
     BrowserModule,
     HttpModule,
     FormsModule,
-    Routing
+    Routing,
+    QuillEditorModule
   ],
-  // Client Side services here
+
   providers: [ UserService, WebsiteService, PageService, WidgetService, FlickerService],
   bootstrap: [AppComponent]
+
 })
 export class AppModule { }

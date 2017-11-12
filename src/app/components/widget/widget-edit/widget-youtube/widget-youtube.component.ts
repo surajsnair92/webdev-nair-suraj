@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {WidgetService} from '../../../../services/widget.service.client';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Widget} from "../../../../models/widget.model.client";
 
 @Component({
   selector: 'app-widget-youtube',
@@ -9,8 +10,8 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class WidgetYoutubeComponent implements OnInit {
 
-  videoName: String;
-  videoDesc: String;
+  name: String;
+  text: String;
   url: String;
   width: String;
   userId: String;
@@ -18,10 +19,12 @@ export class WidgetYoutubeComponent implements OnInit {
   pageId: String;
   widgetId: String;
   edit: Boolean;
-  widget = {};
+  widget = Widget;
   constructor(private widgetService: WidgetService,
-              private activatedRoute: ActivatedRoute) {
+              private activatedRoute: ActivatedRoute,
+              private router: Router) {
   }
+
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
@@ -29,38 +32,45 @@ export class WidgetYoutubeComponent implements OnInit {
       this.websiteId = params['wid'];
       this.pageId = params['pid'];
       this.widgetId = params['wgid'];
-      if (this.widgetId) {
-        this.widget = this.widgetService.findWidgetById(this.widgetId);
-        this.edit = true;
-        this.videoName = this.widget['name'];
-        this.videoDesc = this.widget['text'];
-        this.url = this.widget['url'];
-        this.width = this.widget['width'];
-      }
+      this.widgetService.findWidgetById(this.pageId)
+        .subscribe((widget) => {
+          if(widget){
+            this.widget = widget;
+          }
+        });
     });
   }
 
-  createWidget() {
-    this.widget['widgetType'] = 'YOUTUBE';
-    this.widget['name'] = this.videoName;
-    this.widget['text'] = this.videoDesc;
-    this.widget['url'] = this.url;
-    this.widget['width'] = this.width;
-    this.widgetService.createWidget(this.pageId, this.widget)
+  createWidget(name, text, url) {
+    const test = {
+      name: name,
+      text: text,
+      url: url,
+      widgetType : 'YOUTUBE',
+      pageId: this.pageId,
+      width: '50'
+    };
+    console.log(test);
+
+    this.widgetService.createWidgetYoutube(this.pageId, test)
       .subscribe((widget) => {
         if (widget) {
           this.widget = widget;
+          this.router.navigate(['user', this.userId, 'website', this.websiteId, 'page',this.pageId,'widget'])
         }
       });
   }
 
   updateWidget() {
-    this.widget['widgetType'] = 'YOUTUBE';
-    this.widget['name'] = this.videoName;
-    this.widget['text'] = this.videoDesc;
-    this.widget['url'] = this.url;
-    this.widget['width'] = this.width;
-    this.widgetService.updateWidget(this.widgetId, this.widget)
+    const test = {
+      name: name,
+      // text: text,
+      // url: url,
+      widgetType : 'YOUTUBE',
+      pageId: this.pageId,
+      width: '50'
+    };
+    this.widgetService.updateWidget(this.widgetId, test)
       .subscribe((widget) => {
         if (widget) {
           this.widget = widget;

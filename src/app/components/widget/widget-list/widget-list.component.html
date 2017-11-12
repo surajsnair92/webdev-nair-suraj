@@ -25,7 +25,7 @@
 
 <div *ngFor="let widget of widgets">
   <div [ngSwitch]="widget['widgetType']">
-    <div *ngSwitchCase="'HEADING'">
+    <div *ngSwitchCase="'HEADER'">
       <div class="row">
         <div class="col-xs-12">
           <div [ngSwitch]="widget['size']">
@@ -52,7 +52,7 @@
       </div>
     </div>
 
-    <div *ngSwitchCase="'YOUTUBE'">
+    <div *ngSwitchCase="'YOUTUBE'" class="youtube-widget">
       <div class="row">
         <div class="col-xs-12">
           <iframe [width]="widget['width']"
@@ -87,6 +87,21 @@
     </div>
 
     <div *ngSwitchCase="'HTML'">
+      <div class="row">
+        <div class="col-xs-12">
+          <div [innerHTML]="widget['text']">
+          </div>
+          <div class="dg-widget-toolbar">
+            <a [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget', widget['_id']]">
+              <span class="glyphicon glyphicon-cog pull-right"></span>
+            </a>
+            <span class="glyphicon glyphicon-menu-hamburger pull-right"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngSwitchCase="'TEXT'">
       <div class="row">
         <div class="col-xs-12">
           <div [innerHTML]="widget['text']">

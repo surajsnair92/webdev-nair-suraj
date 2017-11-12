@@ -18,7 +18,8 @@ import {WidgetHeaderComponent} from './components/widget/widget-edit/widget-head
 import {WidgetImageComponent} from './components/widget/widget-edit/widget-image/widget-image.component';
 import {WidgetYoutubeComponent} from './components/widget/widget-edit/widget-youtube/widget-youtube.component';
 import {FlickrImageSearchComponent} from './components/widget/widget-edit/widget-image/flickr-image-search/flickr-image-search.component'
-
+import {WidgetHtmlComponent} from './components/widget/widget-edit/widget-html/widget-html.component'
+import {WidgetTextComponent} from './components/widget/widget-edit/widget-text/widget-text.component'
 
 
 
@@ -39,8 +40,9 @@ const APP_ROUTES: Routes = [
   {path: 'user/:userId/website/:wid/page/:pid/widget/:wgid', component: WidgetEditComponent},
   {path : 'user/:userId/website/:wid/page/:pid/widget/new/heading' , component: WidgetHeaderComponent},
   {path : 'user/:userId/website/:wid/page/:pid/widget/new/image' , component: FlickrImageSearchComponent},
-  {path : 'user/:userId/website/:wid/page/:pid/widget/new/youtube' , component: WidgetYoutubeComponent}
-
+  {path : 'user/:userId/website/:wid/page/:pid/widget/new/youtube' , component: WidgetYoutubeComponent},
+  {path : 'user/:userId/website/:wid/page/:pid/widget/new/html' , component: WidgetHtmlComponent},
+  {path : 'user/:userId/website/:wid/page/:pid/widget/new/text' , component: WidgetTextComponent}
 
 ];
 

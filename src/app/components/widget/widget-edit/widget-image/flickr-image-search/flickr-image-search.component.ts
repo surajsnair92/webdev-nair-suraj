@@ -46,10 +46,11 @@ export class FlickrImageSearchComponent implements OnInit {
       websiteId: this.websiteId,
       pageId: this.pageId,
       url: url,
-      widgetType: 'IMAGE'
+      widgetType: 'IMAGE',
+      width: '50%'
     };
 
-    this.widgetService.createWidget(this.pageId, widget)
+    this.widgetService.createWidgetImage(this.pageId, widget)
       .subscribe((widget) => {
         if (widget) {
           this.widget = widget;

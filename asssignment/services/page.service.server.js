@@ -19,9 +19,10 @@ module.exports = function(app) {
     var websiteId = req.params['websiteId'];
     var page = req.body;
     page.websiteId = websiteId;
+
     pageModel.createPage(page)
       .then(function (page) {
-        page.findAllPagesForWebsite(websiteId)
+        pageModel.findAllPagesForWebsite(websiteId)
           .then(function (pages) {
             res.json(pages)
           });

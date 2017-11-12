@@ -48,7 +48,7 @@ export class WidgetImageComponent implements OnInit {
     this.widget['width'] = this.imageWidth;
     this.widget['upload'] = this.uploadImage;
     this.widget['name'] = this.imageName;
-    this.widgetService.createWidget(this.pageId, this.widget)
+    this.widgetService.createWidgetImage(this.pageId, this.widget)
       .subscribe((widget) => {
         if (widget) {
           this.widget = widget;

@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {WidgetService} from '../../../../services/widget.service.client';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Widget} from "../../../../models/widget.model.client";
 
 @Component({
   selector: 'app-widget-header',
@@ -9,55 +10,62 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class WidgetHeaderComponent implements OnInit {
 
-  headerText: String;
-  headerSize: String;
+  text: String;
+  name: String;
+  size: String;
   userId: String;
   websiteId: String;
   pageId: String;
   widgetId: String;
   edit: Boolean;
-  widget = {};
+  widget: Widget;
   constructor(private widgetService: WidgetService,
-              private activatedRoutes: ActivatedRoute) { }
+              private activatedRoutes: ActivatedRoute,
+              private router: Router) { }
 
   ngOnInit() {
     this.activatedRoutes.params.subscribe(params => {
       this.userId = params['userId'];
       this.websiteId = params['wid'];
       this.pageId = params['pid'];
-      this.headerText = 'Page';
-      this.headerSize = '2';
       this.widgetId = params['wgid'];
-      if (this.widgetId) {
-        this.widget = this.widgetService.findWidgetById(this.widgetId);
-        this.edit = true;
-        this.headerText = this.widget['text'];
-        this.headerSize = this.widget['size'];
-      }
+      this.widgetService.findWidgetById(this.widgetId)
+        .subscribe((widget) => {
+          if(widget){
+            this.widget = widget;
+          }
+        });
     });
   }
 
-  createWidget() {
-    this.widget['widgetType'] = 'HEADER';
-    this.widget['text'] = this.headerText;
-    console.log(this.widget['text']);
-    this.widget['size'] = this.headerSize;
-    this.widgetService.createWidget(this.pageId, this.widget)
+  createWidget(name, text, size) {
+    const test = {
+      name: name,
+      text: text,
+      size: size
+    };
+    this.widgetService.createWidgetText(this.pageId, test)
       .subscribe((widget) => {
         if (widget) {
           this.widget = widget;
+          this.router.navigate(['user', this.userId, 'website', this.websiteId, 'page',this.pageId,'widget'])
         }
       });
   }
 
-  updateWidget() {
-    this.widget['widgetType'] = 'HEADER';
-    this.widget['text'] = this.headerText;
-    this.widget['size'] = this.headerSize;
-    this.widgetService.updateWidget(this.widgetId, this.widget)
+  updateWidget(name, text,size) {
+    const test = {
+      name: name,
+      text: text,
+      size: size,
+      pageId: this.pageId,
+      widgetType: 'HEADER'
+    };
+    this.widgetService.updateWidget(this.widgetId, test)
       .subscribe((widget) => {
         if (widget) {
           this.widget = widget;
+          this.router.navigate(['user', this.userId, 'website', this.websiteId, 'page',this.pageId,'widget'])
         }
       });
   }
@@ -65,7 +73,7 @@ export class WidgetHeaderComponent implements OnInit {
   deleteWidget() {
     this.widgetService.deleteWidget(this.widgetId)
       .subscribe((widget) => {
-
+        this.router.navigate(['user', this.userId, 'website', this.websiteId, 'page',this.pageId,'widget'])
       });
   }
 

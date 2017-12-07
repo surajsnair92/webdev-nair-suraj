@@ -34,6 +34,9 @@ import {FlickerService} from "./services/flickr.service.client";
 import { WidgetHtmlComponent } from './components/widget/widget-edit/widget-html/widget-html.component';
 import { QuillEditorModule } from 'ngx-quill-editor';
 import { WidgetTextComponent } from './components/widget/widget-edit/widget-text/widget-text.component';
+import {SharedService} from "./services/shared.service";
+import {AuthenticationService} from "./services/authentication.service.client";
+import {SortableDirective} from "./directives/sortable.directive";
 
 
 @NgModule({
@@ -59,7 +62,8 @@ import { WidgetTextComponent } from './components/widget/widget-edit/widget-text
     WidgetYoutubeComponent,
     FlickrImageSearchComponent,
     WidgetHtmlComponent,
-    WidgetTextComponent
+    WidgetTextComponent,
+    SortableDirective
 
   ],
   imports: [
@@ -70,7 +74,7 @@ import { WidgetTextComponent } from './components/widget/widget-edit/widget-text
     QuillEditorModule
   ],
 
-  providers: [ UserService, WebsiteService, PageService, WidgetService, FlickerService],
+  providers: [AuthenticationService, SharedService, UserService, WebsiteService, PageService, WidgetService, FlickerService],
   bootstrap: [AppComponent]
 
 })

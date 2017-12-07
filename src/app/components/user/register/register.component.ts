@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../../../services/user.service.client';
 import {User} from "../../../models/user.model.client";
+import {SharedService} from "../../../services/shared.service"
 
 @Component({
   selector: 'app-register',
@@ -15,30 +16,36 @@ export class RegisterComponent implements OnInit {
   firstName: String;
   lastName: String;
   constructor(private userService: UserService,
-              private router: Router) { }
+              private router: Router,private sharedService: SharedService) { }
 
   register(username: String, password: String, firstName: String, lastName: String){
     this.username = username;
     this.password = password;
     this.firstName = firstName;
-    this.lastName = lastName
-    this.userService.findUserByUsername(username)
-      .subscribe((user: User) => {
-        console.log(user);
-        if(user === null){
-          // this.router.navigate(['/profile', user._id])
-          const newUser = {
-            username : this.username,
-            password : this.password,
-            firstName : this.firstName,
-            lastName : this.lastName
-          };
-          this.userService.createUser(newUser)
-            .subscribe((userFromServer) => {
-              this.router.navigate(['/user', userFromServer._id]);
-            })
-        }
-      });
+    this.lastName = lastName;
+    this.userService.register(this.username, this.password)
+      .subscribe((user) => {
+      this.sharedService.user = user;
+        this.router.navigate(['/user']);
+      })
+
+    // this.userService.findUserByUsername(username)
+    //   .subscribe((user: User) => {
+    //     console.log(user);
+    //     if(user === null){
+    //       // this.router.navigate(['/profile', user._id])
+    //       const newUser = {
+    //         username : this.username,
+    //         password : this.password,
+    //         firstName : this.firstName,
+    //         lastName : this.lastName
+    //       };
+    //       this.userService.createUser(newUser)
+    //         .subscribe((userFromServer) => {
+    //           this.router.navigate(['/user', userFromServer._id]);
+    //         })
+    //     }
+    //   });
     // this.userService.createUser(username, password, firstName, lastName)
     //   .subscribe((user: User) => {
     //     if(user){

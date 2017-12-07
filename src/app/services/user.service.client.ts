@@ -1,7 +1,9 @@
 import { User } from '../models/user.model.client';
 import { Injectable } from '@angular/core';
-import {Http, Response} from '@angular/http';
+import { Router } from '@angular/router';
+import {Http, Response, RequestOptions} from '@angular/http';
 import {environment} from '../../environments/environment';
+import {SharedService} from "../services/shared.service"
 
 import 'rxjs/Rx';
 @Injectable()
@@ -13,8 +15,60 @@ export class UserService {
     new User('456', 'jannunzi','jannunzi','Jose', 'Annunzi')
   ];
 
-  constructor(private http:Http){}
+  constructor(private http:Http,
+              private router: Router,
+              private sharedService: SharedService){}
+  options: RequestOptions = new RequestOptions();
   baseUrl = environment.baseUrl;
+
+  register(username, password){
+    const url = this.baseUrl+'/api/register';
+    const credentials = {
+      username: username,
+      password: password
+    };
+    this.options.withCredentials = true;
+    return this.http.post(url, credentials, this.options)
+      .map((response: Response) => {
+        return response.json();
+      });
+  }
+
+  login(username,password){
+    const url = this.baseUrl+'/api/login';
+    const credentials = {
+    username: username,
+    password: password
+  };
+  this.options.withCredentials = true;
+  return this.http.post(url,credentials, this.options)
+    .map((response: Response) => {
+      return response.json();
+    });
+}
+
+  logout() {
+    this.options.withCredentials = true;
+    return this.http.post(this.baseUrl + '/api/logout', '', this.options)
+      .map((res: Response) => {
+          return res;
+        });
+  }
+
+  loggedIn() {
+    this.options.withCredentials = true;
+    return this.http.post(this.baseUrl + '/api/loggedIn', '', this.options)
+      .map((res: Response) => {
+          const user = res.json();
+          if (user !== 0) {
+            this.sharedService.user = user;
+            return true;
+          } else {
+            this.router.navigate(['/login']);
+            return false;
+          }
+        });
+  }
 
   findUserByCredentials(username, password){
     // return this.users.find(function (user) {
@@ -42,17 +96,6 @@ export class UserService {
     //   return user.username === username
     // })
     const url = this.baseUrl+'/api/user';
-
-    // return this.http.post(url,{
-    //   '_id': '997',
-    //   'username': username,
-    //   'password': password,
-    //   'firstName': firstName,
-    //   'lastName': lastName
-    // })
-    //   .map((response: Response) => {
-    //     return response.json()
-    //   });
     return this.http.post(url, user)
       .map((response: Response) => {
       return response.json();

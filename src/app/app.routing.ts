@@ -20,6 +20,7 @@ import {WidgetYoutubeComponent} from './components/widget/widget-edit/widget-you
 import {FlickrImageSearchComponent} from './components/widget/widget-edit/widget-image/flickr-image-search/flickr-image-search.component'
 import {WidgetHtmlComponent} from './components/widget/widget-edit/widget-html/widget-html.component'
 import {WidgetTextComponent} from './components/widget/widget-edit/widget-text/widget-text.component'
+import {AuthenticationService} from "./services/authentication.service.client";
 
 
 
@@ -27,6 +28,7 @@ const APP_ROUTES: Routes = [
   // {path: '', component : HomeComponent},
   {path: 'login', component : LoginComponent},
   {path: 'register', component: RegisterComponent},
+  {path: 'user', component: ProfileComponent, canActivate: [AuthenticationService]},
   {path: 'user/:userId', component: ProfileComponent},
   {path: 'user/:userId/website', component: WebsiteListComponent},
   {path: 'user/:userId/website/new', component: WebsiteNewComponent},

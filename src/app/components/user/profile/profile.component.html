@@ -2,7 +2,8 @@
 
   <label for="username"> Username </label>
     <input id ="username" type="text"
-           [ngModel]="user?.username" (ngModelChange)="user.username = $event"
+           value=username
+           [(ngModel)] = "username"
          readonly
          placeholder="username"
          class="form-control"/>
@@ -14,13 +15,13 @@
 
   <label for="firstName"> First Name </label>
   <input id ="firstName" type="text"
-         [ngModel]="user?.firstName" (ngModelChange)="user.firstName = $event"
+         [(ngModel)] = "firstName"
          placeholder="Alice"
          class="form-control"/>
 
   <label for="lastName"> Last Name </label>
   <input id ="lastName" type="text"
-         [ngModel]="user?.lastName" (ngModelChange)="user.lastName = $event"
+         [ngModel]="lastName"
 
          placeholder="Wonderland"
          class="form-control"/>
@@ -37,7 +38,7 @@
   <a (click)="updateUser(user)" class="btn btn-success btn-block">
     Update User
   </a>
-  <a routerLink="/login" class="btn btn-danger btn-block">
+  <a (click)="logout()" class="btn btn-danger btn-block">
     Logout
   </a>
 </div>

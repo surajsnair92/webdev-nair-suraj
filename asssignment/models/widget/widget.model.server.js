@@ -12,7 +12,7 @@ widgetModel.findAllWidgetsForPage = findAllWidgetsForPage;
 widgetModel.findWidgetById = findWidgetById;
 widgetModel.updateWidget = updateWidget;
 widgetModel.deleteWidget = deleteWidget;
-// widgetModel.reorderWidget = reorderWidget;
+widgetModel.reorderWidget = reorderWidget;
 
 module.exports = widgetModel;
 
@@ -41,4 +41,16 @@ function deleteWidget(widgetId, pageId){
       return;
 
     })
+}
+
+function reorderWidget(pageId, start, end) {
+  return model.pageModel
+    .findPageById(pageId)
+    .then(function (page) {
+      page.widgets.splice(end, 0, page.widgets.splice(start, 1)[0]);
+      page.save();
+      return 200;
+    }, function (err) {
+      return err;
+    });
 }

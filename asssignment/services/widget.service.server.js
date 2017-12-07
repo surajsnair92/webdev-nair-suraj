@@ -9,6 +9,8 @@ module.exports = function(app) {
   app.put('/api/widget/:widgetId', updateWidget);
   app.put('/api/page/:pageId/widget', sortWidgets);
   app.post ("/api/upload", upload.single('myFile'), uploadImage);
+  app.put('/api/page/:pageId/widget', updatePageOrder);
+
 
   var widgetModel = require("../models/widget/widget.model.server");
 
@@ -164,4 +166,17 @@ module.exports = function(app) {
 
       });
   }
-}
+  function updatePageOrder(req, res) {
+    var pageId = req.param('pageId');
+    var startIndex = parseInt(req.query.initial);
+    var endIndex = parseInt(req.query.final);
+
+    widgetModel
+      .reorderWidget(pageId, startIndex, endIndex)
+      .then(function (resp) {
+        res.json(resp);
+      }, function (err) {
+        res.status(500).send(err);
+      });
+  }
+};

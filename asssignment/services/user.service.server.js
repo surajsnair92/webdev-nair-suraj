@@ -37,9 +37,13 @@
    app.get ('/auth/facebook',
      passport.authenticate('facebook', { scope : 'email' }));
    app.get ('/auth/facebook/callback',
+     // passport.authenticate('facebook', {
+     //   successRedirect: 'http://localhost:4200/user',
+     //   failureRedirect: 'http://localhost:4200/login'
+     // }));
      passport.authenticate('facebook', {
-       successRedirect: 'http://localhost:4200/user',
-       failureRedirect: 'http://localhost:4200/login'
+       successRedirect: 'https://webdev-nair-suraj.herokuapp.com/user',
+       failureRedirect: 'https://webdev-nair-suraj.herokuapp.com/login'
      }));
    var users = [
      {_id: "123", username: "alice",    password: "alice",    firstName: "Alice",  lastName: "Wonder"  },

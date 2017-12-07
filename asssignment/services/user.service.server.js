@@ -16,10 +16,11 @@
    var FacebookStrategy = require('passport-facebook').Strategy;
    passport.use(new LocalStrategy(localStrategy));
    var facebookConfig = {
-     clientID     : '392060261226689',
-     clientSecret : 'd1854bce272261df0459a39065b4d087',
+     clientID     : process.env.clientID, //'392060261226689',
+     clientSecret : process.env.clientSecret, //'d1854bce272261df0459a39065b4d087',
+     callbackURL  : process.env.callbackURL//'http://localhost:3100/auth/facebook/callback'
      // callbackURL  : 'webdev-nair-suraj.herokuapp.com/auth/facebook/callback'
-     callbackURL  : 'http://localhost:3100/auth/facebook/callback'
+
    };
    passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
 

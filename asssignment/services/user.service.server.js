@@ -18,8 +18,8 @@
    var facebookConfig = {
      clientID     : '392060261226689',
      clientSecret : 'd1854bce272261df0459a39065b4d087',
-     callbackURL  : 'webdev-nair-suraj.herokuapp.com/auth/facebook/callback'
-     // callbackURL  : 'http://localhost:3100/auth/facebook/callback'
+     // callbackURL  : 'webdev-nair-suraj.herokuapp.com/auth/facebook/callback'
+     callbackURL  : 'http://localhost:3100/auth/facebook/callback'
    };
    passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
 
@@ -37,14 +37,13 @@
    app.get ('/auth/facebook',
      passport.authenticate('facebook', { scope : 'email' }));
    app.get ('/auth/facebook/callback',
-     // passport.authenticate('facebook', {
-     //   successRedirect: 'http://localhost:4200/user',
-     //   failureRedirect: 'http://localhost:4200/login'
-     // }));
      passport.authenticate('facebook', {
        successRedirect: 'https://webdev-nair-suraj.herokuapp.com/user',
        failureRedirect: 'https://webdev-nair-suraj.herokuapp.com/login'
+       // successRedirect: 'http://localhost:4200/user',
+       // failureRedirect: 'http://localhost:4200/login'
      }));
+
    var users = [
      {_id: "123", username: "alice",    password: "alice",    firstName: "Alice",  lastName: "Wonder"  },
      {_id: "234", username: "bob",      password: "bob",      firstName: "Bob",    lastName: "Marley"  },

@@ -52,7 +52,7 @@
    app.get('/auth/facebook/callback',
      passport.authenticate('facebook', {
        successRedirect: '/user',
-       failureRedirect: '/login'
+       failureRedirect: '/user'
      }));
 
    var users = [

@@ -15,13 +15,24 @@
    var LocalStrategy = require("passport-local").Strategy;
    var FacebookStrategy = require('passport-facebook').Strategy;
    passport.use(new LocalStrategy(localStrategy));
-   var facebookConfig = {
-     clientID     : process.env.clientID, //'392060261226689',
-     clientSecret : process.env.clientSecret, //'d1854bce272261df0459a39065b4d087',
-     callbackURL  : process.env.callbackURL//'http://localhost:3100/auth/facebook/callback'
-     // callbackURL  : 'webdev-nair-suraj.herokuapp.com/auth/facebook/callback'
+   if(process.env.clientID) {
+     var facebookConfig = {
+       clientID     : process.env.clientID, //'392060261226689',
+       clientSecret : process.env.clientSecret, //'d1854bce272261df0459a39065b4d087',
+       callbackURL  : process.env.callbackURL//'http://localhost:3100/auth/facebook/callback'
+       // callbackURL  : 'webdev-nair-suraj.herokuapp.com/auth/facebook/callback'
 
-   };
+     };
+   }
+   else{
+     var facebookConfig = {
+       clientID     :  '392060261226689',
+       clientSecret : 'd1854bce272261df0459a39065b4d087',
+       callbackURL  : 'http://localhost:3100/auth/facebook/callback'
+       // callbackURL  : 'webdev-nair-suraj.herokuapp.com/auth/facebook/callback'
+
+     };
+   }
    passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
 
    app.post('/api/login', passport.authenticate('local'), login);
@@ -37,6 +48,7 @@
    app.delete('/api/user/:userId', deleteUser);
    app.get ('/auth/facebook',
      passport.authenticate('facebook', { scope : 'email' }));
+
    app.get('/auth/facebook/callback',
      passport.authenticate('facebook', {
        successRedirect: '/user',
